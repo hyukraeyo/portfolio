@@ -11,10 +11,11 @@
 - **[성능 최적화](./03-performance.mdc)** - 이미지, 폰트, 번들 최적화
 - **[데이터 페칭](./04-data-fetching.mdc)** - 데이터 페칭 패턴, 서버 액션
 - **[라우팅 & 레이아웃](./05-routing.mdc)** - 라우팅, 레이아웃 패턴
-- **[스타일링](./06-styling.mdc)** - CSS Modules, Tailwind CSS
+- **[스타일링](./06-styling.mdc)** - SCSS, CSS Modules, Tailwind CSS
 - **[타입 안정성](./07-typescript.mdc)** - TypeScript 설정 및 사용법
 - **[품질 & 최적화](./08-quality.mdc)** - 코드 품질, 배포, 보안
 - **[접근성 & SEO](./09-a11y-seo.mdc)** - 접근성, SEO 최적화
+- **[커밋 메시지](./10-commit.mdc)** - 한글 커밋 메시지 규칙
 
 ## 사용 방법
 

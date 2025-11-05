@@ -1,21 +1,29 @@
 ---
-description: Next.js 스타일링 규칙 - CSS Modules, Tailwind CSS 사용법
-globs: ["**/*.tsx", "**/*.css", "**/*.module.css"]
+description: Next.js 스타일링 규칙 - SCSS, CSS Modules, Tailwind CSS 사용법
+globs: ["**/*.tsx", "**/*.css", "**/*.scss", "**/*.module.css", "**/*.module.scss"]
 alwaysApply: true
 ---
 
 # 스타일링
 
+## SCSS 사용
+
+- **SCSS 사용을 기본으로 합니다**
+- 전역 스타일은 `app/globals.scss` 사용
+- CSS Modules: `*.module.scss` 사용 권장
+- SCSS의 변수, 중첩, 믹스인 등 기능 활용
+
 ## CSS Modules 또는 Tailwind CSS
 
-- CSS Modules: `*.module.css` 사용
+- CSS Modules: `*.module.css` 또는 `*.module.scss` 사용
 - Tailwind CSS 사용 시 `tailwind.config.ts` 설정
-- 전역 스타일은 `app/globals.css`에만
+- 전역 스타일은 `app/globals.scss`에만
 
 ## 스타일링 권장사항
 
 - CSS-in-JS 라이브러리 사용 시 Client Component로 제한
 - Server Components에서는 CSS Modules 또는 Tailwind 사용
+- SCSS의 중첩 기능을 활용하여 코드 구조화
 
 ## 스타일링 패턴
 
