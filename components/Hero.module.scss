@@ -1,4 +1,4 @@
-@import '../styles/variables';
+@use '../styles/variables';
 
 .hero {
   min-height: 100vh;
@@ -22,19 +22,25 @@
   display: inline-block;
   padding: 0.5rem 1rem;
   background-color: #dbeafe;
-  color: $text-blue-600;
+  color: var(--color-text-blue-600);
   border-radius: 9999px;
   font-size: 0.875rem;
   font-weight: 500;
   margin-bottom: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark .badgeText {
+  background-color: rgba(59, 130, 246, 0.2);
 }
 
 .title {
   font-size: 3rem;
   font-weight: 700;
-  color: $text-primary;
+  color: var(--color-text-primary);
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  transition: color 0.3s ease;
   
   @media (min-width: 768px) {
     font-size: 4.5rem;
@@ -42,16 +48,18 @@
 }
 
 .titleHighlight {
-  color: $text-blue-600;
+  color: var(--color-text-blue-600);
+  transition: color 0.3s ease;
 }
 
 .description {
   font-size: 1.25rem;
-  color: $text-gray-600;
+  color: var(--color-text-gray-600);
   margin-bottom: 2rem;
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
+  transition: color 0.3s ease;
   
   @media (min-width: 768px) {
     font-size: 1.5rem;
@@ -74,23 +82,23 @@
   border-radius: 0.5rem;
   font-weight: 500;
   text-decoration: none;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
   
   &.primary {
-    background-color: $primary-color;
+    background-color: var(--color-primary);
     color: #ffffff;
     
     &:hover {
-      background-color: $primary-hover;
+      background-color: var(--color-primary-hover);
     }
   }
   
   &.secondary {
-    background-color: $bg-gray-100;
-    color: $text-primary;
+    background-color: var(--color-bg-gray-100);
+    color: var(--color-text-primary);
     
     &:hover {
-      background-color: $bg-gray-200;
+      background-color: var(--color-bg-gray-200);
     }
   }
 }

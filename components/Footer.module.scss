@@ -1,9 +1,10 @@
-@import '../styles/variables';
+@use '../styles/variables';
 
 .footer {
-  background-color: $bg-gray-900;
-  color: $text-gray-400;
+  background-color: var(--color-bg-gray-900);
+  color: var(--color-text-gray-400);
   padding: 2rem 1.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .content {

@@ -1,4 +1,4 @@
-@import '../styles/variables';
+@use '../styles/variables';
 
 .skills {
   padding: 5rem 1.5rem;
@@ -12,9 +12,10 @@
 .title {
   font-size: 2rem;
   font-weight: 700;
-  color: $text-primary;
+  color: var(--color-text-primary);
   margin-bottom: 3rem;
   text-align: center;
+  transition: color 0.3s ease;
   
   @media (min-width: 768px) {
     font-size: 2.5rem;
@@ -36,8 +37,9 @@
 .categoryTitle {
   font-size: 1.5rem;
   font-weight: 600;
-  color: $text-primary;
+  color: var(--color-text-primary);
   margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
   
   @media (min-width: 768px) {
     font-size: 1.875rem;
@@ -61,43 +63,47 @@
 
 .skillName {
   font-weight: 500;
-  color: $text-primary;
+  color: var(--color-text-primary);
+  transition: color 0.3s ease;
 }
 
 .skillLevel {
   font-size: 0.875rem;
-  color: $text-gray-600;
+  color: var(--color-text-gray-600);
   text-transform: capitalize;
+  transition: color 0.3s ease;
 }
 
 .progressBar {
   width: 100%;
-  background-color: $bg-gray-200;
+  background-color: var(--color-bg-gray-200);
   border-radius: 9999px;
   height: 0.5rem;
+  transition: background-color 0.3s ease;
 }
 
 .progressFill {
   height: 0.5rem;
   border-radius: 9999px;
+  transition: background-color 0.3s ease;
   
   &.expert {
-    background-color: $green-500;
+    background-color: var(--color-green-500);
     width: 100%;
   }
   
   &.advanced {
-    background-color: $blue-500;
+    background-color: var(--color-blue-500);
     width: 80%;
   }
   
   &.intermediate {
-    background-color: $yellow-500;
+    background-color: var(--color-yellow-500);
     width: 60%;
   }
   
   &.beginner {
-    background-color: $bg-gray-400;
+    background-color: var(--color-bg-gray-400);
     width: 40%;
   }
 }

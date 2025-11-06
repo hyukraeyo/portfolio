@@ -1,4 +1,4 @@
-@import '../styles/variables';
+@use '../styles/variables';
 
 .header {
   position: fixed;
@@ -9,9 +9,9 @@
   transition: all 0.3s ease;
   
   &.scrolled {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--color-header-bg);
     backdrop-filter: blur(12px);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px 0 var(--color-header-shadow);
   }
   
   &.transparent {
@@ -34,12 +34,12 @@
 .logo {
   font-size: 1.25rem;
   font-weight: 700;
-  color: $text-primary;
+  color: var(--color-text-primary);
   text-decoration: none;
   transition: color 0.15s ease;
   
   &:hover {
-    color: $text-blue-600;
+    color: var(--color-text-blue-600);
   }
 }
 
@@ -58,19 +58,107 @@
 }
 
 .navLink {
-  color: $text-gray-700;
+  color: var(--color-text-gray-700);
   font-weight: 500;
   text-decoration: none;
   transition: color 0.15s ease;
   
   &:hover {
-    color: $text-blue-600;
+    color: var(--color-text-blue-600);
   }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.themeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: var(--color-text-primary);
+  background-color: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  
+  &:hover:not(:disabled) {
+    background-color: var(--color-bg-gray-100);
+    color: var(--color-text-blue-600);
+  }
+  
+  &:focus:not(:disabled) {
+    outline: 2px solid var(--color-text-blue-600);
+    outline-offset: 2px;
+  }
+  
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+}
+
+.iconWrapper {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sunIcon,
+.moonIcon {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sunIcon {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.moonIcon {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+}
+
+:global(html.dark) .sunIcon {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+}
+
+:global(html.dark) .moonIcon {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
 }
 
 .menuButton {
   display: block;
-  color: $text-primary;
+  color: var(--color-text-primary);
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  
+  &:hover {
+    background-color: var(--color-bg-gray-100);
+  }
   
   @media (min-width: 768px) {
     display: none;
@@ -80,5 +168,5 @@
 .icon {
   width: 1.5rem;
   height: 1.5rem;
+  transition: color 0.15s ease;
 }
-

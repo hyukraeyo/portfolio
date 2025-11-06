@@ -1,5 +1,3 @@
-@import '../styles/variables';
-
 .error {
   min-height: 100vh;
   display: flex;
@@ -15,7 +13,8 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: $text-primary;
+  color: var(--color-text-primary);
+  transition: color 0.3s ease;
   
   @media (min-width: 768px) {
     font-size: 2rem;
@@ -23,13 +22,14 @@
 }
 
 .message {
-  color: $text-gray-600;
+  color: var(--color-text-gray-600);
   margin-bottom: 1rem;
+  transition: color 0.3s ease;
 }
 
 .button {
   padding: 0.5rem 1rem;
-  background-color: $blue-500;
+  background-color: var(--color-blue-500);
   color: #ffffff;
   border-radius: 0.25rem;
   border: none;
@@ -38,7 +38,7 @@
   transition: background-color 0.15s ease;
   
   &:hover {
-    background-color: $primary-hover;
+    background-color: var(--color-primary-hover);
   }
 }
 
