@@ -8,6 +8,13 @@ import Link from 'next/link';
 import AuthModal from './AuthModal';
 import styles from './Header.module.scss';
 
+const NAV_ITEMS = [
+  { href: '#about', label: 'About' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#contact', label: 'Contact' },
+] as const;
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -30,13 +37,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#contact', label: 'Contact' },
-  ];
-
   const toggleTheme = () => {
     setTheme(currentTheme === 'dark' ? 'light' : 'dark');
   };
@@ -44,10 +44,6 @@ export default function Header() {
   const handleOpenAuthModal = (tab: 'login' | 'signup' = 'login') => {
     setAuthModalTab(tab);
     setAuthModalOpen(true);
-  };
-
-  const handleSignOut = async () => {
-    await signOut();
   };
 
   return (
@@ -62,7 +58,7 @@ export default function Header() {
             Portfolio
           </Link>
           <ul className={styles.navList}>
-            {navItems.map((item) => {
+            {NAV_ITEMS.map((item) => {
               const isActive = item.href.startsWith('/')
                 ? pathname === item.href
                 : pathname === '/' && item.href.startsWith('#');
@@ -82,7 +78,7 @@ export default function Header() {
             {user ? (
               <>
                 <span className={styles.userEmail}>{user.email}</span>
-                <button onClick={handleSignOut} className={styles.authButton}>
+                <button onClick={signOut} className={styles.authButton}>
                   로그아웃
                 </button>
               </>
@@ -101,7 +97,6 @@ export default function Header() {
               disabled={!mounted}
             >
               <span className={styles.iconWrapper}>
-                {/* Sun Icon (Light Mode) */}
                 <svg
                   className={`${styles.icon} ${styles.sunIcon}`}
                   fill="none"
@@ -116,7 +111,6 @@ export default function Header() {
                     d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
                   />
                 </svg>
-                {/* Moon Icon (Dark Mode) */}
                 <svg
                   className={`${styles.icon} ${styles.moonIcon}`}
                   fill="none"

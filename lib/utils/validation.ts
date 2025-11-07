@@ -1,5 +1,3 @@
-// 폼 검증 유틸리티 함수
-
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const MIN_PASSWORD_LENGTH = 6;
 
@@ -42,4 +40,3 @@ export function validatePasswordMatch(
   }
   return { isValid: true };
 }
-

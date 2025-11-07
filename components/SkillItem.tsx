@@ -5,14 +5,14 @@ interface SkillItemProps {
   skill: Skill;
 }
 
-export default function SkillItem({ skill }: SkillItemProps) {
-  const levelClasses = {
-    expert: styles.expert,
-    advanced: styles.advanced,
-    intermediate: styles.intermediate,
-    beginner: styles.beginner,
-  };
+const levelClasses: Record<Skill['level'], string> = {
+  expert: styles.expert,
+  advanced: styles.advanced,
+  intermediate: styles.intermediate,
+  beginner: styles.beginner,
+};
 
+export default function SkillItem({ skill }: SkillItemProps) {
   return (
     <div className={styles.skillItem}>
       <div className={styles.skillHeader}>

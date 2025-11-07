@@ -36,10 +36,8 @@ export default function AuthModal({
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // Supabase 클라이언트 메모이제이션
   const supabase = useMemo(() => createClient(), []);
 
-  // 폼 초기화 함수
   const resetForm = useCallback(() => {
     setEmail('');
     setPassword('');
@@ -52,39 +50,38 @@ export default function AuthModal({
     if (isOpen) {
       setActiveTab(initialTab);
       resetForm();
-
-      // 모달이 열릴 때 body 스크롤만 방지
       document.body.style.overflow = 'hidden';
     } else {
-      // 모달이 닫힐 때 스크롤 복원
       document.body.style.overflow = '';
     }
 
     return () => {
-      // 컴포넌트 언마운트 시에도 스크롤 복원
       document.body.style.overflow = '';
     };
   }, [isOpen, initialTab, resetForm]);
 
-  // ESC 키 핸들러 메모이제이션
-  const handleEscape = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
-    },
-    [isOpen, onClose]
-  );
-
   useEffect(() => {
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-    }
+    if (!isOpen) return;
 
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
     };
-  }, [isOpen, handleEscape]);
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen, onClose]);
+
+  const handleAuthError = useCallback(
+    (errorMessage: string, isLogin: boolean) => {
+      setError(
+        isLogin
+          ? getLoginErrorMessage(errorMessage)
+          : getSignupErrorMessage(errorMessage)
+      );
+      setLoading(false);
+    },
+    []
+  );
 
   const handleLogin = useCallback(
     async (e: React.FormEvent) => {
@@ -114,13 +111,11 @@ export default function AuthModal({
           });
 
         if (authError) {
-          setError(getLoginErrorMessage(authError.message));
-          setLoading(false);
+          handleAuthError(authError.message, true);
           return;
         }
 
         if (data?.user) {
-          setLoading(false);
           resetForm();
           onClose();
         } else {
@@ -133,7 +128,7 @@ export default function AuthModal({
         setLoading(false);
       }
     },
-    [email, password, supabase, resetForm, onClose]
+    [email, password, supabase, resetForm, onClose, handleAuthError]
   );
 
   const handleSignup = useCallback(
@@ -173,13 +168,11 @@ export default function AuthModal({
         });
 
         if (signUpError) {
-          setError(getSignupErrorMessage(signUpError.message));
-          setLoading(false);
+          handleAuthError(signUpError.message, false);
           return;
         }
 
         if (data?.user) {
-          setLoading(false);
           setError('회원가입이 완료되었습니다! 이메일을 확인해주세요.');
           setTimeout(() => {
             setActiveTab('login');
@@ -195,23 +188,18 @@ export default function AuthModal({
         setLoading(false);
       }
     },
-    [email, password, confirmPassword, supabase, resetForm]
+    [email, password, confirmPassword, supabase, resetForm, handleAuthError]
   );
 
-  // 탭 변경 핸들러 메모이제이션
   const handleTabChange = useCallback((tab: 'login' | 'signup') => {
     setActiveTab(tab);
     setError(null);
   }, []);
 
-  // 오버레이 클릭 핸들러 메모이제이션
   const handleOverlayClick = useCallback(() => {
-    if (!loading) {
-      onClose();
-    }
+    if (!loading) onClose();
   }, [loading, onClose]);
 
-  // 모달 클릭 핸들러 메모이제이션 (이벤트 전파 방지)
   const handleModalClick = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
   }, []);
