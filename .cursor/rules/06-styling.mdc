@@ -25,17 +25,36 @@ alwaysApply: true
 - Server Components에서는 CSS Modules 또는 Tailwind 사용
 - SCSS의 중첩 기능을 활용하여 코드 구조화
 
+## SCSS Import 규칙
+
+**⚠️ 중요: Sass @import는 deprecated 되었습니다. 항상 @use를 사용해야 합니다.**
+
+- `@import` 대신 `@use` 사용 필수
+- 변수 파일은 `@use '../styles/variables' as *;` 형식으로 import
+- `as *`를 사용하여 네임스페이스 없이 변수 사용 가능
+
+```scss
+// ❌ 잘못된 방법 (deprecated)
+@import '../styles/variables';
+
+// ✅ 올바른 방법
+@use '../styles/variables' as *;
+```
+
 ## 스타일링 패턴
 
 ### CSS Modules 예시
 ```typescript
-// component.module.css
+// component.module.scss
+@use '../styles/variables' as *;
+
 .container {
   padding: 1rem;
+  background: var(--color-bg-white);
 }
 
 // component.tsx
-import styles from './component.module.css';
+import styles from './component.module.scss';
 
 export default function Component() {
   return <div className={styles.container}>Content</div>;
@@ -48,3 +67,9 @@ export default function Component() {
   return <div className="p-4 bg-blue-500">Content</div>;
 }
 ```
+
+## 코드 품질
+
+- 중복되는 스타일은 믹스인으로 추출
+- 공통 패턴은 변수나 함수로 재사용
+- 반응형 디자인은 모바일 퍼스트 접근

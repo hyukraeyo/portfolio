@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
   { href: '#contact', label: 'Contact' },
+  { href: '/board', label: 'Board' },
 ] as const;
 
 const DELAY_BASE = 0.05;

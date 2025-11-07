@@ -22,6 +22,8 @@ NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
+**중요**: 환경 변수를 변경한 후에는 개발 서버를 재시작해야 합니다.
+
 ## 3. 데이터베이스 스키마 생성
 
 Supabase 대시보드의 SQL Editor로 이동하여 다음 SQL을 실행합니다:
@@ -106,6 +108,7 @@ SELECT * FROM pg_policies WHERE tablename = 'posts';
 ## 6. 인증 설정 (선택사항)
 
 Supabase 대시보드의 Authentication > Settings에서:
+
 - 이메일 인증이 활성화되어 있는지 확인
 - 필요시 소셜 로그인(OAuth) 설정
 
@@ -118,14 +121,35 @@ Supabase 대시보드의 Authentication > Settings에서:
 ## 문제 해결
 
 ### RLS 정책이 작동하지 않는 경우
+
 - Supabase 대시보드에서 RLS가 활성화되어 있는지 확인
 - 정책이 올바르게 생성되었는지 확인
 - 인증된 사용자의 세션이 올바른지 확인
 
+### 서버 액션에서 세션을 읽지 못하는 경우
+
+Next.js 15의 서버 액션에서 Supabase 세션을 읽지 못하는 경우가 있습니다. 이 경우:
+
+- 클라이언트 컴포넌트에서 `useAuth()`를 통해 사용자 ID를 가져와서 서버 액션에 전달합니다.
+- 서버 액션은 전달받은 사용자 ID를 사용하되, 서버에서도 한 번 더 검증합니다.
+- 미들웨어(`middleware.ts`)가 세션을 갱신하도록 설정되어 있어야 합니다.
+
 ### 타입 생성 (선택사항)
+
 Supabase CLI를 사용하여 타입을 자동 생성할 수 있습니다:
 
 ```bash
 npx supabase gen types typescript --project-id your-project-id > types/supabase.ts
 ```
 
+## 체크리스트
+
+설정이 완료되었는지 확인하세요:
+
+- [ ] Supabase 프로젝트 생성 완료
+- [ ] `.env.local` 파일에 환경 변수 설정
+- [ ] `posts` 테이블 생성 완료
+- [ ] RLS 정책 설정 완료
+- [ ] 개발 서버 재시작 완료
+- [ ] `/check-connection` 페이지에서 연결 확인
+- [ ] 로그인 후 게시글 작성 테스트

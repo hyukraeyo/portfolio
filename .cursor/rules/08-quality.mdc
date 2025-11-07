@@ -17,6 +17,64 @@ alwaysApply: true
 - 일관된 코드 포맷팅
 - 의미 있는 변수명과 함수명 사용
 
+## 코드 최적화 원칙
+
+**⚠️ 중요: 항상 다음 원칙을 적용해야 합니다.**
+
+1. **중복 코드 제거**
+   - 반복되는 로직은 헬퍼 함수로 추출
+   - 공통 유틸리티는 `lib/utils/` 디렉토리에 분리
+   - 날짜 포맷팅, 텍스트 처리 등은 유틸리티 함수로 재사용
+
+2. **로직 간결화**
+   - 복잡한 조건문은 함수로 분리
+   - 중첩된 로직은 단계별로 분리
+   - 불필요한 변수 제거
+
+3. **성능 최적화**
+   - 불필요한 재렌더링 방지
+   - 메모이제이션 적절히 활용
+   - 서버 액션에서 중복 쿼리 방지
+
+4. **타입 안정성**
+   - 명시적 타입 정의
+   - any 타입 사용 금지
+   - 타입 가드 활용
+
+### 예시: 중복 코드 제거
+
+```typescript
+// ❌ 중복된 코드
+export async function createPost(...) {
+  const supabase = await createClient();
+  const { data: { user }, error } = await supabase.auth.getUser();
+  if (error || !user) throw new Error('로그인이 필요합니다.');
+  // ...
+}
+
+export async function updatePost(...) {
+  const supabase = await createClient();
+  const { data: { user }, error } = await supabase.auth.getUser();
+  if (error || !user) throw new Error('로그인이 필요합니다.');
+  // ...
+}
+
+// ✅ 헬퍼 함수로 추출
+async function getAuthenticatedUser(userId?: string) {
+  // 공통 로직
+}
+
+export async function createPost(...) {
+  const user = await getAuthenticatedUser(userId);
+  // ...
+}
+
+export async function updatePost(...) {
+  const user = await getAuthenticatedUser(userId);
+  // ...
+}
+```
+
 ## 에러 처리
 
 ### 에러 바운더리
