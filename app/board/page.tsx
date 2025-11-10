@@ -1,9 +1,20 @@
 import { Suspense } from 'react';
+import type { Metadata } from 'next';
 import { getPosts } from '@/app/actions/posts';
 import PostCard from '@/components/PostCard';
 import WriteButton from '@/components/WriteButton';
 import styles from './board.module.scss';
 import Loading from '@/app/loading';
+
+export const metadata: Metadata = {
+  title: '게시판 | Portfolio',
+  description: '프로젝트와 개발 경험을 공유하는 게시판입니다.',
+  openGraph: {
+    title: '게시판 | Portfolio',
+    description: '프로젝트와 개발 경험을 공유하는 게시판입니다.',
+    type: 'website',
+  },
+};
 
 async function PostList() {
   const posts = await getPosts();

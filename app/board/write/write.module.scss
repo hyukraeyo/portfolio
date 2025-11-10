@@ -65,28 +65,30 @@
 
 .field {
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .label {
   display: block;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-weight: 500;
   color: var(--color-text-primary);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 .textarea {
   width: 100%;
-  padding: 0.875rem;
-  border: 1px solid var(--color-bg-gray-200);
-  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--color-bg-gray-200);
+  border-radius: 12px;
   background: var(--color-bg-white);
   color: var(--color-text-primary);
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-family: inherit;
   line-height: 1.6;
   resize: vertical;
-  transition: border-color 0.3s ease;
+  transition: all 0.2s ease;
 
   &:focus {
     outline: none;
@@ -96,6 +98,16 @@
 
   &::placeholder {
     color: var(--color-text-gray-400);
+  }
+
+  .dark & {
+    background: var(--color-bg-gray-100);
+    border-color: var(--color-bg-gray-300);
+
+    &:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
   }
 }
 

@@ -1,14 +1,19 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import { useAuth } from './AuthProvider';
 import Link from 'next/link';
-import AuthModal from './AuthModal';
 import { cn } from '@/lib/utils/classNames';
 import { throttle } from '@/lib/utils/throttle';
 import styles from './Header.module.scss';
+
+// AuthModal은 모달이므로 필요할 때만 로드 (동적 import)
+const AuthModal = dynamic(() => import('./AuthModal'), {
+  ssr: false, // 모달은 SSR 불필요
+});
 
 const NAV_ITEMS = [
   { href: '#about', label: 'About' },
