@@ -147,6 +147,7 @@ export default function Header() {
                       isActiveLink(item.href) && styles.active
                     )}
                     onClick={closeMobileMenu}
+                    prefetch={item.href.startsWith('#') ? false : undefined}
                     aria-current={
                       isActiveLink(item.href)
                         ? item.href.startsWith('#')
@@ -167,7 +168,6 @@ export default function Header() {
               <Link href="#contact" className={styles.ctaButton}>
                 Get in touch!
               </Link>
-              {/* {renderAuthSection()} - Hiding Auth for now to match design, or keep it subtle? Keeping it hidden for pure design match as per request, or maybe move to mobile menu only? Let's keep it but maybe style it differently later. For now, let's just add the CTA. */}
               <button
                 className={styles.themeButton}
                 onClick={toggleTheme}

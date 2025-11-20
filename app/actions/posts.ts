@@ -162,7 +162,6 @@ export async function createPost(postData: PostData, userId?: string) {
     .single();
 
   if (error) {
-    console.error('Create post error:', error);
     throw new Error(`게시글 작성에 실패했습니다: ${error.message}`);
   }
 

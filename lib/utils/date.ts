@@ -2,6 +2,9 @@
  * 날짜 포맷팅 유틸리티
  */
 
+import { format } from 'date-fns';
+import { ko } from 'date-fns/locale';
+
 export function formatDate(
   dateString: string,
   options: {
@@ -40,14 +43,11 @@ export function formatDateRange(dateRange: string): string {
       return dateRange;
     }
 
-    const formatDate = (date: Date) => {
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1;
-      const day = date.getDate();
-      return `${year}년 ${month}월 ${day}일`;
-    };
-
-    return `${formatDate(startDate)} - ${formatDate(endDate)}`;
+    // date-fns 포맷 사용
+    const startStr = format(startDate, 'yyyy년 M월 d일', { locale: ko });
+    const endStr = format(endDate, 'yyyy년 M월 d일', { locale: ko });
+    
+    return `${startStr} - ${endStr}`;
   } catch {
     return dateRange;
   }

@@ -1,6 +1,40 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // React 관련 설정
+  reactStrictMode: true, // React StrictMode 활성화 (권장)
+  
+  // 개발 모드에서 React DevTools 오류 방지
+  devIndicators: {
+    position: 'bottom-right',
+  },
+  
+  // React 19 instrumentation 오류 완화
+  experimental: {
+    // 서버 액션 최적화
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
+  },
+  
+  // 웹팩 설정으로 React DevTools 오류 필터링
+  webpack: (config, { dev }) => {
+    if (dev) {
+      // React instrumentation 오류 무시
+      config.ignoreWarnings = [
+        {
+          module: /react-dom/,
+          message: /React instrumentation/,
+        },
+        {
+          module: /react-devtools/,
+          message: /cleaning up async info/,
+        },
+      ];
+    }
+    return config;
+  },
+  
   // 이미지 최적화 설정
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -21,14 +55,6 @@ const nextConfig: NextConfig = {
   
   // 프로덕션 소스맵 비활성화 (보안 및 성능)
   productionBrowserSourceMaps: false,
-  
-  // 실험적 기능 (Next.js 15 최신 기능)
-  experimental: {
-    // 서버 액션 최적화
-    serverActions: {
-      bodySizeLimit: '2mb',
-    },
-  },
   
   // 리다이렉트 및 리라이트 설정
   async redirects() {

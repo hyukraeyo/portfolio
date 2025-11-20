@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { DayPicker, DateRange } from 'react-day-picker';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale/ko';
+import { formatDateRange } from '@/lib/utils/date';
 import 'react-day-picker/dist/style.css';
 import styles from './DateRangePicker.module.scss';
 
@@ -36,30 +37,6 @@ const parseDateRange = (
   if (startDate && endDate) return { from: startDate, to: endDate };
   if (startDate) return { from: startDate, to: undefined };
   return undefined;
-};
-
-// 날짜 포맷팅 헬퍼 함수
-const formatDateRange = (
-  dateValue: string | undefined,
-  locale: typeof ko
-): string => {
-  if (!dateValue) return '';
-
-  const parts = dateValue.split(' - ');
-  if (parts.length !== 2) return dateValue;
-
-  const [startStr, endStr] = parts.map((s) => s.trim());
-  try {
-    const startDate = new Date(startStr);
-    const endDate = new Date(endStr);
-
-    if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
-      return `${format(startDate, 'yyyy년 M월 d일', { locale })} - ${format(endDate, 'yyyy년 M월 d일', { locale })}`;
-    }
-  } catch {
-    // 파싱 실패 시 원본 반환
-  }
-  return dateValue;
 };
 
 export default function DateRangePicker({
@@ -112,7 +89,7 @@ export default function DateRangePicker({
 
   // 표시용 날짜 포맷팅 (메모이제이션)
   const displayValue = useMemo(
-    () => (value ? formatDateRange(value, ko) : placeholder),
+    () => (value ? formatDateRange(value) : placeholder),
     [value, placeholder]
   );
 

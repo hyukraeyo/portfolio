@@ -138,7 +138,6 @@ export default function AuthModal({
         setLoading(false);
       }
     } catch (err) {
-      console.error('Login error:', err);
       setError('로그인 중 오류가 발생했습니다. 다시 시도해주세요.');
       setLoading(false);
     }
@@ -173,7 +172,6 @@ export default function AuthModal({
         setLoading(false);
       }
     } catch (err) {
-      console.error('Signup error:', err);
       setError('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.');
       setLoading(false);
     }

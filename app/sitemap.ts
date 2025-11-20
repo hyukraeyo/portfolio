@@ -32,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     }));
   } catch (error) {
-    console.error('Failed to generate sitemap for posts:', error);
+    // 사이트맵 생성 오류 처리
   }
 
   return [...staticPages, ...dynamicPages];

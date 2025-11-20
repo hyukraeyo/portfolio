@@ -28,9 +28,7 @@ export default function Intro() {
             <div className={styles.circleBg}></div>
             
             {/* Profile Image Placeholder */}
-            <div className={styles.profileImagePlaceholder}>
-               {/* <Image src="/path/to/image.jpg" alt="JO HYUKRAE" fill className={styles.profileImage} /> */}
-            </div>
+            <div className={styles.profileImagePlaceholder}></div>
 
             {/* Contact Card Overlay */}
             <div className={styles.contactCard}>

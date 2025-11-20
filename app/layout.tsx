@@ -29,25 +29,6 @@ const clearface = Cormorant_Garamond({
   variable: "--font-clearface",
 });
 
-// 참고: 실제 ITC Clearface 폰트 파일이 있다면 아래 주석을 해제하고 사용하세요
-// const clearfaceLocal = localFont({
-//   src: [
-//     {
-//       path: "public/fonts/ITC-Clearface-Regular.woff2",
-//       weight: "400",
-//       style: "normal",
-//     },
-//     {
-//       path: "public/fonts/ITC-Clearface-Bold.woff2",
-//       weight: "700",
-//       style: "normal",
-//     },
-//   ],
-//   variable: "--font-clearface",
-//   display: "swap",
-//   fallback: ["serif"],
-// });
-
 export const metadata: Metadata = {
   title: "Portfolio | 프론트엔드 개발자",
   description: "프론트엔드 개발자 포트폴리오 - Next.js, React, TypeScript를 활용한 현대적인 웹 애플리케이션 개발",
