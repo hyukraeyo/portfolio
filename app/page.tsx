@@ -1,23 +1,20 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Skills from '@/components/Skills';
-import Projects from '@/components/Projects';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import Intro from '@/components/Intro';
+import ResumeGrid from '@/components/ResumeGrid';
+import Interests from '@/components/Interests';
+import styles from "./page.module.scss";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main id="main-content">
+      <main className={styles.main}>
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
+        <Intro />
+        <ResumeGrid />
+        <Interests />
       </main>
-      <Footer />
     </>
   );
 }

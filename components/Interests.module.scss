@@ -1,0 +1,163 @@
+@use '../styles/variables' as *;
+
+.interests {
+  background-color: $color-cream;
+  padding: 5rem 0;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  
+  @media (min-width: 992px) {
+    grid-template-columns: 1.2fr 0.8fr 1.5fr; // Activities, Language, Hobbies
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Activities Styles
+.activitiesList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.activityItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.marker {
+  color: $color-orange;
+  font-size: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.activityContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.activityYear {
+  font-family: $font-clearface;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: $text-dark;
+}
+
+.activityTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $text-dark;
+}
+
+.activityDesc {
+  font-size: 0.875rem;
+  color: $text-secondary;
+}
+
+.sectionTitle {
+  font-family: $font-clearface;
+  font-size: 3rem;
+  color: $text-dark;
+  margin-bottom: 2.5rem;
+  font-weight: 700;
+}
+
+// Language Styles
+.languageList {
+  display: flex;
+  flex-direction: column; // Stack vertically as per design? Or horizontal? Design shows horizontal-ish layout
+  gap: 2rem;
+  
+  @media (min-width: 640px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  @media (min-width: 768px) {
+    flex-direction: column; // Back to column for sidebar layout if needed, but design shows horizontal row for languages
+    // Actually design shows 3 columns for languages under the title? No, looks like a row.
+    // Let's stick to row for now.
+    flex-direction: row;
+  }
+}
+
+.languageItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.langName {
+  font-family: $font-clearface;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $text-dark;
+}
+
+.langLevel {
+  font-size: 0.875rem;
+  color: $text-secondary;
+}
+
+// Hobbies Styles
+.hobbiesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.hobbyItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.iconWrapper {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: transparent; // Or maybe a circle? Design shows icons.
+  // Let's assume simple icons for now, maybe wrapped in circles if needed.
+  // Design has yellow circles/shapes behind icons.
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: $color-orange;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color-orange, 0.2); // Light orange circle
+    border-radius: 50%;
+    z-index: -1;
+  }
+}
+
+.hobbyName {
+  font-size: 0.875rem;
+  color: $text-dark;
+  line-height: 1.4;
+}

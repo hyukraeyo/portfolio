@@ -38,22 +38,28 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
 }
 
 .logo {
+  font-family: var(--font-playfair), serif;
   font-size: 1.5rem;
-  font-weight: 800;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 700;
+  color: var(--color-text-primary);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   transition: transform 0.3s ease;
-  letter-spacing: -0.02em;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
+}
+
+.logoIcon {
+  color: var(--color-accent);
+  font-size: 1.2em;
 }
 
 .navList {
@@ -62,7 +68,9 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   @media (min-width: 768px) {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    justify-content: center;
+    gap: 3rem;
+    flex: 1;
   }
 
   @media (max-width: 767px) {
@@ -82,7 +90,9 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform: translateX(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: transform $menu-transition, opacity $item-transition,
+    transition:
+      transform $menu-transition,
+      opacity $item-transition,
       visibility 0s 0.6s;
     z-index: 100;
     overflow-y: auto;
@@ -97,7 +107,9 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       transform: translateX(0);
       opacity: 1;
       visibility: visible;
-      transition: transform $menu-transition, opacity $item-transition,
+      transition:
+        transform $menu-transition,
+        opacity $item-transition,
         visibility 0s;
     }
   }
@@ -111,7 +123,9 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-bottom: 1px solid var(--color-bg-gray-200);
     opacity: 0;
     transform: translateX(-30px) scale(0.95);
-    transition: opacity $item-transition, transform $item-transition;
+    transition:
+      opacity $item-transition,
+      transform $item-transition;
 
     .dark & {
       border-bottom-color: var(--color-bg-gray-300);
@@ -132,7 +146,9 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   padding: 0.5rem 0;
-  
+  white-space: nowrap;
+  text-align: center;
+
   &::after {
     content: '';
     position: absolute;
@@ -140,24 +156,38 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--gradient-primary);
+    background: var(--color-accent);
     transition: width 0.3s ease;
   }
 
   &:hover {
-    color: var(--color-primary);
+    color: var(--color-text-primary);
     transform: translateY(-2px);
-    
+
     &::after {
       width: 100%;
     }
   }
 
   &.active {
-    color: var(--color-primary);
-    
+    color: var(--color-text-primary);
+
     &::after {
       width: 100%;
+      background: var(--color-accent);
+      height: 2px;
+    }
+  }
+
+  .dark & {
+    color: var(--color-text-gray-600);
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
+
+    &.active {
+      color: var(--color-text-primary);
     }
   }
 
@@ -182,7 +212,9 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   border-top: 2px solid var(--color-bg-gray-200);
   opacity: 0;
   transform: translateX(-30px) scale(0.95);
-  transition: opacity $item-transition, transform $item-transition;
+  transition:
+    opacity $item-transition,
+    transform $item-transition;
   transition-delay: var(--delay, 0.25s);
 
   .dark & {
@@ -211,8 +243,10 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   background-color: rgba(0, 0, 0, 0);
   z-index: 99;
   backdrop-filter: blur(0px);
-  transition: background-color $item-transition,
-    backdrop-filter $item-transition, opacity $item-transition,
+  transition:
+    background-color $item-transition,
+    backdrop-filter $item-transition,
+    opacity $item-transition,
     visibility 0s 0.5s;
   pointer-events: none;
   opacity: 0;
@@ -228,8 +262,11 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     pointer-events: auto;
     opacity: 1;
     visibility: visible;
-    transition: background-color $item-transition,
-      backdrop-filter $item-transition, opacity $item-transition, visibility 0s;
+    transition:
+      background-color $item-transition,
+      backdrop-filter $item-transition,
+      opacity $item-transition,
+      visibility 0s;
   }
 }
 
@@ -290,7 +327,9 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: absolute;
   width: 1.5rem;
   height: 1.5rem;
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .sunIcon {
@@ -382,7 +421,8 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 .icon {
   width: 1.5rem;
   height: 1.5rem;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  transition:
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -396,60 +436,29 @@ $item-transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 }
 
-.authButton {
-  padding: 0.625rem 1.25rem;
-  background: var(--gradient-primary);
-  color: white;
+.ctaButton {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-accent);
+  color: var(--color-text-primary);
   text-decoration: none;
-  border: none;
-  border-radius: 0.625rem;
+  border-radius: 9999px; // Pill shape
+  font-weight: 700;
   font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.4s ease, height 0.4s ease;
-  }
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 0 20px var(--color-primary), 0 0 40px var(--color-accent);
-    
-    &::before {
-      width: 300px;
-      height: 300px;
-    }
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: var(--color-accent-light);
   }
 
   &:active {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
+}
 
-  @media (max-width: 768px) {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
-  }
-
-  @media (max-width: 767px) {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    font-size: 0.875rem;
-  }
+.authButton {
+  // Legacy auth button styles, keeping just in case or for mobile
+  display: none;
 }

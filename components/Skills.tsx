@@ -1,38 +1,50 @@
-import { useMemo } from 'react';
-import { skills } from '@/lib/data';
-import SkillItem from './SkillItem';
-import Section from './ui/Section';
 import styles from './Skills.module.scss';
 
 export default function Skills() {
-  const skillCategories = useMemo(
-    () => ({
-      frontend: skills.filter((s) => s.category === 'frontend'),
-      tools: skills.filter((s) => s.category === 'tools'),
-    }),
-    []
-  );
-
   return (
-    <Section id="skills" title="Skills" className={styles.skills}>
-      <div className={styles.grid}>
-        <div className={styles.category}>
-          <h3 className={styles.categoryTitle}>Frontend</h3>
-          <div className={styles.skillList}>
-            {skillCategories.frontend.map((skill) => (
-              <SkillItem key={skill.name} skill={skill} />
-            ))}
+    <section className={styles.skills} id="skills">
+      <div className={styles.bgText}>RESUME</div>
+      
+      <div className={styles.container}>
+        <h2 className={styles.sectionTitle}>Technical skills</h2>
+        
+        <div className={styles.grid}>
+          {/* Software Skills */}
+          <div className={styles.category}>
+            <h3 className={styles.categoryTitle}>Software Skills</h3>
+            <div className={styles.softwareGrid}>
+              <div className={styles.softwareItem}>Ps</div>
+              <div className={styles.softwareItem}>Ai</div>
+              <div className={styles.softwareItem}>Id</div>
+              <div className={styles.softwareItem}>Xd</div>
+              <div className={styles.softwareItem}>Pr</div>
+            </div>
+          </div>
+
+          {/* Coding Skills */}
+          <div className={styles.category}>
+            <h3 className={styles.categoryTitle}>Coding skills</h3>
+            <div className={styles.codingContent}>
+              <p className={styles.codingIntro}>Basic knowledge of:</p>
+              <div className={styles.codingGrid}>
+                <span>HTML</span>
+                <span>PHP</span>
+                <span>CSS</span>
+                <span>SQL</span>
+                <span>JavaScript</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div className={styles.category}>
-          <h3 className={styles.categoryTitle}>Tools & Others</h3>
-          <div className={styles.skillList}>
-            {skillCategories.tools.map((skill) => (
-              <SkillItem key={skill.name} skill={skill} />
-            ))}
-          </div>
+
+        {/* Bottom Tags */}
+        <div className={styles.tags}>
+          <span className={styles.tag}>Packaging</span>
+          <span className={styles.tag}>Visual design</span>
+          <span className={styles.tag}>UI/UX design</span>
+          <span className={styles.tag}>User Research</span>
         </div>
       </div>
-    </Section>
+    </section>
   );
 }

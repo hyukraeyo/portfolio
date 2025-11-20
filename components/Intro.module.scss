@@ -1,0 +1,173 @@
+@use '../styles/variables' as *;
+
+.intro {
+  background-color: $color-cream;
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+// Left Content
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.greeting {
+  font-family: $font-clearface;
+  font-size: 4rem;
+  font-weight: 700;
+  color: $text-dark;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  
+  @media (min-width: 768px) {
+    font-size: 5.5rem;
+  }
+}
+
+.description {
+  font-family: $font-sans;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: $text-secondary;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+  
+  @media (min-width: 768px) {
+    font-size: 1.125rem;
+  }
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  background-color: $color-orange-light;
+  color: white;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Right Image Section
+.imageSection {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 3/4;
+}
+
+.circleBg {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background-color: $color-dark-green;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.profileImagePlaceholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #ccc; // Placeholder
+  border-radius: 12rem 12rem 0 0; // Arch shape
+  overflow: hidden;
+}
+
+.contactCard {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  background-color: black;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  z-index: 2;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.contactTitle {
+  font-family: $font-clearface;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    
+    .icon {
+      margin-right: 0.75rem;
+    }
+  }
+}
+
+.dateBadge {
+  position: absolute;
+  top: 15%;
+  left: -10%;
+  background-color: $color-orange;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  z-index: 2;
+}
+
+.nationalityBadge {
+  position: absolute;
+  top: 40%;
+  right: -10%;
+  background-color: $color-orange;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  z-index: 2;
+}

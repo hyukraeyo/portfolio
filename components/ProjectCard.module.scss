@@ -80,6 +80,7 @@
 }
 
 .imageText {
+  font-family: var(--font-clearface), var(--font-playfair), serif;
   color: #ffffff;
   font-size: 1.75rem;
   font-weight: 800;
@@ -99,6 +100,7 @@
 }
 
 .cardTitle {
+  font-family: var(--font-clearface), var(--font-playfair), serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-text-primary);

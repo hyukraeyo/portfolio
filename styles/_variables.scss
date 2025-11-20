@@ -1,34 +1,36 @@
-// Variables
-// Variables
-// Primary Colors - Electric Blue / Cyan / Violet
-$primary-color: #3b82f6;
-$primary-hover: #2563eb;
-$accent-color: #06b6d4;
-$accent-secondary: #8b5cf6;
-$neon-cyan: #00f5ff;
+@use "sass:color";
 
-// Neutral Colors
-$text-primary: #0f172a;
-$text-secondary: #475569;
-$bg-white: #ffffff;
-$bg-gray-50: #f8fafc;
-$bg-gray-100: #f1f5f9;
-$bg-gray-200: #e2e8f0;
-$bg-gray-300: #cbd5e1;
-$bg-gray-400: #94a3b8;
-$bg-gray-900: #0f172a;
+// Variables
+
+// New Design System Colors
+$color-cream: #F5F0E6;
+$color-dark-green: #2D4338; // Updated to match reference
+$color-orange: #FFB400;
+$color-orange-light: #F4A261;
+
+// Mapping to functional names
+$primary-color: $color-dark-green;
+$secondary-color: $color-cream;
+$accent-color: $color-orange;
 
 // Text Colors
-$text-gray-400: #94a3b8;
-$text-gray-600: #475569;
-$text-gray-700: #334155;
-$text-gray-900: #0f172a;
-$text-blue-600: #3b82f6;
-$text-blue-700: #2563eb;
+$text-primary: $color-dark-green;
+$text-secondary: rgba($color-dark-green, 0.8);
+$text-light: $color-cream;
+$text-dark: #1A1A1A;
 
-// Functional Colors
-$green-500: #10b981;
-$blue-500: #3b82f6;
-$yellow-500: #f59e0b;
-$red-500: #ef4444;
+// Backgrounds
+$bg-primary: $color-cream;
+$bg-secondary: $color-dark-green;
 
+// Fonts
+$font-serif: var(--font-playfair), serif;
+$font-sans: var(--font-inter), sans-serif;
+$font-clearface: var(--font-clearface), serif;
+
+// Legacy/Compat variables
+$bg-white: $color-cream;
+$bg-gray-50: color.adjust($color-cream, $lightness: -5%);
+$bg-gray-100: color.adjust($color-cream, $lightness: -10%);
+$bg-gray-900: $color-dark-green;
+$color-text-gray-600: rgba($color-dark-green, 0.7);

@@ -16,10 +16,9 @@ const AuthModal = dynamic(() => import('./AuthModal'), {
 });
 
 const NAV_ITEMS = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#about', label: 'About me' },
+  { href: '/resume', label: 'Resume' },
+  { href: '#projects', label: 'Work' },
   { href: '/board', label: 'Board' },
 ] as const;
 
@@ -126,7 +125,7 @@ export default function Header() {
         <nav className={styles.nav} role="navigation" aria-label="주요 내비게이션">
           <div className={styles.navContent}>
             <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
-              Portfolio
+              <span className={styles.logoIcon}>✦</span> JO HYUKRAE
             </Link>
             <ul
               className={cn(
@@ -165,7 +164,10 @@ export default function Header() {
               </li>
             </ul>
             <div className={styles.actions}>
-              {renderAuthSection()}
+              <Link href="#contact" className={styles.ctaButton}>
+                Get in touch!
+              </Link>
+              {/* {renderAuthSection()} - Hiding Auth for now to match design, or keep it subtle? Keeping it hidden for pure design match as per request, or maybe move to mobile menu only? Let's keep it but maybe style it differently later. For now, let's just add the CTA. */}
               <button
                 className={styles.themeButton}
                 onClick={toggleTheme}
