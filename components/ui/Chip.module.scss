@@ -3,12 +3,12 @@
 .chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: $spacing-2 $spacing-4;
   border-radius: 20px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all $transition-base ease;
   border: 2px solid var(--color-bg-gray-200);
   background: var(--color-bg-white);
   color: var(--color-text-primary);
@@ -16,11 +16,11 @@
 
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: $shadow-sm;
   }
 
   &.selected {
-    color: white;
+    color: $text-white;
     border-color: transparent;
 
     &:hover {

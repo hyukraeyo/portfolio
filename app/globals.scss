@@ -1,18 +1,46 @@
-@use '../styles/variables';
+@use 'sass:color';
+@use '../styles/variables' as *;
 
 // CSS Variables for Theme
 :root {
-  --color-primary: #2d4338;
-  --color-secondary: #f5f0e6;
-  --color-accent: #ffb400;
-  --color-accent-light: #f4a261;
+  --color-primary: #{$primary-color};
+  --color-secondary: #{$secondary-color};
+  --color-accent: #{$accent-color};
+  --color-accent-light: #{$accent-light-color};
 
-  --color-bg-primary: #f5f0e6;
+  --color-bg-primary: #{$bg-primary};
+  --color-bg-secondary: #{$bg-secondary};
+  --color-bg-tertiary: #{$bg-tertiary};
+  --color-bg-white: #{$bg-white};
+  --color-bg-gray-50: #{$bg-gray-50};
+  --color-bg-gray-100: #{$bg-gray-100};
+  --color-bg-gray-200: #{$bg-gray-200};
+  --color-bg-gray-300: #{$bg-gray-300};
+  --color-bg-gray-400: #{$bg-gray-400};
+  --color-bg-gray-900: #{$bg-gray-900};
+
+  --color-text-primary: #{$text-primary};
+  --color-text-secondary: #{$text-secondary};
+  --color-text-tertiary: #{$text-tertiary};
+  --color-text-dark: #{$text-dark};
+  --color-text-white: #{$text-white};
+  --color-text-gray-400: #{$color-text-gray-400};
+  --color-text-gray-600: #{$color-text-gray-600};
+  --color-text-gray-700: #{$color-text-gray-700};
+  --color-text-gray-900: #{$color-text-gray-900};
+
   --color-warning: #f59e0b;
-  --color-text-primary: #1f2320;
-  --color-text-secondary: #3a443f;
-  --gradient-primary: linear-gradient(135deg, #f4a261 0%, #ffb400 100%);
-  --gradient-accent: linear-gradient(135deg, #2d4338 0%, #3a5a46 100%);
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    #{$accent-light-color} 0%,
+    #{$accent-color} 100%
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    #{$primary-color} 0%,
+    #3a5a46 100%
+  );
   --gradient-glass: linear-gradient(
     180deg,
     rgba(245, 240, 230, 0.7) 0%,
@@ -21,13 +49,21 @@
 
   // Header
   --color-header-bg: rgba(245, 240, 230, 0.8);
-  --color-header-border: rgba(26, 60, 52, 0.1);
-  --color-header-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+  --color-header-border: #{$border-primary};
+  --color-header-shadow: #{$shadow-base};
 
   // Scrollbar
-  --color-scrollbar-track: #e9e1d5;
-  --color-scrollbar-thumb: #cfc5b4;
-  --color-scrollbar-thumb-hover: #b9af9e;
+  --color-scrollbar-track: #{$bg-gray-50};
+  --color-scrollbar-thumb: #{$bg-gray-200};
+  --color-scrollbar-thumb-hover: #{$bg-gray-300};
+
+  // Additional colors for compatibility
+  --color-primary-hover: #{color.adjust($primary-color, $lightness: -5%)};
+  --color-green-500: #10b981;
+  --color-blue-500: #3b82f6;
+  --color-yellow-500: #eab308;
+  --color-text-blue-600: #2563eb;
+  --color-text-blue-700: #1d4ed8;
 }
 
 // Mixins

@@ -1,11 +1,13 @@
+@use '../../styles/variables' as *;
+
 .button {
   padding: 0.875rem 1.5rem;
   border: none;
-  border-radius: 12px;
+  border-radius: $radius-md;
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all $transition-base ease;
   width: 100%;
   white-space: nowrap;
 

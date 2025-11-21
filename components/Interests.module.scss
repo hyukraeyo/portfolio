@@ -2,7 +2,7 @@
 
 .interests {
   padding: 5rem 0;
-  background-color: $color-cream;
+  background-color: $bg-primary;
 }
 
 .container {
@@ -49,7 +49,7 @@
 .marker {
   margin-top: 0.25rem;
   font-size: 1.25rem;
-  color: $color-orange;
+  color: $accent-color;
 }
 
 .activityContent {
@@ -135,7 +135,7 @@
   width: 3.5rem;
   height: 3.5rem;
   font-size: 2rem;
-  color: $color-orange;
+  color: $accent-color;
   background-color: transparent;
 
   &::before {
@@ -145,7 +145,7 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: rgba($color-orange, 0.2);
+    background-color: rgba($accent-color, 0.2);
   }
 }
 

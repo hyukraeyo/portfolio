@@ -3,7 +3,7 @@
 .intro {
   position: relative;
   padding: 5rem 0;
-  overflow: hidden;
+  overflow: visible;
   background-color: $color-cream;
 }
 
@@ -60,10 +60,10 @@
   display: inline-flex;
   align-items: center;
   padding: 0.75rem 2rem;
-  border-radius: 9999px;
-  background-color: $color-orange-light;
-  font-weight: 600;
-  color: white;
+  border-radius: $radius-full;
+  background-color: $accent-light-color;
+  font-weight: $font-weight-semibold;
+  color: $text-white;
   text-decoration: none;
   transition: transform 0.2s ease;
 
@@ -76,6 +76,8 @@
   display: flex;
   justify-content: center;
   position: relative;
+  z-index: 10;
+  margin-bottom: -15rem;
 }
 
 .imageWrapper {
@@ -104,7 +106,7 @@
   width: 100%;
   height: 100%;
   border-radius: 12rem 12rem 0 0;
-  background-color: #ccc;
+  background-color: $bg-gray-placeholder;
   overflow: hidden;
 }
 
@@ -114,11 +116,11 @@
   left: 50%;
   z-index: 2;
   width: 90%;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  background-color: black;
-  color: white;
-  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.2);
+  padding: $spacing-6;
+  border-radius: $radius-lg;
+  background-color: $bg-tertiary;
+  color: $text-white;
+  box-shadow: $shadow-card;
   transform: translateX(-50%);
 }
 
@@ -152,11 +154,11 @@
   top: 15%;
   left: -10%;
   z-index: 2;
-  padding: 0.5rem 1.5rem;
-  border-radius: 9999px;
-  background-color: $color-orange;
-  font-size: 0.875rem;
-  font-weight: 600;
+  padding: $spacing-2 $spacing-6;
+  border-radius: $radius-full;
+  background-color: $accent-color;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
 }
 
 .nationalityBadge {
@@ -164,9 +166,9 @@
   top: 40%;
   right: -10%;
   z-index: 2;
-  padding: 0.5rem 1.5rem;
-  border-radius: 9999px;
-  background-color: $color-orange;
-  font-size: 0.875rem;
-  font-weight: 600;
+  padding: $spacing-2 $spacing-6;
+  border-radius: $radius-full;
+  background-color: $accent-color;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
 }

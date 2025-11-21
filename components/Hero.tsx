@@ -32,12 +32,14 @@ export default function Hero() {
       </div>
 
       <div className={styles.bottomDesc}>
-        {HERO_DATA.description.split('\n').map((line, index) => (
-          <span key={index}>
-            {line}
-            <br />
-          </span>
-        ))}
+        <div className={styles.inner}>
+          {HERO_DATA.description.split('\n').map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </div>
       </div>
 
       <a href="#about" className={styles.scrollIndicator}>

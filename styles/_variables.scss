@@ -1,37 +1,175 @@
 @use 'sass:color';
 
-// Variables
+// ============================================
+// DESIGN SYSTEM VARIABLES
+// ============================================
 
-// New Design System Colors
+// --------------------------------------------
+// Colors - Primary Palette
+// --------------------------------------------
 $color-cream: #f5f0e6;
-$color-dark-green: #2d4338; // Updated to match reference
+$color-dark-green: #2d4338;
 $color-orange: #ffb400;
 $color-orange-light: #f4a261;
+$color-black: #1a1a1a;
+$color-white: #ffffff;
 
-// Mapping to functional names
+// --------------------------------------------
+// Colors - Functional Names
+// --------------------------------------------
 $primary-color: $color-dark-green;
 $secondary-color: $color-cream;
 $accent-color: $color-orange;
+$accent-light-color: $color-orange-light;
 
+// --------------------------------------------
 // Text Colors
+// --------------------------------------------
 $text-primary: $color-dark-green;
 $text-secondary: rgba($color-dark-green, 0.8);
+$text-tertiary: rgba($color-dark-green, 0.7);
 $text-light: $color-cream;
-$text-dark: #1a1a1a;
+$text-dark: $color-black;
+$text-white: $color-white;
 
-// Backgrounds
+// --------------------------------------------
+// Background Colors
+// --------------------------------------------
 $bg-primary: $color-cream;
 $bg-secondary: $color-dark-green;
+$bg-tertiary: $color-black;
+$bg-white: $color-white;
+$bg-gray-50: color.adjust($color-cream, $lightness: -2%);
+$bg-gray-100: color.adjust($color-cream, $lightness: -5%);
+$bg-gray-200: color.adjust($color-cream, $lightness: -10%);
+$bg-gray-300: color.adjust($color-cream, $lightness: -15%);
+$bg-gray-400: color.adjust($color-cream, $lightness: -20%);
+$bg-gray-900: $color-dark-green;
 
-// Fonts
+// --------------------------------------------
+// Border Colors
+// --------------------------------------------
+$border-primary: rgba($color-dark-green, 0.1);
+$border-secondary: rgba($color-dark-green, 0.2);
+$border-light: rgba($color-white, 0.1);
+
+// --------------------------------------------
+// Typography
+// --------------------------------------------
 $font-serif: var(--font-playfair), serif;
 $font-sans: var(--font-noto-sans-kr), var(--font-inter), sans-serif;
 $font-clearface: var(--font-clearface), serif;
 $font-rammetto: var(--font-rammetto-one), cursive;
 
-// Legacy/Compat variables
-$bg-white: $color-cream;
-$bg-gray-50: color.adjust($color-cream, $lightness: -5%);
-$bg-gray-100: color.adjust($color-cream, $lightness: -10%);
-$bg-gray-900: $color-dark-green;
+// Font Sizes
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.25rem; // 20px
+$font-size-2xl: 1.5rem; // 24px
+$font-size-3xl: 2rem; // 32px
+$font-size-4xl: 3rem; // 48px
+$font-size-5xl: 4rem; // 64px
+$font-size-6xl: 5.5rem; // 88px
+
+// Font Weights
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Line Heights
+$line-height-tight: 1.1;
+$line-height-base: 1.5;
+$line-height-relaxed: 1.6;
+$line-height-loose: 1.7;
+
+// --------------------------------------------
+// Spacing Scale (based on 0.25rem = 4px)
+// --------------------------------------------
+$spacing-1: 0.25rem; // 4px
+$spacing-2: 0.5rem; // 8px
+$spacing-3: 0.75rem; // 12px
+$spacing-4: 1rem; // 16px
+$spacing-5: 1.25rem; // 20px
+$spacing-6: 1.5rem; // 24px
+$spacing-8: 2rem; // 32px
+$spacing-10: 2.5rem; // 40px
+$spacing-12: 3rem; // 48px
+$spacing-16: 4rem; // 64px
+$spacing-20: 5rem; // 80px
+$spacing-24: 6rem; // 96px
+
+// --------------------------------------------
+// Border Radius
+// --------------------------------------------
+$radius-sm: 0.25rem; // 4px
+$radius-base: 0.5rem; // 8px
+$radius-md: 0.75rem; // 12px
+$radius-lg: 1rem; // 16px
+$radius-xl: 1.5rem; // 24px
+$radius-2xl: 2rem; // 32px
+$radius-full: 9999px;
+
+// --------------------------------------------
+// Box Shadows
+// --------------------------------------------
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-base:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-md:
+  0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-lg:
+  0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+$shadow-card: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.2);
+
+// --------------------------------------------
+// Transitions
+// --------------------------------------------
+$transition-fast: 0.15s;
+$transition-base: 0.2s;
+$transition-slow: 0.3s;
+$transition-slower: 0.5s;
+
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+// --------------------------------------------
+// Breakpoints
+// --------------------------------------------
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1280px;
+
+// --------------------------------------------
+// Container Sizes
+// --------------------------------------------
+$container-max-width: 80rem; // 1280px
+$container-padding: 2rem;
+
+// --------------------------------------------
+// Z-Index Scale
+// --------------------------------------------
+$z-index-base: 1;
+$z-index-dropdown: 10;
+$z-index-sticky: 20;
+$z-index-fixed: 30;
+$z-index-modal-backdrop: 40;
+$z-index-modal: 50;
+$z-index-popover: 60;
+$z-index-tooltip: 70;
+
+// --------------------------------------------
+// Legacy/Compat color variables (for CSS vars)
+// --------------------------------------------
+$color-text-gray-400: rgba($color-dark-green, 0.5);
 $color-text-gray-600: rgba($color-dark-green, 0.7);
+$color-text-gray-700: rgba($color-dark-green, 0.8);
+$color-text-gray-900: $color-black;
+$bg-gray-placeholder: #ccc;
