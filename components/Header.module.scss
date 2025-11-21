@@ -54,9 +54,12 @@
 }
 
 .nav {
+  display: flex;
+  align-items: center;
   max-width: 1280px;
+  height: 70px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem;
 }
 
 .navContent {

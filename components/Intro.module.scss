@@ -112,7 +112,7 @@
 
 .contactCard {
   position: absolute;
-  bottom: 10%;
+  bottom: 5%;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -129,6 +129,7 @@
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
+  color: $color-cream;
 }
 
 .contactList {
