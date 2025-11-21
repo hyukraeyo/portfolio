@@ -1,21 +1,21 @@
 @use '../styles/variables' as *;
 
 .resumeGrid {
-  background-color: $color-dark-green;
-  padding: 0 0 5rem 0; // Remove top padding to allow overlap
-  color: $color-cream;
   position: relative;
-  overflow: visible; // Allow overlap
+  padding: 0 0 5rem 0;
+  overflow: visible;
+  background-color: $color-dark-green;
+  color: $color-cream;
 }
 
 .container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4rem;
   position: relative;
+  max-width: 80rem;
+  gap: 4rem;
+  margin: 0 auto;
+  padding: 0 2rem;
 
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1fr;
@@ -23,11 +23,10 @@
   }
 }
 
-// Left Column
 .leftColumn {
   display: flex;
   flex-direction: column;
-  padding-top: 5rem; // Add padding to align with content below overlap
+  padding-top: 5rem;
 }
 
 .educationSection {
@@ -35,26 +34,25 @@
 }
 
 .sectionTitle {
+  margin-bottom: 3rem;
   font-family: $font-clearface;
   font-size: 4rem;
-  color: $color-orange;
-  margin-bottom: 3rem;
   font-weight: 700;
+  color: $color-orange;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
   position: relative;
+  gap: 3rem;
 
-  // Vertical line
   &::before {
     content: '';
     position: absolute;
-    left: 0.6rem;
     top: 0.5rem;
     bottom: 0;
+    left: 0.6rem;
     width: 1px;
     background-color: rgba($color-cream, 0.2);
   }
@@ -62,18 +60,18 @@
 
 .item {
   display: flex;
-  gap: 2rem;
   align-items: flex-start;
   position: relative;
+  gap: 2rem;
 }
 
 .marker {
-  color: $color-orange;
-  font-size: 1.5rem;
-  line-height: 1;
   position: relative;
   z-index: 1;
-  background-color: $color-dark-green; // Hide line behind marker
+  font-size: 1.5rem;
+  line-height: 1;
+  color: $color-orange;
+  background-color: $color-dark-green;
 }
 
 .content {
@@ -84,16 +82,16 @@
 
 .period {
   font-family: $font-clearface;
-  font-weight: 700;
   font-size: 2rem;
+  font-weight: 700;
   color: $color-cream;
 }
 
 .itemTitle {
+  margin-bottom: 0.25rem;
   font-size: 1.125rem;
   font-weight: 600;
   color: $color-cream;
-  margin-bottom: 0.25rem;
 }
 
 .subtitle {
@@ -102,47 +100,44 @@
   white-space: pre-line;
 }
 
-// Right Column
 .rightColumn {
-  position: relative;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
-// Contact Card
 .contactCard {
-  background-color: black;
-  color: white;
-  padding: 3rem;
-  margin-top: -12rem; // Overlap the section above significantly
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 400px;
-  align-self: flex-start; // Align to left of the column
+  max-width: 25rem;
+  margin-top: -12rem;
+  padding: 3rem;
+  background-color: black;
+  color: white;
+  align-self: flex-start;
 
   @media (max-width: 991px) {
-    margin-top: 0;
-    width: 100%;
     max-width: none;
+    margin-top: 0;
     margin-bottom: 3rem;
   }
 }
 
 .contactTitle {
+  margin-bottom: 2rem;
   font-family: $font-clearface;
   font-size: 3rem;
-  margin-bottom: 2rem;
   color: white;
 }
 
 .contactList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   li {
     display: flex;
@@ -157,20 +152,19 @@
   font-size: 1.25rem;
 }
 
-// Background Text
 .bgText {
   position: absolute;
   top: 20rem;
   right: -2rem;
+  z-index: 0;
   font-family: $font-clearface;
-  font-size: 8rem; // Reduced size for horizontal fit
+  font-size: 8rem;
   line-height: 1;
   color: transparent;
+  white-space: nowrap;
   -webkit-text-stroke: 1px $color-orange;
   opacity: 0.3;
-  z-index: 0;
   pointer-events: none;
-  white-space: nowrap;
 
   @media (max-width: 991px) {
     display: none;
@@ -181,15 +175,16 @@
   position: absolute;
   top: 20rem;
   right: -1.8rem;
+  z-index: 0;
   font-family: $font-clearface;
-  font-size: 8rem; // Reduced size for horizontal fit
+  font-size: 8rem;
   line-height: 1;
   color: transparent;
+  white-space: nowrap;
   -webkit-text-stroke: 1px $color-cream;
   opacity: 0.1;
-  z-index: 0;
   pointer-events: none;
-  white-space: nowrap;
+
   @media (max-width: 991px) {
     display: none;
   }
@@ -202,22 +197,22 @@
 }
 
 .sectionTitleSkills {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 3rem;
   font-family: $font-clearface;
   font-size: 4rem;
-  color: $color-orange;
-  margin-bottom: 3rem;
   font-weight: 700;
-  position: relative;
-  z-index: 2; // Above bg text
+  color: $color-orange;
 }
 
 .skillsGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4rem;
-  margin-bottom: 4rem;
   position: relative;
   z-index: 2;
+  gap: 4rem;
+  margin-bottom: 4rem;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
@@ -225,10 +220,10 @@
 }
 
 .categoryTitle {
+  margin-bottom: 1.5rem;
   font-family: $font-clearface;
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
   color: $color-cream;
 }
 
@@ -239,17 +234,17 @@
 }
 
 .softwareItem {
-  width: 3.5rem;
-  height: 3.5rem;
-  background-color: $color-cream;
-  color: $color-dark-green;
-  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 1.25rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.5rem;
+  background-color: $color-cream;
   font-family: sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $color-dark-green;
 }
 
 .codingContent {
@@ -258,8 +253,8 @@
 
 .codingIntro {
   margin-bottom: 1rem;
-  opacity: 0.8;
   font-size: 0.875rem;
+  opacity: 0.8;
 }
 
 .codingGrid {
@@ -273,16 +268,16 @@
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
   position: relative;
   z-index: 2;
+  gap: 1rem;
 }
 
 .pill {
   padding: 0.75rem 1.5rem;
-  background-color: black;
-  color: white;
-  border-radius: 9999px;
-  font-size: 0.875rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  background-color: black;
+  font-size: 0.875rem;
+  color: white;
 }

@@ -1,22 +1,22 @@
 @use '../styles/variables' as *;
 
 .intro {
-  background-color: $color-cream;
-  padding: 5rem 0;
   position: relative;
+  padding: 5rem 0;
   overflow: hidden;
+  background-color: $color-cream;
 }
 
 .container {
+  display: grid;
+  grid-template-columns: 1fr;
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1280px;
+  max-width: 80rem;
+  gap: 4rem;
   margin: 0 auto;
   padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 4rem;
 
   @media (min-width: 992px) {
     grid-template-columns: 1fr 1fr;
@@ -24,7 +24,6 @@
   }
 }
 
-// Left Content
 .content {
   display: flex;
   flex-direction: column;
@@ -32,12 +31,12 @@
 }
 
 .greeting {
+  margin-bottom: 2rem;
   font-family: $font-clearface;
   font-size: 4rem;
   font-weight: 700;
-  color: $text-dark;
   line-height: 1.1;
-  margin-bottom: 2rem;
+  color: $text-dark;
 
   @media (min-width: 768px) {
     font-size: 5.5rem;
@@ -45,12 +44,12 @@
 }
 
 .description {
+  max-width: 31.25rem;
+  margin-bottom: 2.5rem;
   font-family: $font-sans;
   font-size: 1rem;
   line-height: 1.6;
   color: $text-secondary;
-  margin-bottom: 2.5rem;
-  max-width: 500px;
 
   @media (min-width: 768px) {
     font-size: 1.125rem;
@@ -61,29 +60,28 @@
   display: inline-flex;
   align-items: center;
   padding: 0.75rem 2rem;
-  background-color: $color-orange-light;
-  color: white;
   border-radius: 9999px;
+  background-color: $color-orange-light;
   font-weight: 600;
+  color: white;
   text-decoration: none;
   transition: transform 0.2s ease;
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-0.125rem);
   }
 }
 
-// Right Image Section
 .imageSection {
-  position: relative;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
-  max-width: 450px;
+  max-width: 28.125rem;
   aspect-ratio: 3/4;
 }
 
@@ -91,22 +89,22 @@
   position: absolute;
   top: 10%;
   left: 10%;
+  z-index: 2;
   width: 60%;
   aspect-ratio: 1 / 1;
-  background-color: $color-dark-green;
   border-radius: 50%;
-  z-index: 2;
+  background-color: $color-dark-green;
 }
 
 .profileImagePlaceholder {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  background-color: #ccc; // Placeholder
-  border-radius: 12rem 12rem 0 0; // Arch shape
+  border-radius: 12rem 12rem 0 0;
+  background-color: #ccc;
   overflow: hidden;
 }
 
@@ -114,29 +112,29 @@
   position: absolute;
   bottom: 5%;
   left: 50%;
-  transform: translateX(-50%);
+  z-index: 2;
   width: 90%;
-  background-color: black;
-  color: white;
   padding: 1.5rem;
   border-radius: 1rem;
-  z-index: 2;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background-color: black;
+  color: white;
+  box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, 0.2);
+  transform: translateX(-50%);
 }
 
 .contactTitle {
+  margin-bottom: 1rem;
   font-family: $font-clearface;
   font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
   color: $color-cream;
+  text-align: center;
 }
 
 .contactList {
-  list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
   font-size: 0.875rem;
+  list-style: none;
 
   li {
     display: flex;
@@ -153,22 +151,22 @@
   position: absolute;
   top: 15%;
   left: -10%;
-  background-color: $color-orange;
+  z-index: 2;
   padding: 0.5rem 1.5rem;
   border-radius: 9999px;
-  font-weight: 600;
+  background-color: $color-orange;
   font-size: 0.875rem;
-  z-index: 2;
+  font-weight: 600;
 }
 
 .nationalityBadge {
   position: absolute;
   top: 40%;
   right: -10%;
-  background-color: $color-orange;
+  z-index: 2;
   padding: 0.5rem 1.5rem;
   border-radius: 9999px;
-  font-weight: 600;
+  background-color: $color-orange;
   font-size: 0.875rem;
-  z-index: 2;
+  font-weight: 600;
 }

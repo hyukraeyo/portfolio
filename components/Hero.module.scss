@@ -1,27 +1,27 @@
 @use '../styles/variables' as *;
 
 .hero {
-  min-height: calc(100vh - 70px);
-  background-color: $color-dark-green;
-  position: relative;
-  overflow: hidden;
-  padding-top: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  position: relative;
+  min-height: 100vh;
+  padding-top: 22vh;
+  overflow: hidden;
+  background-color: $color-dark-green;
   color: $color-cream;
 }
 
 .bgTextWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: absolute;
   top: 10%;
   left: 25%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 60px;
+  gap: 3.75rem; // 60px → rem
   pointer-events: none;
 }
 
@@ -36,33 +36,33 @@
 }
 
 .textFront {
-  z-index: 3;
   position: relative;
+  z-index: 3;
   color: $color-cream;
   -webkit-text-stroke: 0;
 }
 
 .textBack {
-  z-index: 1;
   position: relative;
+  z-index: 1;
   margin-top: -2vw;
 }
 
 .container {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 1280px;
-  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 80rem; // 1280px → rem
   height: 100%;
+  padding: 0 2rem;
 }
 
 .imageSection {
   position: relative;
-  width: 500px;
+  width: 31.25rem; // 500px → rem
   aspect-ratio: 5/6;
 }
 
@@ -74,8 +74,8 @@
 
 .star1 {
   position: absolute;
-  top: -40px;
-  left: -60px;
+  top: -2.5rem; // -40px → rem
+  left: -3.75rem; // -60px → rem
   font-size: 3rem;
   color: $color-orange;
   z-index: 5;
@@ -83,8 +83,8 @@
 
 .star2 {
   position: absolute;
-  bottom: -30px;
-  right: -30px;
+  bottom: -1.875rem; // -30px → rem
+  right: -1.875rem;
   font-size: 2rem;
   color: $color-orange;
   z-index: 5;
@@ -94,41 +94,41 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding: 2rem;
+  background-color: $color-dark-green;
   font-family: $font-sans;
   font-size: 1rem;
   text-align: right;
-  padding: 2rem;
-  background-color: #2d4338;
 }
 
 .bottomDesc {
   position: absolute;
   bottom: 15%;
   left: 5%;
-  max-width: 300px;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  max-width: 18.75rem; // 300px → rem
   padding: 1rem;
   border-left: 2px solid $color-orange;
-  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .scrollIndicator {
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 100px;
-  background-color: $color-orange;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  bottom: -2.5rem; // -40px → rem
+  left: 50%;
+  z-index: 10;
+  width: 6.25rem; // 100px → rem
+  height: 6.25rem;
+  border-radius: 50%;
+  background-color: $color-orange;
   font-size: 0.875rem;
   font-weight: 600;
   color: $text-dark;
-  z-index: 10;
+  transform: translateX(-50%);
   cursor: pointer;
 }
