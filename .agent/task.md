@@ -1,16 +1,30 @@
-# 텍스트 선택 색상 테마 적용
+# 미사용 파일 및 코드 정리
 
 ## 작업 개요
 
-사용자의 요청에 따라 텍스트 드래그 선택 시 나타나는 하이라이트 색상을 프로젝트 테마(Orange Accent)에 맞춰 수정합니다.
+프로젝트 내 사용되지 않는 파일과 코드를 식별하여 일괄 삭제했습니다.
 
-## 작업 상세
+## 삭제된 파일 목록
 
-- [x] `app/globals.scss` 파일에 `::selection` 및 `::-moz-selection` 스타일 추가
-- [x] 배경색: `var(--color-accent)` (Orange)
-- [x] 텍스트색: `var(--color-text-primary)` (Dark Green)
-- [x] 브라우저 테스트 및 스크린샷 검증 완료
+### Components
+
+- `components/PostCard.tsx`, `components/PostCard.module.scss` (사용처 없음)
+- `components/ClientSuspense.tsx` (사용처 없음)
+- `components/ui/Button.tsx`, `components/ui/Button.module.scss` (사용처 없음)
+- `components/ui/Chip.tsx`, `components/ui/Chip.module.scss` (사용처 없음)
+- `components/ui/ErrorMessage.tsx`, `components/ui/ErrorMessage.module.scss` (사용처 없음)
+- `components/ui/` 디렉토리 삭제
+
+### Lib & Data
+
+- `lib/data/projects.ts` (사용처 없음)
+- `lib/utils/env.ts` (사용처 없음, `next.config.ts`는 process.env 직접 사용)
+- `lib/utils/string.ts` (`PostCard.tsx` 삭제로 인해 미사용)
+
+### Types
+
+- `types/supabase.ts` (사용처 없음)
 
 ## 결과
 
-텍스트 선택 시 테마의 포인트 컬러인 오렌지색 배경과 짙은 녹색 텍스트가 적용되어 일관된 브랜드 경험을 제공합니다.
+불필요한 코드를 제거하여 프로젝트 구조를 단순화하고 유지보수성을 향상시켰습니다.
