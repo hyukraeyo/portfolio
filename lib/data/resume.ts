@@ -34,17 +34,17 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     period: '2021.02 - 2021.09',
     title: '주식회사 쏠쏠',
-    subtitle: 'Frontend Developer',
+    subtitle: 'Publisher',
   },
   {
     period: '2018.11 - 2020.12',
     title: '주식회사 알디엠체인',
-    subtitle: 'Frontend Developer',
+    subtitle: 'Publisher',
   },
   {
     period: '2018.07 - 2018.10',
     title: '프리랜서',
-    subtitle: 'Frontend Developer',
+    subtitle: 'Publisher',
   },
   {
     period: '2018.04 - 2018.07',
@@ -66,7 +66,15 @@ export const SOFT_SKILLS = [
 ];
 
 export const TECHNICAL_SKILLS = {
-  software: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'SCSS'],
+  software: [
+    'React',
+    'Next.js',
+    'Vue.js',
+    'TypeScript',
+    'JavaScript',
+    'HTML5',
+    'SCSS',
+  ],
   coding: [
     'Git',
     'GitHub',
