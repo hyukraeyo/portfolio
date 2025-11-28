@@ -1,6 +1,7 @@
 import {
   ACADEMIC_DATA,
   EXPERIENCE_DATA,
+  PROJECT_HISTORY,
   TECHNICAL_SKILLS,
 } from '@/lib/data/resume';
 import { calculateDuration } from '@/lib/utils/date';
@@ -96,6 +97,15 @@ export default function ResumeGrid() {
           </div>
         </div>
       </div>
+
+      {/* Project History Section (Hidden for now, data ready) */}
+      {/* 
+      <div className={styles.projectHistory}>
+        {PROJECT_HISTORY.map(project => (
+           ... 
+        ))}
+      </div> 
+      */}
     </section>
   );
 }
