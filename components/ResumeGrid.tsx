@@ -1,15 +1,26 @@
+'use client';
+
+import { INTERESTS_DATA } from '@/lib/data/home';
 import {
   ACADEMIC_DATA,
   EXPERIENCE_DATA,
-  PROJECT_HISTORY,
   TECHNICAL_SKILLS,
 } from '@/lib/data/resume';
 import { calculateDuration } from '@/lib/utils/date';
+import { useState } from 'react';
 import FadeIn from './animations/FadeIn';
 import StaggerContainer, { StaggerItem } from './animations/StaggerContainer';
 import styles from './ResumeGrid.module.scss';
 
 export default function ResumeGrid() {
+  const [expandedItems, setExpandedItems] = useState<number[]>([]);
+
+  const toggleExpand = (index: number) => {
+    setExpandedItems((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
+
   return (
     <section className={styles.resumeGrid} id="resume">
       <div className={styles.container}>
@@ -21,21 +32,54 @@ export default function ResumeGrid() {
               <h2 className={styles.sectionTitle}>Experience</h2>
             </FadeIn>
             <StaggerContainer className={styles.list} delay={0.2}>
-              {EXPERIENCE_DATA.map((item, index) => (
-                <StaggerItem key={index} className={styles.item}>
-                  <div className={styles.marker}>✦</div>
-                  <div className={styles.content}>
-                    <span className={styles.period}>{item.period}</span>
-                    <h3 className={styles.itemTitle}>{item.title}</h3>
-                    <p className={styles.subtitle}>
-                      {item.subtitle}
-                      {item.subtitle
-                        ? ` · ${calculateDuration(item.period)}`
-                        : calculateDuration(item.period)}
-                    </p>
-                  </div>
-                </StaggerItem>
-              ))}
+              {EXPERIENCE_DATA.map((item, index) => {
+                const isExpanded = expandedItems.includes(index);
+                const hasMoreProjects =
+                  item.projects && item.projects.length > 2;
+                const displayedProjects =
+                  item.projects &&
+                  (isExpanded || !hasMoreProjects
+                    ? item.projects
+                    : item.projects.slice(0, 2));
+
+                return (
+                  <StaggerItem key={index} className={styles.item}>
+                    <div className={styles.marker}>✦</div>
+                    <div className={styles.content}>
+                      <span className={styles.period}>{item.period}</span>
+                      <h3 className={styles.itemTitle}>{item.title}</h3>
+                      <p className={styles.subtitle}>
+                        {item.subtitle}
+                        {item.subtitle
+                          ? ` · ${calculateDuration(item.period)}`
+                          : calculateDuration(item.period)}
+                      </p>
+                      {displayedProjects && (
+                        <div className={styles.projectList}>
+                          {displayedProjects.map((project, pIndex) => (
+                            <div key={pIndex} className={styles.projectItem}>
+                              <span className={styles.projectName}>
+                                {project.name}
+                              </span>
+                              <span className={styles.projectPeriod}>
+                                {project.period}
+                              </span>
+                            </div>
+                          ))}
+                          {hasMoreProjects && (
+                            <button
+                              className={styles.moreButton}
+                              onClick={() => toggleExpand(index)}
+                            >
+                              {isExpanded ? '접기' : '더보기'}
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </StaggerItem>
+                );
+              })}
             </StaggerContainer>
           </div>
         </div>
@@ -94,6 +138,67 @@ export default function ResumeGrid() {
                 </StaggerItem>
               ))}
             </StaggerContainer>
+
+            {/* Activities Section */}
+            <div className={styles.activitiesSection}>
+              <FadeIn direction="up" delay={0.4}>
+                <h2 className={styles.sectionTitleActivities}>Activities</h2>
+              </FadeIn>
+              <StaggerContainer className={styles.activitiesList} delay={0.5}>
+                {INTERESTS_DATA.activities.map((activity, index) => (
+                  <StaggerItem key={index} className={styles.activityItem}>
+                    <div className={styles.marker}>✦</div>
+                    <div className={styles.activityContent}>
+                      <span className={styles.activityYear}>
+                        {activity.year}
+                      </span>
+                      <h3 className={styles.activityTitle}>{activity.title}</h3>
+                      <p className={styles.activityDesc}>
+                        {activity.description}
+                      </p>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
+
+            {/* Language Section */}
+            <div className={styles.languageSection}>
+              <FadeIn direction="up" delay={0.5}>
+                <h2 className={styles.sectionTitleLanguage}>Language</h2>
+              </FadeIn>
+              <StaggerContainer className={styles.languageList} delay={0.6}>
+                {INTERESTS_DATA.languages.map((lang, index) => (
+                  <StaggerItem key={index} className={styles.languageItem}>
+                    <h3 className={styles.langName}>{lang.name}</h3>
+                    <span className={styles.langLevel}>{lang.level}</span>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
+
+            {/* Hobbies Section */}
+            <div className={styles.hobbiesSection}>
+              <FadeIn direction="up" delay={0.6}>
+                <h2 className={styles.sectionTitleHobbies}>
+                  Hobbies & Interests
+                </h2>
+              </FadeIn>
+              <StaggerContainer className={styles.hobbiesGrid} delay={0.7}>
+                {INTERESTS_DATA.hobbies.map((hobby, index) => (
+                  <StaggerItem key={index} className={styles.hobbyItem}>
+                    <div className={styles.iconWrapper}>{hobby.icon}</div>
+                    <span className={styles.hobbyName}>
+                      {hobby.name}
+                      <br />
+                      <span style={{ fontSize: '0.8em', opacity: 0.8 }}>
+                        {hobby.description}
+                      </span>
+                    </span>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
           </div>
         </div>
       </div>

@@ -138,6 +138,51 @@
   white-space: pre-line;
 }
 
+.projectList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba($text-dark, 0.2);
+}
+
+.projectItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.projectName {
+  font-size: 0.95rem;
+  font-weight: $font-weight-medium;
+  color: $text-dark;
+}
+
+.projectPeriod {
+  font-size: 0.85rem;
+  color: rgba($text-dark, 0.6);
+}
+
+.moreButton {
+  margin-top: 0.5rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba($text-dark, 0.8);
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+    text-decoration: underline;
+    color: $text-dark;
+  }
+}
+
 .rightColumn {
   display: flex;
   flex-direction: column;
@@ -328,4 +373,129 @@
 
 .pill {
   display: none;
+}
+
+/* Activities, Language, Hobbies Sections */
+.activitiesSection,
+.languageSection,
+.hobbiesSection {
+  margin-top: 5rem;
+}
+
+.sectionTitleActivities,
+.sectionTitleLanguage,
+.sectionTitleHobbies {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: $text-light;
+}
+
+.activitiesList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.activityItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.activityContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.activityYear {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $text-light;
+}
+
+.activityTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $text-light;
+}
+
+.activityDesc {
+  font-size: 0.875rem;
+  color: rgba($text-light, 0.7);
+}
+
+.languageList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.languageItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.langName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $text-light;
+}
+
+.langLevel {
+  font-size: 0.875rem;
+  color: rgba($text-light, 0.7);
+}
+
+.hobbiesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.hobbyItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 2rem;
+  color: $accent-color;
+  background-color: transparent;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba($accent-color, 0.2);
+  }
+}
+
+.hobbyName {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: $text-light;
 }
