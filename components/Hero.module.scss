@@ -92,22 +92,37 @@
   background-color: $accent-light-color;
 }
 
+@keyframes float-star {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
 .star1 {
   position: absolute;
-  top: -2.5rem; // -40px → rem
-  left: -3.75rem; // -60px → rem
+  top: -2.5rem;
+  left: -3.75rem;
   font-size: 3rem;
   color: $accent-color;
   z-index: 5;
+  animation: float-star 3s ease-in-out infinite;
 }
 
 .star2 {
   position: absolute;
-  bottom: -1.875rem; // -30px → rem
+  bottom: -1.875rem;
   right: -1.875rem;
   font-size: 2rem;
   color: $accent-color;
   z-index: 5;
+  animation: float-star 4s ease-in-out infinite;
+  animation-delay: 1s;
 }
 
 .infoSection {
