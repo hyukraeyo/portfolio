@@ -353,13 +353,11 @@
 .skillCategory {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
 .categoryTitle {
-  margin-bottom: 2rem;
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: $text-light;
+  display: none;
 }
 
 .softwareGrid {

@@ -123,9 +123,7 @@ export default function ResumeGrid() {
             </FadeIn>
 
             <StaggerContainer className={styles.skillsGrid} delay={0.4}>
-              {/* Main Tech Stack */}
               <StaggerItem className={styles.skillCategory}>
-                <h3 className={styles.categoryTitle}>Main Tech Stack</h3>
                 <div className={styles.softwareGrid}>
                   {TECHNICAL_SKILLS.software.map((skill, index) => (
                     <div key={index} className={styles.softwareItem}>
@@ -133,11 +131,6 @@ export default function ResumeGrid() {
                     </div>
                   ))}
                 </div>
-              </StaggerItem>
-
-              {/* Tools & Libraries */}
-              <StaggerItem className={styles.skillCategory}>
-                <h3 className={styles.categoryTitle}>Tools & Libraries</h3>
                 <div className={styles.codingContent}>
                   <div className={styles.codingGrid}>
                     {TECHNICAL_SKILLS.coding.map((skill, index) => (
