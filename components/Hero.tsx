@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { HERO_DATA } from '@/lib/data/home';
 import FadeIn from './animations/FadeIn';
 import styles from './Hero.module.scss';
@@ -31,7 +32,15 @@ export default function Hero() {
 
       <div className={styles.container}>
         <FadeIn delay={0.5} className={styles.imageSection}>
-          <div className={styles.orangeSquare}></div>
+          <div className={styles.profileImageWrapper}>
+            <Image
+              src="/images/me.png"
+              alt="Profile"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 500px"
+            />
+          </div>
           <div className={styles.star1}>✦</div>
           <div className={styles.star2}>✦</div>
         </FadeIn>
