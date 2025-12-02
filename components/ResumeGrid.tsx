@@ -14,6 +14,7 @@ import styles from './ResumeGrid.module.scss';
 
 export default function ResumeGrid() {
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
+  const [isExperienceExpanded, setIsExperienceExpanded] = useState(false);
 
   const toggleExpand = (index: number) => {
     setExpandedItems((prev) =>
@@ -31,8 +32,15 @@ export default function ResumeGrid() {
             <FadeIn direction="up" delay={0.2}>
               <h2 className={styles.sectionTitle}>Experience</h2>
             </FadeIn>
-            <StaggerContainer className={styles.list} delay={0.2}>
-              {EXPERIENCE_DATA.map((item, index) => {
+            <div
+              className={`${styles.list} ${
+                !isExperienceExpanded ? styles.collapsed : ''
+              }`}
+            >
+              {EXPERIENCE_DATA.slice(
+                0,
+                isExperienceExpanded ? EXPERIENCE_DATA.length : 1
+              ).map((item, index) => {
                 const isExpanded = expandedItems.includes(index);
                 const hasMoreProjects =
                   item.projects && item.projects.length > 2;
@@ -43,7 +51,7 @@ export default function ResumeGrid() {
                     : item.projects.slice(0, 2));
 
                 return (
-                  <StaggerItem key={index} className={styles.item}>
+                  <div key={index} className={styles.item}>
                     <div className={styles.marker}>✦</div>
                     <div className={styles.content}>
                       <span className={styles.period}>{item.period}</span>
@@ -77,10 +85,20 @@ export default function ResumeGrid() {
                         </div>
                       )}
                     </div>
-                  </StaggerItem>
+                  </div>
                 );
               })}
-            </StaggerContainer>
+            </div>
+            <div className={styles.expandSectionWrapper}>
+              <button
+                className={styles.expandSectionButton}
+                onClick={() => setIsExperienceExpanded(!isExperienceExpanded)}
+              >
+                {isExperienceExpanded
+                  ? 'Experience 접기 ▲'
+                  : 'Experience 더보기 ▼'}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -138,44 +156,6 @@ export default function ResumeGrid() {
                 </StaggerItem>
               ))}
             </StaggerContainer>
-
-            {/* Activities Section */}
-            <div className={styles.activitiesSection}>
-              <FadeIn direction="up" delay={0.4}>
-                <h2 className={styles.sectionTitleActivities}>Activities</h2>
-              </FadeIn>
-              <StaggerContainer className={styles.activitiesList} delay={0.5}>
-                {INTERESTS_DATA.activities.map((activity, index) => (
-                  <StaggerItem key={index} className={styles.activityItem}>
-                    <div className={styles.marker}>✦</div>
-                    <div className={styles.activityContent}>
-                      <span className={styles.activityYear}>
-                        {activity.year}
-                      </span>
-                      <h3 className={styles.activityTitle}>{activity.title}</h3>
-                      <p className={styles.activityDesc}>
-                        {activity.description}
-                      </p>
-                    </div>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
-
-            {/* Language Section */}
-            <div className={styles.languageSection}>
-              <FadeIn direction="up" delay={0.5}>
-                <h2 className={styles.sectionTitleLanguage}>Language</h2>
-              </FadeIn>
-              <StaggerContainer className={styles.languageList} delay={0.6}>
-                {INTERESTS_DATA.languages.map((lang, index) => (
-                  <StaggerItem key={index} className={styles.languageItem}>
-                    <h3 className={styles.langName}>{lang.name}</h3>
-                    <span className={styles.langLevel}>{lang.level}</span>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </div>
 
             {/* Hobbies Section */}
             <div className={styles.hobbiesSection}>

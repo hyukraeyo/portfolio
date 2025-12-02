@@ -59,6 +59,35 @@
   .subtitle {
     opacity: 0.8;
   }
+
+  .expandSectionWrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba($text-dark, 0.1);
+  }
+
+  .expandSectionButton {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba($text-dark, 0.2);
+    border-radius: 2rem;
+    background: rgba($color-white, 0.5);
+    font-size: 1rem;
+    font-weight: 600;
+    color: $text-dark;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+
+    &:hover {
+      background: $color-white;
+      border-color: $text-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
 }
 
 .sectionTitle {
@@ -82,6 +111,24 @@
     left: 0.6rem;
     width: 1px;
     background-color: rgba($text-light, 0.2);
+  }
+
+  &.collapsed {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 15rem;
+      background: linear-gradient(
+        to bottom,
+        rgba($color-orange, 0) 0%,
+        $color-orange 100%
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
   }
 }
 
@@ -120,7 +167,7 @@
 }
 
 .period {
-  font-size: $font-size-xl;
+  font-size: $font-size-base;
   font-weight: $font-weight-bold;
   color: $text-light;
 }
@@ -301,11 +348,6 @@
   z-index: 2;
   gap: 4rem;
   margin-bottom: 4rem;
-
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
 }
 
 .skillCategory {
@@ -324,6 +366,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .softwareItem {
@@ -402,12 +448,20 @@
 }
 
 .sectionTitleActivities,
-.sectionTitleLanguage,
-.sectionTitleHobbies {
+.sectionTitleLanguage {
   margin-bottom: 2rem;
   font-size: 1.8rem;
   font-weight: 400;
   color: $text-light;
+}
+
+.sectionTitleHobbies {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 3rem;
+  font-size: $font-size-5xl;
+  font-weight: $font-weight-bold;
+  color: $accent-color;
 }
 
 .activitiesList {
