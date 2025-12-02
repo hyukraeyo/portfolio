@@ -71,7 +71,7 @@ export default function ResumeGrid() {
                               className={styles.moreButton}
                               onClick={() => toggleExpand(index)}
                             >
-                              {isExpanded ? '접기 ▲' : '더보기 ▼'}
+                              {isExpanded ? '접기' : '더보기'}
                             </button>
                           )}
                         </div>
