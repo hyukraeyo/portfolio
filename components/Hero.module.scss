@@ -8,7 +8,6 @@
   overflow: hidden;
   background-color: $bg-secondary;
   color: $text-light;
-  margin-bottom: $spacing-16; // 64px - 섹션 간격 통일
 }
 
 .content {
@@ -18,8 +17,13 @@
   justify-content: center;
   width: 100%;
   max-width: $container-max-width;
-  padding: $spacing-12 $container-padding; // 상하 48px, 좌우 32px
-  gap: $spacing-12;
+  padding: $section-padding-y $spacing-6; // 모바일: 상하 40px, 좌우 24px
+  gap: $spacing-8;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $section-padding-y-md $container-padding; // 데스크탑: 상하 64px, 좌우 32px
+    gap: $spacing-12;
+  }
 }
 
 .logoWrapper {

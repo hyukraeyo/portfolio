@@ -100,6 +100,11 @@ $spacing-16: 4rem; // 64px
 $spacing-20: 5rem; // 80px
 $spacing-24: 6rem; // 96px
 
+// Section Spacing (섹션 상하 여백 통일)
+$section-padding-y: $spacing-10; // 40px (모바일)
+$section-padding-y-md: $spacing-16; // 64px (데스크탑)
+$section-gap: $spacing-4; // 16px (섹션 간 간격)
+
 // --------------------------------------------
 // Border Radius
 // --------------------------------------------

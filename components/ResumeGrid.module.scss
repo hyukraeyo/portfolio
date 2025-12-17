@@ -17,12 +17,17 @@
   flex-direction: column;
   position: relative;
   max-width: $container-max-width;
-  gap: $spacing-16;
+  gap: $spacing-8;
   margin: 0 auto;
-  padding: 0 $container-padding;
+  padding: 0 $spacing-6;
+
+  @media (min-width: $breakpoint-md) {
+    gap: $spacing-16;
+    padding: 0 $container-padding;
+  }
 
   @media (min-width: $breakpoint-lg) {
-    gap: $spacing-24;
+    gap: $spacing-20;
   }
 }
 
@@ -30,7 +35,20 @@
 // EXPERIENCE SECTION
 // ============================================
 
-.experienceSection {
+// Wrapper: 상하 여백 담당
+.experienceWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: $section-padding-y 0;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $section-padding-y-md 0;
+  }
+}
+
+// Card: 오렌지색 카드 스타일
+.experienceCard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,11 +56,14 @@
   z-index: 10;
   max-width: 600px;
   width: 100%;
-  margin: 0 auto;
-  padding: $spacing-8 $spacing-8 $spacing-6;
+  padding: $spacing-6;
   background-color: $color-orange;
   color: $text-dark;
   box-shadow: $shadow-lg;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $spacing-8;
+  }
 
   .sectionTitle {
     color: $text-dark;
@@ -87,7 +108,7 @@
     align-items: center;
     justify-content: center;
     gap: $spacing-2;
-    padding: $spacing-3 $spacing-8;
+    padding: $spacing-3 $spacing-6;
     border: 1px solid rgba($color-white, 0.4);
     border-radius: $radius-full;
     background: rgba($color-white, 0.25);
@@ -99,6 +120,10 @@
     backdrop-filter: blur(8px);
     box-shadow: $shadow-md;
     animation: pulse-orange 2s infinite;
+
+    @media (min-width: $breakpoint-md) {
+      padding: $spacing-3 $spacing-8;
+    }
 
     &:hover {
       background: rgba($color-white, 0.6);
@@ -328,7 +353,11 @@
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
-  padding-top: $spacing-16;
+  padding: $section-padding-y 0;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $section-padding-y-md 0;
+  }
 }
 .skillsGrid {
   display: flex;
@@ -381,8 +410,11 @@
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
-  padding-top: $spacing-16;
-  padding-bottom: $spacing-16;
+  padding: $section-padding-y 0;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $section-padding-y-md 0;
+  }
 }
 
 .hobbiesGrid {
