@@ -8,7 +8,7 @@
   overflow: hidden;
   background-color: $bg-secondary;
   color: $text-light;
-  margin-bottom: 50px;
+  margin-bottom: $spacing-16; // 64px - 섹션 간격 통일
 }
 
 .content {
@@ -18,7 +18,7 @@
   justify-content: center;
   width: 100%;
   max-width: $container-max-width;
-  padding: $spacing-8;
+  padding: $spacing-12 $container-padding; // 상하 48px, 좌우 32px
   gap: $spacing-12;
 }
 
@@ -40,12 +40,16 @@
 
 .mainText {
   font-family: $font-sans;
-  font-size: $font-size-5xl;
+  font-size: $font-size-4xl; // 48px (모바일)
   font-weight: $font-weight-bold;
-  line-height: $line-height-tight;
+  line-height: $line-height-snug; // 1.25 (통일된 변수 사용)
   color: $text-light;
   text-align: center;
   margin-bottom: $spacing-6;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-5xl; // 64px (데스크탑)
+  }
 
   .name {
     color: #52c77a; // LogoAnimation의 초록색과 동일
@@ -54,9 +58,10 @@
 
 .subText {
   font-family: $font-sans;
-  font-size: $font-size-base;
+  font-size: $font-size-base; // 16px
   font-weight: $font-weight-normal;
-  line-height: $line-height-base;
-  color: $text-light;
+  line-height: $line-height-relaxed; // 1.6
+  color: rgba($text-light, 0.85);
   text-align: center;
+  max-width: 480px; // 읽기 편한 최대 너비
 }
