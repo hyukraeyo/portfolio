@@ -22,10 +22,10 @@ export default function ResumeGrid() {
     <section className={styles.resumeGrid} id="resume">
       <div className={styles.container}>
         {/* Experience Section */}
-        <div className={styles.experienceWrapper}>
+        <div className={styles.experienceWrapper} id="experience">
           <div className={styles.experienceCard}>
             <FadeIn direction="up" delay={0.2}>
-              <h2 className={styles.sectionTitle}>Experience</h2>
+              <h2 className={styles.sectionTitle}>경력</h2>
             </FadeIn>
             <div
               className={`${styles.list} ${
@@ -142,9 +142,9 @@ export default function ResumeGrid() {
         </div>
 
         {/* Skills Section */}
-        <div className={styles.skillsSection}>
+        <div className={styles.skillsSection} id="skills">
           <FadeIn direction="up" delay={0.3}>
-            <h2 className={styles.sectionTitle}>Technical skills</h2>
+            <h2 className={styles.sectionTitle}>기술 스택</h2>
           </FadeIn>
           <StaggerContainer className={styles.skillsGrid} delay={0.4}>
             {TECHNICAL_SKILLS.map((skill, index) => (
@@ -156,9 +156,9 @@ export default function ResumeGrid() {
         </div>
 
         {/* Hobbies Section */}
-        <div className={styles.hobbiesSection}>
+        <div className={styles.hobbiesSection} id="hobbies">
           <FadeIn direction="up" delay={0.6}>
-            <h2 className={styles.sectionTitle}>Hobbies & Interests</h2>
+            <h2 className={styles.sectionTitle}>취미 & 관심사</h2>
           </FadeIn>
           <StaggerContainer className={styles.hobbiesGrid} delay={0.7}>
             {INTERESTS_DATA.hobbies.map((hobby, index) => (

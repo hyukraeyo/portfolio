@@ -77,6 +77,11 @@ body {
   color: var(--color-text-primary);
 }
 
+// Anchor scroll margin (헤더에 가리지 않도록)
+[id] {
+  scroll-margin-top: $spacing-20; // 80px
+}
+
 // ============================================
 // ACCESSIBILITY
 // ============================================
