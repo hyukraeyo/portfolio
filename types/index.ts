@@ -12,22 +12,9 @@ export interface Project {
   reflection?: string;
   created_at: string;
   updated_at: string;
-  // Additional fields from previous Project interface
-  description?: string; // keeping this as optional alias or short desc
+  description?: string;
   image?: string;
   githubUrl?: string;
   liveUrl?: string;
   featured?: boolean;
-}
-
-export interface Skill {
-  name: string;
-  level: 'beginner' | 'intermediate' | 'advanced' | 'expert';
-  category: 'frontend' | 'backend' | 'tools' | 'other';
-}
-
-export interface SocialLink {
-  name: string;
-  url: string;
-  icon: string;
 }

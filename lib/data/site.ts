@@ -12,11 +12,3 @@ export const SITE_METADATA = {
     email: 'mailto:dev@example.com',
   },
 };
-
-export const NAVIGATION_LINKS = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/#about' },
-  { name: 'Resume', href: '/#resume' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Contact', href: '/#contact' },
-];

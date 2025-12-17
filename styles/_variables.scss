@@ -133,6 +133,7 @@ $transition-fast: 0.15s;
 $transition-base: 0.2s;
 $transition-slow: 0.3s;
 $transition-slower: 0.5s;
+$transition-default: 0.2s ease-in-out;
 
 $ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 $ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -171,47 +172,6 @@ $header-padding-x: 1.5rem;
 $header-z-index: 50;
 $header-transition: all 0.3s ease;
 
-// Border Radius
-$radius-sm: 0.25rem;
-$radius-md: 0.5rem;
-$radius-lg: 1rem;
-$radius-full: 9999px;
-
-// Shadows
-$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-$shadow-md:
-  0 4px 6px -1px rgb(0 0 0 / 0.1),
-  0 2px 4px -2px rgb(0 0 0 / 0.1);
-$shadow-lg:
-  0 10px 15px -3px rgb(0 0 0 / 0.1),
-  0 4px 6px -4px rgb(0 0 0 / 0.1);
-$shadow-xl:
-  0 20px 25px -5px rgb(0 0 0 / 0.1),
-  0 8px 10px -6px rgb(0 0 0 / 0.1);
-
-// Transitions
-$transition-default: 0.2s ease-in-out;
-$transition-slow: 0.3s ease-in-out;
-
-// Hero Component
-$hero-min-height: 100vh;
-$hero-padding-top: 22vh;
-$hero-bg-text-gap: 3.75rem;
-$hero-bg-text-stroke: 2px;
-$hero-bg-text-opacity: 0.9;
-$hero-bg-text-z-index: 3;
-
-// Interests Component
-$interests-padding-y: 5rem;
-$interests-container-max-width: 80rem;
-$interests-container-padding-x: 2rem;
-$interests-grid-gap: 3rem;
-$interests-column-gap: 1rem;
-$interests-section-title-margin: 3rem;
-$interests-activity-gap: 2rem;
-$interests-marker-margin: 0.25rem;
-$interests-marker-size: 1.25rem;
-
 // --------------------------------------------
 // Legacy/Compat color variables (for CSS vars)
 // --------------------------------------------
@@ -219,4 +179,3 @@ $color-text-gray-400: rgba($color-dark-green, 0.5);
 $color-text-gray-600: rgba($color-dark-green, 0.7);
 $color-text-gray-700: rgba($color-dark-green, 0.8);
 $color-text-gray-900: $color-black;
-$bg-gray-placeholder: #ccc;

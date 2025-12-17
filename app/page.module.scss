@@ -4,21 +4,3 @@
   min-height: 100vh;
   background-color: var(--color-bg-secondary);
 }
-
-.resumeContainer {
-  max-width: $container-max-width;
-  margin: 0 auto;
-  padding: $spacing-20 $spacing-6;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $spacing-16;
-
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-}

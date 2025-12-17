@@ -28,10 +28,6 @@
   padding-top: $spacing-20;
 }
 
-.educationSection {
-  padding-left: $spacing-4;
-}
-
 .experienceSection {
   position: relative;
   z-index: 10;
@@ -164,7 +160,7 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 10rem; // 높이 축소
+      height: 10rem;
       background: linear-gradient(
         to bottom,
         rgba($color-orange, 0) 0%,
@@ -306,35 +302,6 @@
   padding-bottom: $spacing-20;
 }
 
-.contactList {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-4;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: $spacing-4;
-    font-size: $font-size-base;
-    color: rgba($color-white, 0.9);
-    font-weight: 500;
-  }
-}
-
-.icon {
-  font-size: $font-size-xl;
-}
-
-.skillsContent {
-  position: relative;
-  z-index: 1;
-  padding-top: 5rem;
-  width: 100%;
-}
-
 .sectionTitleSkills {
   position: relative;
   z-index: 2;
@@ -356,10 +323,6 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-6;
-}
-
-.categoryTitle {
-  display: none;
 }
 
 .softwareGrid {
@@ -401,13 +364,6 @@
   padding-top: $spacing-2;
 }
 
-.codingIntro {
-  margin-bottom: $spacing-8;
-  font-size: $font-size-xl;
-  opacity: 0.8;
-  font-family: $font-sans;
-}
-
 .codingGrid {
   display: flex;
   flex-wrap: wrap;
@@ -432,7 +388,7 @@
   }
 }
 
-/* Activities, Language, Hobbies Sections */
+/* Hobbies Section */
 
 .hobbiesSection {
   margin-top: $spacing-20;
