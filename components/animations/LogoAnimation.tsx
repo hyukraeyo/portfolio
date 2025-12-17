@@ -194,6 +194,7 @@ export default function LogoAnimation({
 
   // 호버 인터랙션 설정 (스프링 효과)
   const hoverProps = {
+    animate: { scale: 1, y: 0 },
     whileHover: { scale: 1.1, y: -10 },
     transition: { type: 'spring' as const, stiffness: 400, damping: 10 },
   } as const;
