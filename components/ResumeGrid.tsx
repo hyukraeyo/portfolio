@@ -109,7 +109,10 @@ export default function ResumeGrid() {
                                   >
                                     {project.name}
                                     {project.description && (
-                                      <span className={styles.hasDetailIndicator} />
+                                      <span
+                                        className={`${styles.hasDetailIndicator} ${styles[`indicatorColor${(pIndex % 3) + 1}`]
+                                          }`}
+                                      />
                                     )}
                                   </button>
                                   {project.description && isPopoverOpen && (
