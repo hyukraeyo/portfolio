@@ -51,3 +51,4 @@ portfolio/
 - Tailwind CSS 스타일링
 - 반응형 디자인
 - SEO 최적화
+# Auto-deploy trigger
