@@ -208,12 +208,13 @@ export default function ResumeGrid() {
                     transition: {
                       height: {
                         type: 'spring',
-                        stiffness: 100,
-                        damping: 25,
-                        velocity: 2, // 펼쳐질 때의 초기 속도
+                        stiffness: 120,
+                        damping: 20,
+                        mass: 1.2,
                       },
                       opacity: {
-                        duration: 0.3,
+                        duration: 0.4,
+                        ease: 'easeOut',
                       },
                     },
                   }}
@@ -223,12 +224,11 @@ export default function ResumeGrid() {
                     transition: {
                       height: {
                         type: 'spring',
-                        stiffness: 100, // 더 부드럽고 느리게
-                        damping: 25,
-                        velocity: -2, // 시작 속도를 제어하여 탄성 조절
+                        stiffness: 300,
+                        damping: 30,
                       },
                       opacity: {
-                        duration: 0.3,
+                        duration: 0.2,
                       },
                     },
                   }}
@@ -330,8 +330,24 @@ export default function ResumeGrid() {
           <ExpandButton
             isExpanded={isExpanded}
             onClick={() => toggleExpand(index)}
-            collapsedLabel={`더보기 (+${item.projects!.length - 2})`}
-            expandedLabel="접기 ↑"
+            collapsedLabel={`+${item.projects!.length - 2}`}
+            expandedLabel={
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 15L12 9L6 15"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            }
             className={styles.moreButton} // 위치 지정을 위해 클래스 유지 (내부 스타일은 제거 예정)
           />
         )}
@@ -382,12 +398,13 @@ export default function ResumeGrid() {
                           transition: {
                             height: {
                               type: 'spring',
-                              stiffness: 100,
-                              damping: 25,
-                              velocity: 2,
+                              stiffness: 120,
+                              damping: 20,
+                              mass: 1.2,
                             },
                             opacity: {
-                              duration: 0.3,
+                              duration: 0.4,
+                              ease: 'easeOut',
                             },
                           },
                         }}
@@ -397,12 +414,11 @@ export default function ResumeGrid() {
                           transition: {
                             height: {
                               type: 'spring',
-                              stiffness: 100, // 더 천천히 닫히도록 완화
-                              damping: 25,
-                              velocity: -2,
+                              stiffness: 300,
+                              damping: 30,
                             },
                             opacity: {
-                              duration: 0.3,
+                              duration: 0.2,
                             },
                           },
                         }}
@@ -454,9 +470,25 @@ export default function ResumeGrid() {
                     onClick={() =>
                       setIsExperienceExpanded(!isExperienceExpanded)
                     }
-                    collapsedLabel="더보기"
-                    expandedLabel="접기"
-                    showIcon={true}
+                    collapsedLabel=""
+                    expandedLabel={
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M18 15L12 9L6 15"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    }
+                    showIcon={!isExperienceExpanded}
                     pulse={!isExperienceExpanded} // 초기 상태에서 펄스 효과
                     className={`${styles.expandSectionButton} ${
                       isExperienceExpanded ? styles.expanded : ''
