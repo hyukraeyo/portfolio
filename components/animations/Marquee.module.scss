@@ -1,0 +1,42 @@
+@use '../../styles/variables' as *;
+
+// ============================================
+// MARQUEE ANIMATION COMPONENT
+// ============================================
+
+.marqueeContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+
+  // Note: Framer Motion 애니메이션은 CSS animation-play-state로 제어되지 않습니다.
+  // pauseOnHover 기능은 Marquee.tsx 컴포넌트에서 onHoverStart/onHoverEnd로 구현해야 합니다.
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: $spacing-3;
+  width: max-content;
+
+  @media (min-width: $breakpoint-md) {
+    gap: $spacing-4;
+  }
+}
+
+.marqueeItem {
+  flex-shrink: 0;
+}

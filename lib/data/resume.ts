@@ -1,17 +1,7 @@
-export interface ProjectItem {
-  name: string;
-  period: string;
-  role: string;
-  client: string;
-  description?: string[];
-}
+import type { ExperienceItem, ProjectItem } from '@/types/resume';
 
-export interface ExperienceItem {
-  period: string;
-  title: string;
-  subtitle: string;
-  projects?: ProjectItem[];
-}
+// 타입 re-export (기존 코드 호환성)
+export type { ExperienceItem, ProjectItem };
 
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
@@ -82,6 +72,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
         period: '2022.01 ~ 2022.06',
         role: '프론트엔드 개발',
         client: '신한금융',
+        description: ['React Native 기반 앱 개발'],
       },
     ],
   },

@@ -6,7 +6,7 @@ import styles from './page.module.scss';
 export default function Home() {
   return (
     <>
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <Hero />
         <Header />
         <ResumeGrid />

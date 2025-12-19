@@ -1,3 +1,5 @@
+export * from './resume';
+
 export interface Project {
   id: string;
   title: string;

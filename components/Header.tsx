@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './Header.module.scss';
@@ -31,13 +31,30 @@ const BOUNCY_SPRING_CONFIG = {
   mass: 0.8,
 };
 
+// 초기 페이드인 애니메이션 설정
+const FADE_IN_VARIANTS = {
+  hidden: { opacity: 0, y: 30, scale: 0.9 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+};
+
 // ============================================
 // 메인 컴포넌트
 // ============================================
 export default function Header() {
   const headerRef = useRef<HTMLDivElement>(null);
   const [isTopHidden, setIsTopHidden] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const rafRef = useRef<number | null>(null);
+
+  // 화면에 보이는지 감지
+  const isInView = useInView(headerRef, { once: true, amount: 0.5 });
+
+  // 초기 페이드인 애니메이션이 완료되면 상태 업데이트
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isInView, hasAnimated]);
 
   // 스크롤 핸들러 (requestAnimationFrame으로 최적화)
   const handleScroll = useCallback(() => {
@@ -73,12 +90,19 @@ export default function Header() {
       <div ref={headerRef} className={styles.headerWrapper}>
         <motion.header
           className={styles.header}
-          initial={false}
-          animate={{
-            opacity: isTopHidden ? 0 : 1,
-            y: isTopHidden ? -80 : 0,
-            scale: isTopHidden ? 0.5 : 1,
-          }}
+          initial="hidden"
+          animate={
+            hasAnimated
+              ? {
+                  opacity: isTopHidden ? 0 : 1,
+                  y: isTopHidden ? -80 : 0,
+                  scale: isTopHidden ? 0.5 : 1,
+                }
+              : isInView
+                ? 'visible'
+                : 'hidden'
+          }
+          variants={FADE_IN_VARIANTS}
           transition={BOUNCY_SPRING_CONFIG}
           style={{ pointerEvents: isTopHidden ? 'none' : 'auto' }}
           aria-hidden={isTopHidden}

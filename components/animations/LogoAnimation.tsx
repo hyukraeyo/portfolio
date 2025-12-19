@@ -487,7 +487,7 @@ export default function LogoAnimation({
             cx={rX}
             cy={rY}
             r={DOT_R}
-            fill="#E6FF3A"
+            fill="#FFB400"
             style={{ opacity: rDotOpacity }}
           />
           <motion.g className="r-group" initial={{ opacity: 0 }}>
@@ -495,7 +495,7 @@ export default function LogoAnimation({
               ref={rPathRef}
               d={R_PATH}
               transform={rMatrix}
-              stroke="#E6FF3A"
+              stroke="#FFB400"
               strokeWidth={STROKE}
               strokeLinecap="round"
               strokeLinejoin="round"

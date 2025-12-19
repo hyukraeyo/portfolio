@@ -1,14 +1,14 @@
 import { Project } from '@/types';
+import { SITE_METADATA } from '@/lib/data/site';
 
 export function generateStructuredData(projects: Project[]) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || SITE_METADATA.siteUrl;
 
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Portfolio | 프론트엔드 개발자',
-    description:
-      '프론트엔드 개발자 포트폴리오 - Next.js, React, TypeScript를 활용한 현대적인 웹 애플리케이션 개발',
+    name: SITE_METADATA.title,
+    description: SITE_METADATA.description,
     url: baseUrl,
     potentialAction: {
       '@type': 'SearchAction',
@@ -23,18 +23,16 @@ export function generateStructuredData(projects: Project[]) {
   const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: '프론트엔드 개발자',
+    name: SITE_METADATA.author,
     jobTitle: 'Frontend Developer',
-    description: '프론트엔드 개발자 포트폴리오',
+    description: SITE_METADATA.description,
     url: baseUrl,
-    sameAs: ['https://github.com', 'https://linkedin.com'],
-    knowsAbout: [
-      'React',
-      'Next.js',
-      'TypeScript',
-      'JavaScript',
-      'Web Development',
-    ],
+    sameAs: [
+      SITE_METADATA.social.github,
+      SITE_METADATA.social.linkedin,
+      SITE_METADATA.social.blog,
+    ].filter((url) => !url.includes('username')), // placeholder 제외
+    knowsAbout: SITE_METADATA.keywords,
   };
 
   const portfolioSchema = {
