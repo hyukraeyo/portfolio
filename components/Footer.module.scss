@@ -1,0 +1,93 @@
+@use '../styles/variables' as *;
+
+.footer {
+  position: relative;
+  padding: $spacing-20 0 $spacing-20;
+  background-color: #0f172a; // Reference image dark blue/black color
+  color: $text-light;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: $spacing-12;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  line-height: 1.4;
+  color: $text-white;
+  white-space: pre-line;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-4xl;
+    margin-bottom: $spacing-16;
+  }
+}
+
+.contactCard {
+  width: 100%;
+  max-width: 400px;
+  padding: $spacing-8 $spacing-6;
+  background-color: rgba(30, 41, 59, 0.5); // Slate-800 with opacity
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-2xl;
+  box-shadow: $shadow-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $spacing-10 $spacing-10;
+    max-width: 480px;
+  }
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; // space-between 제거하고 왼쪽 정렬
+  font-size: $font-size-base;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-lg;
+  }
+}
+
+.label {
+  width: 5rem; // 고정 너비 부여
+  flex-shrink: 0; // 줄어들지 않도록 설정
+  margin-right: $spacing-4; // 값과의 간격
+  font-weight: $font-weight-bold;
+  color: $text-white;
+  text-align: left;
+}
+
+.value {
+  color: rgba($text-white, 0.9);
+  text-decoration: none;
+  transition: color $transition-base;
+  font-weight: $font-weight-normal;
+
+  &:hover {
+    color: $brand-green;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+.copyright {
+  margin-top: $spacing-16;
+  font-size: $font-size-sm;
+  color: rgba($text-white, 0.4);
+}
