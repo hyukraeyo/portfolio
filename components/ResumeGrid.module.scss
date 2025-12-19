@@ -141,9 +141,6 @@
 
   // GPU 가속 힌트
   will-change: height, opacity;
-  // 레이아웃 격리
-  contain: layout style;
-  overflow: hidden; // 애니메이션 중 콘텐츠 노출 방지
 }
 
 .list {
@@ -247,7 +244,6 @@
   gap: $spacing-1; // 프로젝트 이름과 날짜 사이 간격
   margin-bottom: $spacing-2;
   // 레이아웃 변경 시 다른 요소에 영향 최소화
-  contain: layout style;
 }
 
 // 숨겨진 프로젝트들이 펼쳐지는 컨테이너
@@ -256,9 +252,8 @@
   flex-direction: column;
   // margin 제거 - DOM에서 제거될 때 레이아웃 시프트 방지
   // GPU 가속 힌트
+  // GPU 가속 힌트
   will-change: height, opacity;
-  // 레이아웃 격리
-  contain: layout style;
 }
 
 .projectName {
@@ -471,6 +466,7 @@
 }
 
 .moreButton {
+  position: relative;
   margin-top: $spacing-4;
   margin-left: $spacing-4; // projectList의 padding-left와 맞춰서 들여쓰기
   align-self: flex-start; // 명시적으로 stretch 방지

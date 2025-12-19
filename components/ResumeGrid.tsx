@@ -4,7 +4,7 @@ import { INTERESTS_DATA } from '@/lib/data/home';
 import { EXPERIENCE_DATA, TECHNICAL_SKILLS } from '@/lib/data/resume';
 import { calculateDuration } from '@/lib/utils/date';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import BlurRevealContainer, { BlurRevealItem } from './animations/BlurReveal';
 import FadeIn from './animations/FadeIn';
 import StaggerContainer, { StaggerItem } from './animations/StaggerContainer';
@@ -49,6 +49,7 @@ export default function ResumeGrid() {
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
   const [isExperienceExpanded, setIsExperienceExpanded] = useState(false);
   const [activePopover, setActivePopover] = useState<string | null>(null);
+  const experienceRef = useRef<HTMLHeadingElement>(null);
 
   // 메모이제이션된 이벤트 핸들러들
   const toggleExpand = useCallback((index: number) => {
@@ -133,6 +134,10 @@ export default function ResumeGrid() {
                       stiffness: 300,
                       damping: 30,
                     },
+                  }}
+                  style={{
+                    zIndex: isPopoverOpen ? 200 : 1,
+                    position: 'relative',
                   }}
                 >
                   <div className={styles.detailWrapper}>
@@ -232,7 +237,6 @@ export default function ResumeGrid() {
                       },
                     },
                   }}
-                  style={{ overflow: 'hidden' }}
                   className={styles.hiddenProjectsContainer}
                 >
                   {hiddenProjects.map((project, pIndex) => {
@@ -253,6 +257,10 @@ export default function ResumeGrid() {
                             duration: 0.3,
                             ease: [0.23, 1, 0.32, 1],
                           },
+                        }}
+                        style={{
+                          zIndex: isPopoverOpen ? 200 : 1,
+                          position: 'relative',
                         }}
                       >
                         <div className={styles.detailWrapper}>
@@ -367,7 +375,9 @@ export default function ResumeGrid() {
             className={styles.experienceFadeIn}
           >
             <div className={styles.experienceCard}>
-              <h2 className={styles.sectionTitle}>경력</h2>
+              <h2 ref={experienceRef} className={styles.sectionTitle}>
+                경력
+              </h2>
               <LayoutGroup>
                 <div className={styles.list}>
                   {/* 첫 번째 경력 (항상 표시) */}
@@ -466,9 +476,16 @@ export default function ResumeGrid() {
                 <div className={styles.expandSectionWrapper}>
                   <ExpandButton
                     isExpanded={isExperienceExpanded}
-                    onClick={() =>
-                      setIsExperienceExpanded(!isExperienceExpanded)
-                    }
+                    onClick={() => {
+                      // 접을 때만 스크롤 이동
+                      if (isExperienceExpanded) {
+                        experienceRef.current?.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'start',
+                        });
+                      }
+                      setIsExperienceExpanded(!isExperienceExpanded);
+                    }}
                     collapsedLabel=""
                     expandedLabel={
                       <svg
