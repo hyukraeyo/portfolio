@@ -37,11 +37,10 @@
   font-size: $font-size-xl;
   font-weight: $font-weight-bold;
   color: $text-light;
-  line-height: 1.4; // 줄 간격을 넓혀 가독성 확보
+  line-height: 1.4;
 
   @media (min-width: $breakpoint-md) {
     font-size: $font-size-3xl;
-    line-height: 1.4;
   }
 }
 
@@ -49,17 +48,25 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: $spacing-6;
+  align-items: stretch; // 카드 높이 통일
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $breakpoint-lg) {
     grid-template-columns: repeat(3, 1fr);
     gap: $spacing-8;
   }
 }
 
+.cardWrapper {
+  height: 100%; // FadeIn 내부 높이 확보
+}
+
 .card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: $spacing-8;
-  background: rgba(30, 41, 59, 0.4); // 다크 테마에 맞는 반투명 배경
+  background: rgba(30, 41, 59, 0.4);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: $radius-2xl;
@@ -77,36 +84,114 @@
       background: rgba($brand-green, 0.1);
       transform: scale(1.1);
     }
+
+    .keyword {
+      color: $brand-green; // 호버 시 더 밝게 하거나 유지
+    }
   }
+}
+
+// 상단: 키워드 & 아이콘
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-6;
+}
+
+.keyword {
+  font-family: $font-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $brand-green;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba($brand-green, 0.3);
+  padding-bottom: $spacing-1;
 }
 
 .iconWrapper {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  margin-bottom: $spacing-6;
+  width: 3rem;
+  height: 3rem;
   border-radius: $radius-xl;
   background: rgba(255, 255, 255, 0.05);
   color: $text-light;
   transition: all $transition-base ease;
 
   svg {
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 
+// 중단: 타이틀 & 철학
+.cardBody {
+  margin-bottom: $spacing-8;
+}
+
 .cardTitle {
-  font-size: $font-size-lg;
+  font-size: $font-size-xl;
   font-weight: $font-weight-bold;
   color: $text-light;
   margin-bottom: $spacing-4;
+  word-break: keep-all; // 한글 단어 잘림 방지
 }
 
 .cardDesc {
   font-size: $font-size-sm;
-  line-height: $line-height-relaxed;
+  line-height: 1.7;
   color: rgba($text-light, 0.7);
+  margin-bottom: $spacing-6;
+  word-break: keep-all;
+}
+
+.techTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-2;
+}
+
+.techTag {
+  font-size: $font-size-xs;
+  color: rgba($text-light, 0.5);
+  font-family: $font-sans; // 테크 느낌을 위해 모노그라피 사용 가능하면 사용 (없으면 sans)
+}
+
+// 하단: 구체적 경험
+.cardFooter {
+  margin-top: auto; // 하단으로 밀어내기
+  padding-top: $spacing-6;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detailsList {
+  font-size: $font-size-sm;
+  color: rgba($text-light, 0.8);
+  line-height: 1.6;
+
+  li {
+    position: relative;
+    padding-left: $spacing-4;
+    margin-bottom: $spacing-3;
+    list-style: none;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: $brand-green;
+      opacity: 0.7;
+    }
+  }
 }

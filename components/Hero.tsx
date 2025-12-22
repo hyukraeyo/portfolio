@@ -22,7 +22,7 @@ export default function Hero() {
             <div className={styles.subText}>
               다양한 기술로 웹 프론트엔드를 개발합니다.
               <br />
-              함께 제품을 만들고 성장시킬 곳을 찾고 있습니다.
+              함께 서비스를 만들고 성장시킬 곳을 찾고 있습니다.
             </div>
           </FadeIn>
         </div>

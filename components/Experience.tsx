@@ -1,13 +1,11 @@
 'use client';
 
-import { EXPERIENCE_DATA, TECHNICAL_SKILLS } from '@/lib/data/resume';
+import { EXPERIENCE_DATA } from '@/lib/data/resume';
 import { calculateDuration } from '@/lib/utils/date';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { useCallback, useEffect, useState, useRef } from 'react';
-import BlurRevealContainer, { BlurRevealItem } from './animations/BlurReveal';
 import FadeIn from './animations/FadeIn';
-import StaggerContainer, { StaggerItem } from './animations/StaggerContainer';
-import styles from './ResumeGrid.module.scss';
+import styles from './Experience.module.scss';
 import ExpandButton from './ui/ExpandButton';
 
 // 애니메이션 variants
@@ -38,13 +36,7 @@ const popoverVariants = {
   },
 };
 
-const buttonVariants = {
-  idle: { scale: 1 },
-  hover: { scale: 1.05 },
-  tap: { scale: 0.95 },
-};
-
-export default function ResumeGrid() {
+export default function Experience() {
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
   const [isExperienceExpanded, setIsExperienceExpanded] = useState(false);
   const [activePopover, setActivePopover] = useState<string | null>(null);
@@ -363,12 +355,13 @@ export default function ResumeGrid() {
   };
 
   return (
-    <section className={styles.resumeGrid} id="resume">
+    <section className={styles.section} id="experience">
       <div className={styles.container}>
         {/* Experience Section */}
-        <div className={styles.experienceWrapper} id="experience">
-          <FadeIn direction="up" delay={0.1}>
-            <h2 ref={experienceRef} className={styles.sectionTitle}>
+        <div className={styles.experienceWrapper} id="experience-content">
+          <FadeIn direction="up" delay={0.1} className={styles.header}>
+            <span className={styles.subTitle}>WORK EXPERIENCE</span>
+            <h2 ref={experienceRef} className={styles.title}>
               경력
             </h2>
           </FadeIn>
@@ -515,20 +508,6 @@ export default function ResumeGrid() {
               )}
             </div>
           </FadeIn>
-        </div>
-
-        {/* Skills Section */}
-        <div className={styles.skillsSection} id="skills">
-          <FadeIn direction="up" delay={0.3}>
-            <h2 className={styles.sectionTitle}>기술 스택</h2>
-          </FadeIn>
-          <BlurRevealContainer className={styles.skillsGrid} delay={0.2}>
-            {TECHNICAL_SKILLS.map((skill, index) => (
-              <BlurRevealItem key={index} className={styles.skillItem}>
-                {skill}
-              </BlurRevealItem>
-            ))}
-          </BlurRevealContainer>
         </div>
       </div>
     </section>

@@ -1,40 +1,65 @@
 'use client';
 
-import { COMPETENCIES_DATA } from '@/lib/data/competencies';
-import { motion } from 'framer-motion';
-import styles from './CoreCompetencies.module.scss';
+import { CORE_COMPETENCIES } from '@/lib/data/competencies';
 import FadeIn from './animations/FadeIn';
+import styles from './CoreCompetencies.module.scss';
+import BlurRevealContainer, { BlurRevealItem } from './animations/BlurReveal';
 
 export default function CoreCompetencies() {
   return (
-    <section className={styles.section} id="competencies">
+    <section className={styles.section}>
       <div className={styles.container}>
-        <FadeIn direction="up" delay={0.4} className={styles.header}>
-          <span className={styles.subTitle}>Check Point</span>
-          <h2 className={styles.title}>
-            핵심 역량
-            <br />
-            유연하게 소통하고 견고하게 개발합니다.
-          </h2>
+        <FadeIn direction="up" delay={0.2} className={styles.header}>
+          <span className={styles.subTitle}>CORE COMPETENCIES</span>
+          <h2 className={styles.title}>핵심 가치와 역량</h2>
         </FadeIn>
 
         <div className={styles.grid}>
-          {COMPETENCIES_DATA.map((item, index) => (
-            <FadeIn
-              key={index}
-              direction="up"
-              delay={0.6 + index * 0.1}
-              className={styles.cardWrapper}
-            >
-              <div className={styles.card}>
-                <div className={styles.iconWrapper}>
-                  <item.icon />
+          {CORE_COMPETENCIES.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <FadeIn
+                key={index}
+                direction="up"
+                delay={0.3 + index * 0.1}
+                className={styles.cardWrapper}
+              >
+                <div className={styles.card}>
+                  {/* 상단: 키워드 & 아이콘 */}
+                  <div className={styles.cardHeader}>
+                    <span className={styles.keyword}>{item.keyword}.</span>
+                    <div className={styles.iconWrapper}>
+                      <Icon strokeWidth={1.5} />
+                    </div>
+                  </div>
+
+                  {/* 중단: 타이틀 & 철학 */}
+                  <div className={styles.cardBody}>
+                    <h3 className={styles.cardTitle}>{item.title}</h3>
+                    <p className={styles.cardDesc}>{item.description}</p>
+
+                    {/* 테크 태그 */}
+                    <div className={styles.techTags}>
+                      {item.techs.map((tech, i) => (
+                        <span key={i} className={styles.techTag}>
+                          #{tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 하단: 구체적 경험 (구분선으로 분리) */}
+                  <div className={styles.cardFooter}>
+                    <ul className={styles.detailsList}>
+                      {item.details.map((detail, i) => (
+                        <li key={i}>{detail}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <h3 className={styles.cardTitle}>{item.title}</h3>
-                <p className={styles.cardDesc}>{item.description}</p>
-              </div>
-            </FadeIn>
-          ))}
+              </FadeIn>
+            );
+          })}
         </div>
       </div>
     </section>

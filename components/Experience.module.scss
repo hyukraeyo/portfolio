@@ -19,7 +19,7 @@
   max-width: $container-max-width;
   gap: $spacing-8;
   margin: 0 auto;
-  padding: 0 $spacing-6;
+  padding: 0; // 모바일 패딩 제거
 
   @media (min-width: $breakpoint-md) {
     gap: $spacing-16;
@@ -49,8 +49,41 @@
     padding: $section-padding-y-md 0;
   }
 
-  .sectionTitle {
-    text-align: center;
+  @media (min-width: $breakpoint-md) {
+    padding: $section-padding-y-md 0;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-8;
+
+  @media (min-width: $breakpoint-md) {
+    margin-bottom: $spacing-12;
+  }
+}
+
+.subTitle {
+  display: block;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $brand-green;
+  margin-bottom: $spacing-4;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  font-family: $font-sans;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $text-light;
+  line-height: $line-height-snug;
+  margin-bottom: 0;
+  text-align: center;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-3xl;
   }
 }
 
@@ -75,11 +108,12 @@
   background-color: $color-orange;
   color: $text-dark;
   box-shadow: $shadow-lg;
-  border-radius: $radius-2xl;
+  border-radius: 0; // 모바일에서는 꽉 차게
 
   @media (min-width: $breakpoint-md) {
     padding: $spacing-10 $spacing-12;
-    padding-top: $spacing-16; // 데스크탑 상단 64px로 확대
+    padding-top: $spacing-16;
+    border-radius: $radius-2xl; // 테블릿/데스크탑에서는 둥글게
   }
 
   .sectionTitle {

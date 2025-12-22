@@ -2,5 +2,11 @@
 
 .main {
   min-height: 100vh;
-  background-color: var(--color-bg-secondary);
+  background-color: $bg-secondary;
+  color: $text-light;
+  overflow-x: hidden;
+
+  // 모바일에서 특정 섹션(Experience 등)이 꽉 차게 보이도록 하기 위해
+  // 메인 컨테이너에 별도 패딩을 주지 않습니다.
+  // 각 컴포넌트의 내부 .container가 패딩을 제어합니다.
 }

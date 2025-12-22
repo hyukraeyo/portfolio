@@ -1,9 +1,9 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import ResumeGrid from '@/components/ResumeGrid';
+import Experience from '@/components/Experience';
 import CoreCompetencies from '@/components/CoreCompetencies';
-import Philosophy from '@/components/Philosophy';
+import Skills from '@/components/Skills';
 import styles from './page.module.scss';
 
 export default function Home() {
@@ -11,10 +11,13 @@ export default function Home() {
     <>
       <main id="main-content" className={styles.main}>
         <Hero />
-        <CoreCompetencies />
-        <Philosophy />
         <Header />
-        <ResumeGrid />
+
+        {/* 모든 섹션을 세로로 순차 배치 */}
+        <CoreCompetencies />
+        <Skills />
+        <Experience />
+
         <Footer />
       </main>
     </>

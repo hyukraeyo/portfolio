@@ -1,0 +1,103 @@
+@use '../styles/variables' as *;
+
+.section {
+  position: relative;
+  width: 100%;
+  padding: $spacing-20 0; // 다른 섹션과 비슷한 패딩
+
+  @media (min-width: $breakpoint-md) {
+    padding: $spacing-24 0;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-6; // 모바일 여백
+
+  @media (min-width: $breakpoint-md) {
+    padding: 0 $container-padding;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-12; // 칩과의 간격
+}
+
+.subTitle {
+  display: block;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $brand-green;
+  margin-bottom: $spacing-4;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  font-family: $font-sans;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $text-light;
+  line-height: 1.4;
+  margin-bottom: 0; // 헤더가 여백 담당
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-3xl;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-3;
+  justify-content: center; // 칩 중앙 정렬
+
+  @media (min-width: $breakpoint-md) {
+    gap: $spacing-4;
+  }
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-2 $spacing-4;
+
+  background: rgba($text-light, 0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba($text-light, 0.1);
+  border-radius: $radius-full;
+
+  color: rgba($text-light, 0.8);
+  font-family: $font-sans;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.02em;
+
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+
+  // Hover Glow Effect
+  &:hover {
+    border-color: $brand-green;
+    background: rgba($brand-green, 0.1);
+    color: $brand-green;
+    box-shadow: 0 0 15px rgba($brand-green, 0.2);
+    text-shadow: 0 0 8px rgba($brand-green, 0.4);
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-sm;
+    padding: $spacing-2 $spacing-5;
+  }
+}
