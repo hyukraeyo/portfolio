@@ -1,0 +1,112 @@
+@use '../styles/variables' as *;
+
+.section {
+  position: relative;
+  padding: $spacing-20 0;
+  background-color: $bg-secondary;
+  overflow: hidden;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $spacing-24 0;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-16;
+}
+
+.subTitle {
+  display: block;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: $brand-green;
+  margin-bottom: $spacing-4;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $text-light;
+  line-height: 1.4; // 줄 간격을 넓혀 가독성 확보
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-3xl;
+    line-height: 1.4;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-6;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-8;
+  }
+}
+
+.card {
+  position: relative;
+  padding: $spacing-8;
+  background: rgba(30, 41, 59, 0.4); // 다크 테마에 맞는 반투명 배경
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: $radius-2xl;
+  transition: all $transition-base ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-4px);
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba($brand-green, 0.3);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+
+    .iconWrapper {
+      color: $brand-green;
+      background: rgba($brand-green, 0.1);
+      transform: scale(1.1);
+    }
+  }
+}
+
+.iconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: $spacing-6;
+  border-radius: $radius-xl;
+  background: rgba(255, 255, 255, 0.05);
+  color: $text-light;
+  transition: all $transition-base ease;
+
+  svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+.cardTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $text-light;
+  margin-bottom: $spacing-4;
+}
+
+.cardDesc {
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  color: rgba($text-light, 0.7);
+}

@@ -528,28 +528,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: $spacing-1 $spacing-3;
-  border: 1px solid rgba($text-light, 0.3);
+  padding: $spacing-2 $spacing-4; // 다시 약간 여유 있게 (터치 영역 고려)
+  border: 1px solid rgba($text-light, 0.1); // 아주 옅은 테두리
   border-radius: $radius-full;
-  background-color: transparent;
+  background: rgba($text-light, 0.03); // 아주 옅은 반투명 배경
+  backdrop-filter: blur(8px); // 블러 효과 (Glassmorphism)
+  -webkit-backdrop-filter: blur(8px);
   font-family: $font-sans;
   font-size: $font-size-xs;
   font-weight: $font-weight-medium;
-  color: $text-light;
+  color: rgba($text-light, 0.8); // 텍스트도 살짝 힘을 빼서 세련되게
   text-align: center;
   white-space: nowrap;
-  transition: all $transition-base ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); // 부드러운 전환
   cursor: default;
+  letter-spacing: 0.02em;
 
   @media (min-width: $breakpoint-md) {
-    padding: $spacing-2 $spacing-4;
+    padding: $spacing-2 $spacing-5;
     font-size: $font-size-sm;
   }
 
   &:hover {
-    border-color: $text-light;
-    background-color: rgba($text-light, 0.1);
-    transform: translateY(-2px);
+    border-color: $brand-green; // 브랜드 컬러 테두리
+    background: rgba($brand-green, 0.1); // 옅은 브랜드 컬러 배경
+    color: $brand-green; // 텍스트 색상 변경
+    box-shadow:
+      0 0 20px rgba($brand-green, 0.2),
+      inset 0 0 10px rgba($brand-green, 0.05); // 내외부 글로우 효과
+    transform: translateY(-2px) scale(1.02);
+    text-shadow: 0 0 8px rgba($brand-green, 0.4); // 텍스트 글로우
   }
 }
 
