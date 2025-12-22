@@ -81,10 +81,13 @@ export default function Experience() {
     };
   }, [activePopover]);
 
-  // 첫 번째 경력 데이터 (항상 표시)
-  const firstExperience = EXPERIENCE_DATA[0];
-  // 나머지 경력 데이터 (펼쳤을 때만 표시)
-  const restExperiences = EXPERIENCE_DATA.slice(1);
+  // 초기 표시 개수 설정
+  const INITIAL_VISIBLE_COUNT = 3;
+
+  // 항상 표시할 경력들
+  const visibleExperiences = EXPERIENCE_DATA.slice(0, INITIAL_VISIBLE_COUNT);
+  // 펼쳤을 때 추가로 표시할 경력들
+  const hiddenExperiences = EXPERIENCE_DATA.slice(INITIAL_VISIBLE_COUNT);
 
   const renderExperienceItem = (
     item: (typeof EXPERIENCE_DATA)[0],
@@ -374,27 +377,30 @@ export default function Experience() {
             <div className={styles.experienceCard}>
               <LayoutGroup>
                 <div className={styles.list}>
-                  {/* 첫 번째 경력 (항상 표시) */}
-                  <motion.div className={styles.item}>
-                    <motion.div
-                      className={styles.marker}
-                      animate={{ rotate: [0, 10, -10, 0] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatDelay: 3,
-                      }}
-                    >
-                      ✦
+                  {/* 기본 표시 경력들 (최대 3개) */}
+                  {visibleExperiences.map((item, idx) => (
+                    <motion.div key={idx} className={styles.item}>
+                      <motion.div
+                        className={styles.marker}
+                        animate={{ rotate: [0, 10, -10, 0] }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatDelay: 3,
+                          delay: idx * 0.5, // 마커 애니메이션 시차
+                        }}
+                      >
+                        ✦
+                      </motion.div>
+                      {renderExperienceItem(item, idx)}
                     </motion.div>
-                    {renderExperienceItem(firstExperience, 0)}
-                  </motion.div>
+                  ))}
 
                   {/* 나머지 경력 (펼쳤을 때만 표시) */}
                   <AnimatePresence initial={false}>
-                    {isExperienceExpanded && restExperiences.length > 0 && (
+                    {isExperienceExpanded && hiddenExperiences.length > 0 && (
                       <motion.div
-                        key="rest-experiences-container"
+                        key="hidden-experiences-container"
                         className={styles.expandedContent}
                         initial={{ opacity: 0, height: 0 }}
                         animate={{
@@ -428,37 +434,40 @@ export default function Experience() {
                           },
                         }}
                       >
-                        {restExperiences.map((item, idx) => (
-                          <motion.div
-                            key={idx + 1}
-                            className={styles.item}
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{
-                              opacity: 1,
-                              y: 0,
-                              transition: {
-                                delay: idx * 0.08,
-                                duration: 0.3,
-                                ease: [0.23, 1, 0.32, 1],
-                              },
-                            }}
-                          >
+                        {hiddenExperiences.map((item, idx) => {
+                          const actualIndex = INITIAL_VISIBLE_COUNT + idx;
+                          return (
                             <motion.div
-                              className={styles.marker}
-                              initial={{ scale: 0, rotate: -180 }}
-                              animate={{ scale: 1, rotate: 0 }}
-                              transition={{
-                                type: 'spring',
-                                stiffness: 300,
-                                damping: 20,
-                                delay: idx * 0.08,
+                              key={actualIndex}
+                              className={styles.item}
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{
+                                opacity: 1,
+                                y: 0,
+                                transition: {
+                                  delay: idx * 0.08,
+                                  duration: 0.3,
+                                  ease: [0.23, 1, 0.32, 1],
+                                },
                               }}
                             >
-                              ✦
+                              <motion.div
+                                className={styles.marker}
+                                initial={{ scale: 0, rotate: -180 }}
+                                animate={{ scale: 1, rotate: 0 }}
+                                transition={{
+                                  type: 'spring',
+                                  stiffness: 300,
+                                  damping: 20,
+                                  delay: idx * 0.08,
+                                }}
+                              >
+                                ✦
+                              </motion.div>
+                              {renderExperienceItem(item, actualIndex)}
                             </motion.div>
-                            {renderExperienceItem(item, idx + 1)}
-                          </motion.div>
-                        ))}
+                          );
+                        })}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -466,7 +475,7 @@ export default function Experience() {
               </LayoutGroup>
 
               {/* 경력 더보기/접기 버튼 */}
-              {restExperiences.length > 0 && (
+              {hiddenExperiences.length > 0 && (
                 <div className={styles.expandSectionWrapper}>
                   <ExpandButton
                     isExpanded={isExperienceExpanded}
@@ -481,6 +490,7 @@ export default function Experience() {
                       setIsExperienceExpanded(!isExperienceExpanded);
                     }}
                     collapsedLabel=""
+                    // expandedLabel은 아이콘으로 처리됨 (아래 svg)
                     expandedLabel={
                       <svg
                         width="16"

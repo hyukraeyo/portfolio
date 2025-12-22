@@ -180,7 +180,6 @@
 .expandedContent {
   display: flex;
   flex-direction: column;
-  gap: $spacing-10; // 아이템 간 간격
   // padding-top 제거: 첫 번째 아이템의 마진으로 대체
 
   // GPU 가속 힌트
@@ -201,7 +200,22 @@
   display: flex;
   align-items: flex-start;
   position: relative;
-  gap: $spacing-6;
+  gap: $spacing-6; // 마커와 컨텐츠 사이 간격
+  margin-bottom: $spacing-10; // 2.5rem (40px)
+
+  // 3번째 아이템(초기 노출의 마지막)은 마진 제거
+  &:nth-child(3) {
+    margin-bottom: 0;
+  }
+
+  // 4번째부터(펼쳐진 아이템들)는 다시 마진 적용하되, 진짜 마지막은 제거
+  &:nth-child(n + 4) {
+    margin-bottom: $spacing-10;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 @keyframes float-marker {
