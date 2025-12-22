@@ -38,12 +38,19 @@
 // Wrapper: 상하 여백 담당
 .experienceWrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+  max-width: 500px; // experienceCard와 동일한 max-width
+  margin: 0 auto;
   padding: $section-padding-y 0;
 
   @media (min-width: $breakpoint-md) {
     padding: $section-padding-y-md 0;
+  }
+
+  .sectionTitle {
+    text-align: center;
   }
 }
 
@@ -118,14 +125,15 @@
 // ============================================
 
 .sectionTitle {
-  margin-bottom: $spacing-10; // 40px
-  font-size: $font-size-3xl; // 32px (모바일)
-  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-8; // 32px
+  font-size: $font-size-2xl; // 24px (모바일)
+  font-weight: $font-weight-semibold;
   line-height: $line-height-snug;
-  color: $accent-color;
+  letter-spacing: 0.02em;
+  color: $text-light;
 
   @media (min-width: $breakpoint-md) {
-    font-size: $font-size-4xl; // 48px (데스크탑)
+    font-size: $font-size-3xl; // 32px (데스크탑)
   }
 }
 
@@ -520,26 +528,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: $spacing-2 $spacing-4;
+  padding: $spacing-1 $spacing-3;
+  border: 1px solid rgba($text-light, 0.3);
   border-radius: $radius-full;
-  background-color: $bg-primary;
+  background-color: transparent;
   font-family: $font-sans;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-semibold;
-  color: $bg-secondary;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $text-light;
   text-align: center;
   white-space: nowrap;
-  transition: all $transition-slow $ease-in-out;
+  transition: all $transition-base ease;
   cursor: default;
 
   @media (min-width: $breakpoint-md) {
-    padding: $spacing-3 $spacing-5;
-    font-size: $font-size-base;
+    padding: $spacing-2 $spacing-4;
+    font-size: $font-size-sm;
   }
 
   &:hover {
-    transform: translateY(-0.25rem) scale(1.05);
-    box-shadow: $shadow-md;
+    border-color: $text-light;
+    background-color: rgba($text-light, 0.1);
+    transform: translateY(-2px);
   }
 }
 

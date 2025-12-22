@@ -368,6 +368,11 @@ export default function ResumeGrid() {
       <div className={styles.container}>
         {/* Experience Section */}
         <div className={styles.experienceWrapper} id="experience">
+          <FadeIn direction="up" delay={0.1}>
+            <h2 ref={experienceRef} className={styles.sectionTitle}>
+              경력
+            </h2>
+          </FadeIn>
           <FadeIn
             direction="up"
             delay={0.2}
@@ -375,9 +380,6 @@ export default function ResumeGrid() {
             className={styles.experienceFadeIn}
           >
             <div className={styles.experienceCard}>
-              <h2 ref={experienceRef} className={styles.sectionTitle}>
-                경력
-              </h2>
               <LayoutGroup>
                 <div className={styles.list}>
                   {/* 첫 번째 경력 (항상 표시) */}
