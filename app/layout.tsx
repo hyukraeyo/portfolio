@@ -50,7 +50,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {},
+  verification: {
+    google: 'ig5bwjcdjq-J5t22SEhKa34Kdi-thM38v3zee_uTSVU',
+  },
   alternates: {
     canonical: SITE_METADATA.siteUrl,
   },

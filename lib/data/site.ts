@@ -2,7 +2,7 @@ export const SITE_METADATA = {
   title: 'CUT | 프론트엔드 개발자 포트폴리오',
   description:
     '사용자 중심의 웹 경험을 만드는 프론트엔드 개발자 CUT의 포트폴리오입니다.',
-  siteUrl: 'https://portfolio.example.com',
+  siteUrl: 'https://ccut.vercel.app',
   author: 'CUT',
   keywords: ['프론트엔드', '웹 개발자', 'React', 'Next.js', '포트폴리오'],
   social: {
