@@ -17,6 +17,13 @@ export default function CoreCompetencies() {
         <div className={styles.grid}>
           {CORE_COMPETENCIES.map((item, index) => {
             const Icon = item.icon;
+            // 인덱스에 따른 테마 클래스 선택
+            const themeClass = [
+              styles.themeBlue,
+              styles.themeGreen,
+              styles.themeYellow,
+            ][index];
+
             return (
               <FadeIn
                 key={index}
@@ -24,10 +31,15 @@ export default function CoreCompetencies() {
                 delay={0.3 + index * 0.1}
                 className={styles.cardWrapper}
               >
-                <div className={styles.card}>
+                <div className={`${styles.card} ${themeClass}`}>
                   {/* 상단: 키워드 & 아이콘 */}
                   <div className={styles.cardHeader}>
-                    <span className={styles.keyword}>{item.keyword}.</span>
+                    <span className={styles.keyword}>
+                      <span className={styles.firstChar}>
+                        {item.keyword.charAt(0)}
+                      </span>
+                      {item.keyword.slice(1)}.
+                    </span>
                     <div className={styles.iconWrapper}>
                       <Icon strokeWidth={1.5} />
                     </div>
