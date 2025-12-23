@@ -7,7 +7,7 @@ import BlurRevealContainer, { BlurRevealItem } from './animations/BlurReveal';
 
 export default function CoreCompetencies() {
   return (
-    <section className={styles.section}>
+    <section id="competencies" className={styles.section}>
       <div className={styles.container}>
         <FadeIn direction="up" delay={0.2} className={styles.header}>
           <span className={styles.subTitle}>CORE COMPETENCIES</span>

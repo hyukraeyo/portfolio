@@ -43,14 +43,10 @@
   width: 100%;
   max-width: 500px; // experienceCard와 동일한 max-width
   margin: 0 auto;
-  padding: $section-padding-y 0;
+  padding: $spacing-20 0;
 
   @media (min-width: $breakpoint-md) {
-    padding: $section-padding-y-md 0;
-  }
-
-  @media (min-width: $breakpoint-md) {
-    padding: $section-padding-y-md 0;
+    padding: $spacing-24 0;
   }
 }
 

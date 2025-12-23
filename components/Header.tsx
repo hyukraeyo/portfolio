@@ -11,8 +11,8 @@ import ThemeToggle from './ThemeToggle';
 // ============================================
 const NAV_ITEMS = [
   { label: '역량', href: '#competencies' },
-  { label: '경력', href: '#experience' },
   { label: '기술', href: '#skills' },
+  { label: '경력', href: '#experience' },
 ] as const;
 
 // 헤더 전환 임계값 (px)

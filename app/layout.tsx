@@ -1,15 +1,22 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Noto_Sans_KR, Rammetto_One } from 'next/font/google';
+import localFont from 'next/font/local';
+import { Rammetto_One } from 'next/font/google';
 
 import { generateStructuredData } from '@/lib/utils/structured-data';
 import './globals.scss';
 
-const notoSansKr = Noto_Sans_KR({
-  subsets: ['latin'],
-  weight: ['100', '300', '400', '500', '700', '900'],
+const pretendard = localFont({
+  src: [
+    {
+      path: '../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2',
+      weight: '100 900',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
-  variable: '--font-noto-sans-kr',
+  variable: '--font-pretendard',
+  preload: true,
 });
 
 const rammettoOne = Rammetto_One({
@@ -70,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${notoSansKr.variable} ${rammettoOne.variable}`}
+      className={`${pretendard.variable} ${rammettoOne.variable}`}
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >
