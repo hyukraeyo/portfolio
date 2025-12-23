@@ -51,9 +51,8 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: $radius-full;
-  border: 1px solid rgba($brand-green, 0.4); // 포인트 초록색 강화
+  border: 1px solid var(--color-header-border);
   box-shadow: var(--color-header-shadow);
-  border-top: 1px solid rgba($brand-green, 0.5);
 
   @media (min-width: $breakpoint-md) {
     gap: $spacing-6;
@@ -71,9 +70,8 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: $radius-full;
-  border: 1px solid rgba($brand-green, 0.4);
+  border: 1px solid var(--color-header-border);
   box-shadow: var(--color-header-shadow);
-  border-top: 1px solid rgba($brand-green, 0.5);
   pointer-events: auto;
 
   @media (min-width: $breakpoint-md) {
