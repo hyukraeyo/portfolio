@@ -105,7 +105,7 @@
   width: 100%;
   padding: $spacing-6 $spacing-6;
   padding-top: $spacing-12; // 상단 여백 48px로 확대
-  background-color: $color-orange;
+  background-color: $accent-color;
   color: $text-dark;
   box-shadow: $shadow-lg;
   border-radius: 0; // 모바일에서는 꽉 차게
@@ -195,9 +195,9 @@
   height: 180px; // 페이드 영역 높이
   background: linear-gradient(
     to bottom,
-    rgba($color-orange, 0) 0%,
-    rgba($color-orange, 0.8) 40%,
-    $color-orange 100%
+    rgba($accent-color, 0) 0%,
+    rgba($accent-color, 0.8) 40%,
+    $accent-color 100%
   );
   z-index: 20;
   display: flex;
