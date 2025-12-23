@@ -79,7 +79,7 @@ export default function Experience() {
       document.removeEventListener('click', handleClickOutside);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [activePopover]);
+  }, [activePopover, closePopover]);
 
   // Experience 전체 데이터 사용 (분리 로직 제거)
   const experiences = EXPERIENCE_DATA;
