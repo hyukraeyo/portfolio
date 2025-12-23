@@ -9,8 +9,7 @@ import {
 } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-// --- Constants ---
-const DOT_SIZE = 32;
+const DOT_SIZE = 32; // 점과 선 두께
 const DOT_R = DOT_SIZE / 2;
 const STROKE = DOT_SIZE;
 
@@ -18,16 +17,11 @@ const VIEW = 100;
 const BOX = 80;
 const GAP = 90;
 
-const COLORS = {
-  BLUE: '#2F73FF',
-  GREEN: '#52C77A',
-  YELLOW: '#FFB400',
-};
-
 type Xform = { s: number; tx: number; ty: number };
 type Phase = 'idle' | 'drawing' | 'done';
 
-// --- Utilities ---
+// ...
+// (Here I will provide the full content of the missing functions to restore them)
 const raf = () => new Promise<void>((r) => requestAnimationFrame(() => r()));
 
 function safeGetBBox(el: SVGPathElement) {
@@ -44,11 +38,15 @@ function safeGetBBox(el: SVGPathElement) {
 function calcNormalizeXformFromBBox(bbox: DOMRect): Xform {
   const margin = STROKE / 2 + 4;
   const avail = VIEW - margin * 2;
+
   const s = Math.min(avail / bbox.width, avail / bbox.height);
+
   const c0x = bbox.x + bbox.width / 2;
   const c0y = bbox.y + bbox.height / 2;
+
   const tx = 50 - c0x * s;
   const ty = 50 - c0y * s;
+
   return { s, tx, ty };
 }
 
@@ -83,22 +81,25 @@ function useDotFollowPath(
 ) {
   useEffect(() => {
     if (!enabled) return;
+
     const path = pathRef.current;
     if (!path) return;
+
     const len = path.getTotalLength();
+
     const setPos = (p: number) => {
       const pt = path.getPointAtLength(len * p);
       const xf = xfRef.current;
       x.set(pt.x * xf.s + xf.tx);
       y.set(pt.y * xf.s + xf.ty);
     };
+
     setPos(progress.get());
     const unsub = progress.on('change', setPos);
     return () => unsub();
   }, [enabled, pathRef, progress, x, y, xfRef]);
 }
 
-// --- Main Component ---
 export default function LogoAnimation({
   className = '',
 }: {
@@ -107,11 +108,16 @@ export default function LogoAnimation({
   const [scope, domAnimate] = useAnimate<HTMLDivElement>();
   const runIdRef = useRef(0);
   const [isInteractive, setIsInteractive] = useState(false);
+  // 한글 자음 ㅈ, ㅎ, ㄹ 경로 (한붓그리기 스타일)
 
-  // Path Definitions
+  // ㅈ (Blue): 가로 획 + 벌린 ㅅ (길이 연장)
   const J_PATH = 'M 25 35 L 75 35 L 50 35 L 25 75 L 50 35 L 75 75';
+
+  // ㅎ (Green): 꼭지 + 가로 + 정확한 원형
   const H_PATH =
     'M 50 25 L 50 30 L 50 35 L 25 35 L 75 35 L 50 35 L 50 38 A 20 20 0 0 1 50 78 A 20 20 0 0 1 50 38';
+
+  // ㄹ (Yellow): 간격 넓힌 버전
   const R_PATH =
     'M 22 22 L 65 22 Q 78 22 78 35 L 78 40 Q 78 48 65 48 L 35 52 Q 22 52 22 60 L 22 65 Q 22 78 35 78 L 78 78';
 
@@ -119,18 +125,22 @@ export default function LogoAnimation({
   const hPathRef = useRef<SVGPathElement>(null);
   const rPathRef = useRef<SVGPathElement>(null);
 
+  // 정규화 transform
   const jXfRef = useRef<Xform>({ s: 1, tx: 0, ty: 0 });
   const hXfRef = useRef<Xform>({ s: 1, tx: 0, ty: 0 });
   const rXfRef = useRef<Xform>({ s: 1, tx: 0, ty: 0 });
 
+  // 렌더용 matrix
   const [jMatrix, setJMatrix] = useState('matrix(1 0 0 1 0 0)');
   const [hMatrix, setHMatrix] = useState('matrix(1 0 0 1 0 0)');
   const [rMatrix, setRMatrix] = useState('matrix(1 0 0 1 0 0)');
 
+  // scale 값 (strokeWidth 보정용)
   const [jScale, setJScale] = useState(1);
   const [hScale, setHScale] = useState(1);
   const [rScale, setRScale] = useState(1);
 
+  // 실제 길이
   const [jLen, setJLen] = useState(0);
   const [hLen, setHLen] = useState(0);
   const [rLen, setRLen] = useState(0);
@@ -143,6 +153,7 @@ export default function LogoAnimation({
   const hDashOffset = useMotionValue(0);
   const rDashOffset = useMotionValue(0);
 
+  // 진행도 -> dashoffset 동기화
   useEffect(() => {
     if (jLen > 0) {
       jDashOffset.set(jLen);
@@ -194,14 +205,11 @@ export default function LogoAnimation({
   const rDotOpacity =
     rPhase === 'idle' ? 1 : rPhase === 'done' ? 0 : rPenOpacity;
 
-  const hoverProps = (color: string) => ({
+  const hoverProps = {
     animate: { scale: 1, y: 0 },
-    whileHover: {
-      scale: 1.1,
-      y: -10,
-    },
-    transition: { type: 'spring' as const, stiffness: 400, damping: 15 },
-  });
+    whileHover: { scale: 1.1, y: -10 },
+    transition: { type: 'spring' as const, stiffness: 400, damping: 10 },
+  } as const;
 
   useEffect(() => {
     const myRunId = ++runIdRef.current;
@@ -211,7 +219,8 @@ export default function LogoAnimation({
       const jReady = await waitForPathReady(jPathRef);
       const hReady = await waitForPathReady(hPathRef);
       const rReady = await waitForPathReady(rPathRef);
-      if (stale() || !jReady || !hReady || !rReady) return;
+      if (stale()) return;
+      if (!jReady || !hReady || !rReady) return;
 
       jXfRef.current = calcNormalizeXformFromBBox(jReady.bbox);
       hXfRef.current = calcNormalizeXformFromBBox(hReady.bbox);
@@ -227,6 +236,7 @@ export default function LogoAnimation({
         `matrix(${rXfRef.current.s} 0 0 ${rXfRef.current.s} ${rXfRef.current.tx} ${rXfRef.current.ty})`
       );
 
+      // scale 값 저장 (strokeWidth 보정용)
       setJScale(jXfRef.current.s);
       setHScale(hXfRef.current.s);
       setRScale(rXfRef.current.s);
@@ -252,16 +262,18 @@ export default function LogoAnimation({
       rY.set(50);
       setIsInteractive(false);
 
+      // 1. 초기 셋업
       await domAnimate([
-        [
-          '.item-1, .item-2, .item-3',
-          { x: 0, y: -120, opacity: 0 },
-          { duration: 0 },
-        ],
-        ['.j-group, .h-group, .r-group', { opacity: 0 }, { duration: 0 }],
+        ['.item-1', { x: 0, y: -120, opacity: 0 }, { duration: 0 }],
+        ['.item-2', { x: 0, y: -120, opacity: 0 }, { duration: 0 }],
+        ['.item-3', { x: 0, y: -120, opacity: 0 }, { duration: 0 }],
+        ['.j-group', { opacity: 0 }, { duration: 0 }],
+        ['.h-group', { opacity: 0 }, { duration: 0 }],
+        ['.r-group', { opacity: 0 }, { duration: 0 }],
       ]);
       if (stale()) return;
 
+      // 2. 떨어짐
       await domAnimate([
         [
           '.item-1',
@@ -283,6 +295,7 @@ export default function LogoAnimation({
 
       await new Promise((r) => setTimeout(r, 80));
 
+      // 3. 펼침
       await domAnimate([
         [
           '.item-1',
@@ -302,61 +315,75 @@ export default function LogoAnimation({
       ]);
       if (stale()) return;
 
+      // 4. 그리기
       const OVERLAP_THRESHOLD = 0.65;
 
-      // J Drawing
       const jStart = getPathStart(jReady.el, jXfRef.current);
       await Promise.all([
         fmAnimate(jX, jStart.x, { duration: 0.35, ease: 'easeInOut' }).finished,
         fmAnimate(jY, jStart.y, { duration: 0.35, ease: 'easeInOut' }).finished,
       ]);
+      if (stale()) return;
+
+      jProg.set(0);
       await domAnimate('.j-group', { opacity: 1 }, { duration: 0.01 });
       setJPhase('drawing');
       setFollowJ(true);
+
       const jAnimation = fmAnimate(jProg, 1, {
         duration: 1.1,
         ease: 'easeInOut',
       });
-      await new Promise<void>((r) => {
-        const u = jProg.on('change', (v) => {
+
+      await new Promise<void>((resolve) => {
+        const unsub = jProg.on('change', (v) => {
           if (v >= OVERLAP_THRESHOLD) {
-            u();
-            r();
+            unsub();
+            resolve();
           }
         });
       });
+      if (stale()) return;
 
-      // H Drawing
       const hStart = getPathStart(hReady.el, hXfRef.current);
       await Promise.all([
         fmAnimate(hX, hStart.x, { duration: 0.25, ease: 'easeInOut' }).finished,
         fmAnimate(hY, hStart.y, { duration: 0.25, ease: 'easeInOut' }).finished,
       ]);
+      if (stale()) return;
+
+      hProg.set(0);
       await domAnimate('.h-group', { opacity: 1 }, { duration: 0.01 });
       setHPhase('drawing');
       setFollowH(true);
+
       const hAnimation = fmAnimate(hProg, 1, {
         duration: 1.0,
         ease: 'easeInOut',
       });
-      await new Promise<void>((r) => {
-        const u = hProg.on('change', (v) => {
+
+      await new Promise<void>((resolve) => {
+        const unsub = hProg.on('change', (v) => {
           if (v >= OVERLAP_THRESHOLD) {
-            u();
-            r();
+            unsub();
+            resolve();
           }
         });
       });
+      if (stale()) return;
 
-      // R Drawing
       const rStart = getPathStart(rReady.el, rXfRef.current);
       await Promise.all([
         fmAnimate(rX, rStart.x, { duration: 0.25, ease: 'easeInOut' }).finished,
         fmAnimate(rY, rStart.y, { duration: 0.25, ease: 'easeInOut' }).finished,
       ]);
+      if (stale()) return;
+
+      rProg.set(0);
       await domAnimate('.r-group', { opacity: 1 }, { duration: 0.01 });
       setRPhase('drawing');
       setFollowR(true);
+
       const rAnimation = fmAnimate(rProg, 1, {
         duration: 1.1,
         ease: 'easeInOut',
@@ -370,6 +397,7 @@ export default function LogoAnimation({
       setJPhase('done');
       setHPhase('done');
       setRPhase('done');
+
       setIsInteractive(true);
     };
 
@@ -380,8 +408,6 @@ export default function LogoAnimation({
     <div
       ref={scope}
       className={className}
-      role="img"
-      aria-label="JHR Logo Animation: 프론트엔드 개발자 정혁래의 정체성을 담은 ㅈ, ㅎ, ㄹ 애니메이션"
       style={{
         position: 'relative',
         display: 'flex',
@@ -391,27 +417,25 @@ export default function LogoAnimation({
         width: '100%',
       }}
     >
-      {/* ㅈ (Blue) */}
       <motion.div
         className="logo-item item-1"
         style={{ position: 'absolute', zIndex: 3 }}
-        {...(isInteractive ? hoverProps(COLORS.BLUE) : {})}
+        {...(isInteractive ? hoverProps : {})}
       >
         <svg width={BOX} height={BOX} viewBox={`0 0 ${VIEW} ${VIEW}`}>
-          <title>ㅈ</title>
           <motion.circle
             cx={jX}
             cy={jY}
             r={DOT_R}
-            fill={COLORS.BLUE}
+            fill="#2F73FF"
             style={{ opacity: jDotOpacity }}
           />
-          <motion.g className="j-group">
+          <motion.g className="j-group" initial={{ opacity: 0 }}>
             <motion.path
               ref={jPathRef}
               d={J_PATH}
               transform={jMatrix}
-              stroke={COLORS.BLUE}
+              stroke="#2F73FF"
               strokeWidth={STROKE / jScale}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -423,27 +447,25 @@ export default function LogoAnimation({
         </svg>
       </motion.div>
 
-      {/* ㅎ (Green) */}
       <motion.div
         className="logo-item item-2"
         style={{ position: 'absolute', zIndex: 2 }}
-        {...(isInteractive ? hoverProps(COLORS.GREEN) : {})}
+        {...(isInteractive ? hoverProps : {})}
       >
         <svg width={BOX} height={BOX} viewBox={`0 0 ${VIEW} ${VIEW}`}>
-          <title>ㅎ</title>
           <motion.circle
             cx={hX}
             cy={hY}
             r={DOT_R}
-            fill={COLORS.GREEN}
+            fill="#52C77A"
             style={{ opacity: hDotOpacity }}
           />
-          <motion.g className="h-group">
+          <motion.g className="h-group" initial={{ opacity: 0 }}>
             <motion.path
               ref={hPathRef}
               d={H_PATH}
               transform={hMatrix}
-              stroke={COLORS.GREEN}
+              stroke="#52C77A"
               strokeWidth={STROKE / hScale}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -455,27 +477,25 @@ export default function LogoAnimation({
         </svg>
       </motion.div>
 
-      {/* ㄹ (Yellow) */}
       <motion.div
         className="logo-item item-3"
         style={{ position: 'absolute', zIndex: 1 }}
-        {...(isInteractive ? hoverProps(COLORS.YELLOW) : {})}
+        {...(isInteractive ? hoverProps : {})}
       >
         <svg width={BOX} height={BOX} viewBox={`0 0 ${VIEW} ${VIEW}`}>
-          <title>ㄹ</title>
           <motion.circle
             cx={rX}
             cy={rY}
             r={DOT_R}
-            fill={COLORS.YELLOW}
+            fill="#FFB400"
             style={{ opacity: rDotOpacity }}
           />
-          <motion.g className="r-group">
+          <motion.g className="r-group" initial={{ opacity: 0 }}>
             <motion.path
               ref={rPathRef}
               d={R_PATH}
               transform={rMatrix}
-              stroke={COLORS.YELLOW}
+              stroke="#FFB400"
               strokeWidth={STROKE / rScale}
               strokeLinecap="round"
               strokeLinejoin="round"

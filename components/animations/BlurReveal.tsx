@@ -64,10 +64,6 @@ export function BlurRevealItem({
           },
         },
       }}
-      whileHover={{
-        y: -3,
-        transition: { duration: 0.2 },
-      }}
       className={className}
     >
       {children}

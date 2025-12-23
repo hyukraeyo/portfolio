@@ -70,8 +70,7 @@
   justify-content: center;
   padding: $spacing-2 $spacing-4;
 
-  background: rgba($text-light, 0.03);
-  backdrop-filter: blur(8px);
+  background: rgba($text-light, 0.05);
   border: 1px solid rgba($text-light, 0.1);
   border-radius: $radius-full;
 
@@ -80,8 +79,17 @@
   font-size: $font-size-xs;
   font-weight: $font-weight-medium;
   letter-spacing: 0.02em;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  // GPU 가속 유도 및 성능 최적화
+  will-change: transform, opacity;
+  transition:
+    background-color 0.25s $ease-out,
+    border-color 0.25s $ease-out,
+    color 0.25s $ease-out,
+    box-shadow 0.25s $ease-out,
+    transform 0.2s $ease-out;
   cursor: default;
   position: relative;
   overflow: hidden;
@@ -93,7 +101,7 @@
     color: $brand-green;
     box-shadow: 0 0 15px rgba($brand-green, 0.2);
     text-shadow: 0 0 8px rgba($brand-green, 0.4);
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-4px); // Framer Motion 대신 CSS에서 제어
   }
 
   @media (min-width: $breakpoint-md) {
