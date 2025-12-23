@@ -192,18 +192,17 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 180px; // 페이드 영역 높이
+  height: 220px; // 페이드 영역을 더 높게 설정
   background: linear-gradient(
     to bottom,
     rgba($accent-color, 0) 0%,
-    rgba($accent-color, 0.8) 40%,
-    $accent-color 100%
+    rgba($accent-color, 0.6) 50%,
+    rgba($accent-color, 0.98) 100%
   );
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom-left-radius: 0; // 카드 radius 따라가기
+  z-index: 30;
+  display: block;
+  padding: 0;
+  border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 
   @media (min-width: $breakpoint-md) {
@@ -212,30 +211,42 @@
   }
 }
 
-.overlayButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba($color-black, 0.1);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba($color-black, 0.1);
-  color: $text-dark;
+.fullAreaButton {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: $spacing-6;
+  color: $text-dark;
   transition: all $transition-base ease;
-  margin-top: 40px; // 그라데이션 하단부로 위치 조정
+}
 
-  &:hover {
-    background: rgba($color-black, 0.2);
-    transform: scale(1.1);
-  }
+.buttonContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-1;
+}
 
-  .overlayIcon {
-    display: flex;
-    animation: bounce 2s infinite;
-  }
+.expandText {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $text-dark;
+  margin-bottom: $spacing-2;
+  opacity: 0.8;
+  transform: translateY(4px);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.overlayIcon {
+  display: flex;
+  transition: transform 0.3s ease;
+  animation: bounce 2s infinite;
 }
 
 .collapseButtonWrapper {

@@ -357,26 +357,30 @@ export default function Experience() {
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
                   <button
-                    className={styles.overlayButton}
+                    id="experience-expand-click-area"
+                    className={styles.fullAreaButton}
+                    style={{ position: 'relative', zIndex: 30 }}
                     onClick={() => setIsExperienceExpanded(true)}
                     aria-label="경력 전체 보기"
                     // 탭 포커스 방지 (펼쳐졌을 때)
                     tabIndex={isExperienceExpanded ? -1 : 0}
                   >
-                    <span className={styles.overlayIcon}>
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-                      </svg>
-                    </span>
+                    <div className={styles.buttonContent}>
+                      <span className={styles.overlayIcon}>
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+                        </svg>
+                      </span>
+                    </div>
                   </button>
                 </motion.div>
 
