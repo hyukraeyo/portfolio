@@ -6,12 +6,14 @@
   gap: $spacing-2;
   background: rgba($color-white, 0.05);
   border: 1px solid var(--color-border-primary);
-  padding: $spacing-1 $spacing-3;
+  padding: 0;
   border-radius: $radius-full;
   cursor: pointer;
   transition: all $transition-base ease;
   color: var(--color-text-primary);
-  height: 34px;
+  width: 38px;
+  height: 38px;
+  justify-content: center;
 
   &:hover {
     background: rgba($color-white, 0.1);
@@ -50,6 +52,6 @@
 }
 
 .placeholder {
-  width: 70px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
 }

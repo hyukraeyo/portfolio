@@ -48,9 +48,6 @@ export default function ThemeToggle() {
           <Moon size={20} />
         </motion.div>
       </div>
-      <span className={styles.label}>
-        {theme === 'light' ? 'WHITE' : 'DARK'}
-      </span>
     </button>
   );
 }
