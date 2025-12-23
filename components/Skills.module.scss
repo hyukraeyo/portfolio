@@ -96,9 +96,9 @@
 
   // Hover Glow Effect
   &:hover {
-    border-color: $brand-green;
+    border-color: var(--color-brand-green);
     background: rgba($brand-green, 0.1);
-    color: $brand-green;
+    color: var(--color-brand-green);
     box-shadow: 0 0 15px rgba($brand-green, 0.2);
     text-shadow: 0 0 8px rgba($brand-green, 0.4);
     transform: translateY(-4px); // Framer Motion 대신 CSS에서 제어

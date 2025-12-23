@@ -5,38 +5,57 @@
 // CSS VARIABLES FOR THEME
 // ============================================
 :root {
-  // Colors
-  --color-primary: #{$primary-color};
-  --color-secondary: #{$secondary-color};
-  --color-accent: #{$accent-color};
-  --color-accent-light: #{$accent-light-color};
+  // Base Colors (Light Mode)
+  --color-bg-primary: #{$color-cream};
+  --color-bg-secondary: #{$color-dark-green};
+  --color-bg-tertiary: #{$color-black};
+  --color-bg-white: #{$color-white};
 
-  // Background Colors
-  --color-bg-primary: #{$bg-primary};
-  --color-bg-secondary: #{$bg-secondary};
-  --color-bg-tertiary: #{$bg-tertiary};
-  --color-bg-white: #{$bg-white};
+  --color-text-primary: #{$color-dark-green};
+  --color-text-secondary: #{rgba($color-dark-green, 0.8)};
+  --color-text-tertiary: #{rgba($color-dark-green, 0.6)};
+  --color-text-light: #{$color-cream};
+  --color-text-white: #{$color-white};
 
-  // Text Colors
-  --color-text-primary: #{$text-primary};
-  --color-text-secondary: #{$text-secondary};
-  --color-text-tertiary: #{$text-tertiary};
-  --color-text-dark: #{$text-dark};
-  --color-text-white: #{$text-white};
-  --color-text-gray-600: #{$color-text-gray-600};
+  --color-accent: #{$color-sandstone};
+  --color-brand-blue: #{$brand-blue};
+  --color-brand-green: #{$brand-green};
+  --color-brand-lime: #{$brand-lime};
 
-  // Status Colors
-  --color-blue-500: #3b82f6;
+  --color-border-primary: #{rgba($color-dark-green, 0.1)};
+  --color-border-light: #{rgba($color-white, 0.1)};
 
   // Header
-  --color-header-bg: rgba(245, 240, 230, 0.8);
-  --color-header-border: #{$border-primary};
+  --color-header-bg: #{rgba($color-cream, 0.8)};
+  --color-header-border: var(--color-border-primary);
   --color-header-shadow: #{$shadow-base};
 
   // Scrollbar
   --color-scrollbar-track: #{$bg-gray-50};
   --color-scrollbar-thumb: #{$bg-gray-200};
   --color-scrollbar-thumb-hover: #{$bg-gray-300};
+}
+
+[data-theme='dark'] {
+  // Base Colors (Dark Mode)
+  --color-bg-primary: #{$color-black};
+  --color-bg-secondary: #{color.adjust($color-dark-green, $lightness: -5%)};
+  --color-bg-tertiary: #0a0a0a;
+
+  --color-text-primary: #{$color-cream};
+  --color-text-secondary: #{rgba($color-cream, 0.8)};
+  --color-text-tertiary: #{rgba($color-cream, 0.6)};
+  --color-text-light: #{$color-cream};
+
+  --color-accent: #{color.adjust($color-sandstone, $lightness: 5%)};
+  --color-brand-blue: #{color.adjust($brand-blue, $lightness: 10%)};
+  --color-brand-green: #{color.adjust($brand-green, $lightness: 10%)};
+
+  --color-border-primary: #{rgba($color-cream, 0.1)};
+
+  // Header
+  --color-header-bg: #{rgba($color-black, 0.8)};
+  --color-header-border: var(--color-border-primary);
 }
 
 // ============================================

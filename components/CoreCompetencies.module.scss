@@ -97,9 +97,9 @@
   flex-direction: column;
   height: 100%;
   padding: $spacing-8;
-  background: rgba(30, 41, 59, 0.4);
+  background: rgba($color-dark-green, 0.4); // 메인 다크 그린 기반 배경
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05); // 기본 보더
+  border: 1px solid rgba($color-white, 0.05); // 기본 보더
   border-radius: $radius-2xl;
   transition: all $transition-base ease;
   overflow: hidden;
@@ -107,7 +107,7 @@
   // 기본 Hover 효과 (Transform & Scale)
   &:hover {
     transform: translateY(-4px);
-    background: rgba(30, 41, 59, 0.6);
+    background: rgba($color-dark-green, 0.6);
 
     .iconWrapper {
       transform: scale(1.1);

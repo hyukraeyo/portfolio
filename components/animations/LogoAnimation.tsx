@@ -19,9 +19,9 @@ const BOX = 80;
 const GAP = 90;
 
 const COLORS = {
-  BLUE: '#2F73FF',
-  GREEN: '#52C77A',
-  YELLOW: '#FFB400',
+  BLUE: '#5c7ebf', // Muted Steel Blue
+  GREEN: '#689a7c', // Sage Green
+  YELLOW: '#d98c5f', // Sandstone / Terracotta
 };
 
 type Xform = { s: number; tx: number; ty: number };

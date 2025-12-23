@@ -5,29 +5,27 @@
 // ============================================
 
 // --------------------------------------------
-// Colors - Base Palette
+// Colors - Base Palette (Adjusted for better harmony)
 // --------------------------------------------
-$color-cream: #f5f0e6;
-$color-dark-green: #2d4338;
-$color-orange: #ffb400;
-$color-orange-light: #f4a261;
-$color-black: #1a1a1a;
+$color-cream: #f2efe6;
+$color-dark-green: #1e2f23; // 더 깊고 차분한 다크 그린
+$color-sandstone: #d98c5f; // 기존 오렌지 대신 테라코타 톤
+$color-black: #121212;
 $color-white: #ffffff;
 
 // --------------------------------------------
-// Colors - Brand (Logo Colors)
+// Colors - Brand (Adjusted to be less jarring)
 // --------------------------------------------
-$brand-blue: #2f73ff;
-$brand-green: #52c77a;
-$brand-lime: #c8e64a; // 연두색 (오렌지 배경에서 더 잘 보이도록 조정)
+$brand-blue: #5c7ebf; // 뮤트한 스틸 블루
+$brand-green: #689a7c; // 차분한 세이지 그린
+$brand-lime: #b4cc5c; // 조화로운 연두색
 
 // --------------------------------------------
 // Colors - Functional Names
 // --------------------------------------------
 $primary-color: $color-dark-green;
 $secondary-color: $color-cream;
-$accent-color: $color-orange;
-$accent-light-color: $color-orange-light;
+$accent-color: $color-sandstone;
 
 // --------------------------------------------
 // Text Colors
