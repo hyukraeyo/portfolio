@@ -2,8 +2,8 @@
 
 .main {
   min-height: 100vh;
-  background-color: $bg-secondary;
-  color: $text-light;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
   overflow-x: hidden;
 
   // 모바일에서 특정 섹션(Experience 등)이 꽉 차게 보이도록 하기 위해
