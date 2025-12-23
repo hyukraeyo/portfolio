@@ -16,8 +16,8 @@
   justify-content: center;
 
   &:hover {
-    background: rgba($color-white, 0.1);
-    border-color: var(--color-accent);
+    background: rgba($brand-green, 0.1);
+    border-color: var(--color-brand-green);
   }
 }
 
@@ -37,10 +37,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-accent);
+  color: var(--color-text-primary); // 기본 텍스트 색상 사용
+  transition: color $transition-base ease;
+
+  // 부모(.toggle)가 호버되었을 때 아이콘 색상 변경
+  .toggle:hover & {
+    color: var(--color-brand-green);
+  }
 
   &.moon {
-    color: var(--color-brand-blue);
+    color: var(--color-brand-blue); // 달은 그대로 파란색 유지 또는 변경 고려
   }
 }
 
