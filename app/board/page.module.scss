@@ -3,8 +3,13 @@
 .container {
   max-width: $container-max-width;
   margin: 0 auto;
-  padding: $spacing-24 $container-padding;
+  // 모바일: 메인 페이지 Experience 섹션과 동일하게 여백 조정
+  padding: $spacing-20 $spacing-4;
   min-height: 100vh;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $spacing-24 $container-padding;
+  }
 }
 
 .header {
@@ -17,20 +22,30 @@
   font-weight: $font-weight-bold;
   color: var(--color-text-primary);
   margin-bottom: $spacing-4;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-2xl;
+  }
 }
 
 .subtitle {
   font-size: $font-size-lg;
   color: var(--color-text-secondary);
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-base;
+  }
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $spacing-8;
+  // 메인 페이지 CoreCompetencies 카드 간격($spacing-6)과 통일
+  gap: $spacing-6;
 
   @media (min-width: $breakpoint-md) {
     grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-8; // 데스크탑에서는 카드형이므로 32px 유지
   }
 
   @media (min-width: $breakpoint-lg) {

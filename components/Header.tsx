@@ -2,7 +2,8 @@
 
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import Link from 'next/link';
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './Header.module.scss';
 import ThemeToggle from './ThemeToggle';
 
@@ -18,6 +19,9 @@ const NAV_ITEMS = [
 
 // 헤더 전환 임계값 (px)
 const SCROLL_THRESHOLD = 20;
+
+// top variant에서 하단 고정으로 전환되는 스크롤 임계값 (px)
+const TOP_VARIANT_SCROLL_THRESHOLD = 100;
 
 // 애니메이션 설정
 const SPRING_CONFIG = {
@@ -40,12 +44,25 @@ const FADE_IN_VARIANTS = {
 };
 
 // ============================================
+// 타입 정의
+// ============================================
+interface HeaderProps {
+  /**
+   * 헤더 표시 모드
+   * - 'default': 기본 동작 (메인 페이지용) - Hero 아래에 위치하며, 스크롤 시 하단 고정
+   * - 'top': 상단 시작 (게시판용) - 처음에 상단에 표시되고, 스크롤 시 하단 고정으로 전환
+   */
+  variant?: 'default' | 'top';
+}
+
+// ============================================
 // 메인 컴포넌트
 // ============================================
-export default function Header() {
+export default function Header({ variant = 'default' }: HeaderProps) {
   const headerRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   const [isTopHidden, setIsTopHidden] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(variant === 'top'); // top variant는 즉시 표시
   const rafRef = useRef<number | null>(null);
 
   // 화면에 보이는지 감지
@@ -66,40 +83,64 @@ export default function Header() {
     }
 
     rafRef.current = requestAnimationFrame(() => {
-      const header = headerRef.current;
-      if (!header) return;
+      if (variant === 'top') {
+        // top variant: 스크롤 위치 기반으로 전환
+        const scrollY = window.scrollY;
+        setIsTopHidden(scrollY > TOP_VARIANT_SCROLL_THRESHOLD);
+      } else {
+        // default variant: 헤더 위치 기반으로 전환
+        const header = headerRef.current;
+        if (!header) return;
 
-      const rect = header.getBoundingClientRect();
-      setIsTopHidden(rect.top <= SCROLL_THRESHOLD);
+        const rect = header.getBoundingClientRect();
+        setIsTopHidden(rect.top <= SCROLL_THRESHOLD);
+      }
     });
-  }, []);
+  }, [variant]);
 
+  // pathname 변경 시 상태 즉시 초기화 및 스크롤 리셋
+  useLayoutEffect(() => {
+    // variant가 'top'인 경우(게시판 등)에만 강제로 스크롤을 최상단으로 리셋
+    // 메인 페이지(default variant)로 이동 시에는 앵커 스크롤 등을 방해하지 않도록 리셋하지 않음
+    if (variant === 'top') {
+      window.scrollTo(0, 0);
+      setIsTopHidden(false);
+    }
+  }, [pathname, variant]);
+
+  // 스크롤 이벤트 리스너 등록
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // 초기 상태 체크
+
+    // 초기 상태 체크 (약간의 지연으로 ScrollToTop 완료 보장)
+    const timer = setTimeout(() => {
+      handleScroll();
+    }, 100);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [handleScroll]);
+  }, [handleScroll, pathname]);
 
   return (
     <>
       {/* 상단 헤더 - 숨겨져도 높이 유지 */}
       <div ref={headerRef} className={styles.headerWrapper}>
         <motion.header
+          key={`header-${pathname}`}
           className={styles.header}
-          initial="hidden"
+          initial={variant === 'top' ? { opacity: 1, y: 0, scale: 1 } : 'hidden'}
           animate={
             hasAnimated
               ? {
-                  opacity: isTopHidden ? 0 : 1,
-                  y: isTopHidden ? -80 : 0,
-                  scale: isTopHidden ? 0.5 : 1,
-                }
+                opacity: isTopHidden ? 0 : 1,
+                y: isTopHidden ? -80 : 0,
+                scale: isTopHidden ? 0.5 : 1,
+              }
               : isInView
                 ? 'visible'
                 : 'hidden'
@@ -141,8 +182,43 @@ interface NavProps {
 }
 
 const Nav = memo(function Nav({ isCompact = false }: NavProps) {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const pathname = usePathname();
+  const isMainPage = pathname === '/';
+
+  const handleLogoClick = () => {
+    if (isMainPage) {
+      // 메인 페이지에서는 스크롤 상단으로
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // 다른 페이지에서는 메인으로 이동
+      window.location.href = '/';
+    }
+  };
+
+  // 해시 링크 클릭 핸들러 (최적화됨)
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.includes('#')) return;
+
+    const [basePath, hash] = href.split('#');
+    // 현재 페이지 경로 확인 (pathname이 null일 수 있으므로 방어 코드)
+    const currentPath = pathname || '/';
+    const targetPath = basePath || '/';
+
+    // 같은 페이지 내 이동인 경우에만 부드러운 스크롤 직접 처리
+    if (currentPath === targetPath) {
+      e.preventDefault();
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', href);
+      }
+    } else {
+      // 다른 페이지로 이동하는 경우:
+      // Next.js Link의 SPA 이동 시 앵커 스크롤이 실패하는 경우를 방지하기 위해
+      // window.location.href를 사용하여 확실하게 이동 처리
+      e.preventDefault();
+      window.location.href = href;
+    }
   };
 
   return (
@@ -153,7 +229,7 @@ const Nav = memo(function Nav({ isCompact = false }: NavProps) {
     >
       <button
         className={styles.dots}
-        onClick={scrollToTop}
+        onClick={handleLogoClick}
         aria-label="홈으로 이동"
       >
         <span className={styles.dotBlue} />
@@ -163,7 +239,11 @@ const Nav = memo(function Nav({ isCompact = false }: NavProps) {
       <ul className={styles.navLinks}>
         {NAV_ITEMS.map((item) => (
           <li key={item.href}>
-            <Link href={item.href} className={styles.navLink}>
+            <Link
+              href={item.href}
+              className={styles.navLink}
+              onClick={(e) => handleAnchorClick(e, item.href)}
+            >
               {item.label}
             </Link>
           </li>

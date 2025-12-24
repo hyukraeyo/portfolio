@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import ScrollToTop from '@/components/ScrollToTop';
 
 export default function BoardLayout({
   children,
@@ -7,7 +8,8 @@ export default function BoardLayout({
 }) {
   return (
     <>
-      <Header />
+      <ScrollToTop />
+      <Header variant="top" />
       {children}
     </>
   );

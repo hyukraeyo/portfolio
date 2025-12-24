@@ -252,6 +252,7 @@ export default function LogoAnimation({
       rY.set(50);
       setIsInteractive(false);
 
+      if (!scope.current) return; // 컴포넌트 언마운트 시 중단
       await domAnimate([
         [
           '.item-1, .item-2, .item-3',
@@ -262,6 +263,7 @@ export default function LogoAnimation({
       ]);
       if (stale()) return;
 
+      if (!scope.current) return; // 컴포넌트 언마운트 시 중단
       await domAnimate([
         [
           '.item-1',
@@ -283,6 +285,7 @@ export default function LogoAnimation({
 
       await new Promise((r) => setTimeout(r, 80));
 
+      if (!scope.current) return; // 컴포넌트 언마운트 시 중단
       await domAnimate([
         [
           '.item-1',
@@ -310,6 +313,7 @@ export default function LogoAnimation({
         fmAnimate(jX, jStart.x, { duration: 0.35, ease: 'easeInOut' }).finished,
         fmAnimate(jY, jStart.y, { duration: 0.35, ease: 'easeInOut' }).finished,
       ]);
+      if (!scope.current) return; // 컴포넌트 언마운트 시 중단
       await domAnimate('.j-group', { opacity: 1 }, { duration: 0.01 });
       setJPhase('drawing');
       setFollowJ(true);
@@ -332,6 +336,7 @@ export default function LogoAnimation({
         fmAnimate(hX, hStart.x, { duration: 0.25, ease: 'easeInOut' }).finished,
         fmAnimate(hY, hStart.y, { duration: 0.25, ease: 'easeInOut' }).finished,
       ]);
+      if (!scope.current) return; // 컴포넌트 언마운트 시 중단
       await domAnimate('.h-group', { opacity: 1 }, { duration: 0.01 });
       setHPhase('drawing');
       setFollowH(true);
