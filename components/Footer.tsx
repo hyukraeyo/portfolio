@@ -20,12 +20,6 @@ export default function Footer() {
         <FadeIn direction="up" delay={0.2}>
           <div className={styles.contactCard}>
             <div className={styles.contactItem}>
-              <span className={styles.label}>전화번호</span>
-              <a href="tel:010-7460-3737" className={styles.value}>
-                010.7460.3737
-              </a>
-            </div>
-            <div className={styles.contactItem}>
               <span className={styles.label}>이메일</span>
               <a href="mailto:hyukraeyo@gmail.com" className={styles.value}>
                 hyukraeyo@gmail.com
