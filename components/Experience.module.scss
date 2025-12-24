@@ -637,7 +637,7 @@
   max-width: 600px; // 그리드가 더 넓게 펼쳐지도록
   width: 100%;
   margin: 0 auto;
-  padding: $section-padding-y 0;
+  padding: $section-padding-y $spacing-4; // 좌우 여백 추가
 
   @media (min-width: $breakpoint-md) {
     padding: $section-padding-y-md 0;
@@ -706,7 +706,7 @@
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
-  padding: $section-padding-y 0 $spacing-20;
+  padding: $section-padding-y $spacing-4 $spacing-20; // 좌우 여백 추가
   // 상단 패딩은 기본 섹션 패딩 유지, 하단은 넉넉하게 추가
 
   @media (min-width: $breakpoint-md) {
