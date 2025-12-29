@@ -3,7 +3,14 @@
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import styles from './Header.module.scss';
 import ThemeToggle from './ThemeToggle';
 
@@ -147,14 +154,16 @@ export default function Header({ variant = 'default' }: HeaderProps) {
         <motion.header
           key={`header-${pathname}`}
           className={styles.header}
-          initial={variant === 'top' ? { opacity: 1, y: 0, scale: 1 } : 'hidden'}
+          initial={
+            variant === 'top' ? { opacity: 1, y: 0, scale: 1 } : 'hidden'
+          }
           animate={
             hasAnimated
               ? {
-                opacity: isTopHidden ? 0 : 1,
-                y: isTopHidden ? -80 : 0,
-                scale: isTopHidden ? 0.5 : 1,
-              }
+                  opacity: isTopHidden ? 0 : 1,
+                  y: isTopHidden ? -80 : 0,
+                  scale: isTopHidden ? 0.5 : 1,
+                }
               : isInView
                 ? 'visible'
                 : 'hidden'
@@ -210,7 +219,10 @@ const Nav = memo(function Nav({ isCompact = false }: NavProps) {
   };
 
   // 해시 링크 클릭 핸들러 (최적화됨)
-  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleAnchorClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     if (!href.includes('#')) return;
 
     const [basePath, hash] = href.split('#');
@@ -221,15 +233,27 @@ const Nav = memo(function Nav({ isCompact = false }: NavProps) {
     // 같은 페이지 내 이동인 경우에만 부드러운 스크롤 직접 처리
     if (currentPath === targetPath) {
       e.preventDefault();
+
+      // URL을 먼저 업데이트
+      window.history.pushState(null, '', href);
+
       const element = document.getElementById(hash);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState(null, '', href);
+        // setTimeout을 사용하여 이벤트 루프 충돌 방지 및 확실한 스크롤 실행
+        setTimeout(() => {
+          const headerOffset = 80; // 헤더 높이 고려
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition =
+            elementPosition + window.scrollY - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }, 10);
       }
-    } else {
-      e.preventDefault();
-      router.push(href);
     }
+    // 다른 페이지 이동인 경우 Link 컴포넌트의 기본 동작(페이지 이동)을 따름
   };
 
   return (
