@@ -409,7 +409,7 @@
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
   line-height: 1;
-  color: var(--color-text-tertiary);
+  color: var(--color-text-primary);
   text-align: left;
   cursor: pointer;
   transition: all $transition-base ease;
@@ -474,7 +474,8 @@
   padding-left: $spacing-2;
   font-size: $font-size-xs;
   line-height: $line-height-snug;
-  color: rgba($text-light, 0.5);
+  color: var(--color-text-tertiary);
+  font-weight: $font-weight-normal; // 제목보다 덜 강조되도록 조정
 }
 
 .projectDescription {
