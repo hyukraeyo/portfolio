@@ -84,7 +84,6 @@ export default function RootLayout({
       lang="ko"
       className={`${pretendard.variable} ${rammettoOne.variable}`}
       suppressHydrationWarning
-      data-scroll-behavior="smooth"
     >
       <head>
         <script
