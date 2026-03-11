@@ -1,57 +1,24 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
-
-type Theme = 'light' | 'dark';
-
-interface ThemeContextType {
-  theme: Theme;
-  toggleTheme: () => void;
-}
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+import { ThemeProvider as NextThemesProvider, useTheme as useNextTheme } from 'next-themes';
+import React from 'react';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark'); // 기본값을 dark로 설정 (현재 디자인이 어두움)
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // 로컬 스토리지에서 테마 불러오기
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      // 시스템 설정 확인
-      const prefersDark = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      ).matches;
-      setTheme(prefersDark ? 'dark' : 'light');
-    }
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (mounted) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-    }
-  }, [theme, mounted]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
-
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <NextThemesProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
       {children}
-    </ThemeContext.Provider>
+    </NextThemesProvider>
   );
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
+  const { theme, setTheme, systemTheme } = useNextTheme();
+  
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+  
+  const toggleTheme = () => {
+    setTheme(currentTheme === 'light' ? 'dark' : 'light');
+  };
+
+  return { theme: currentTheme as 'light' | 'dark', toggleTheme, setTheme };
 }

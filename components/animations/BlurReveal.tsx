@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface BlurRevealContainerProps {
@@ -17,7 +17,7 @@ export default function BlurRevealContainer({
   className = '',
 }: BlurRevealContainerProps) {
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: '-30px' }}
@@ -33,7 +33,7 @@ export default function BlurRevealContainer({
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -47,7 +47,7 @@ export function BlurRevealItem({
   className = '',
 }: BlurRevealItemProps) {
   return (
-    <motion.div
+    <m.div
       variants={{
         hidden: {
           opacity: 0,
@@ -67,6 +67,6 @@ export function BlurRevealItem({
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

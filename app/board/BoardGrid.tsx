@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ProjectMetadata } from '@/lib/utils/markdown-parser';
 import styles from './page.module.scss';
 
@@ -26,14 +26,14 @@ const item = {
 
 export default function BoardGrid({ projects }: BoardGridProps) {
   return (
-    <motion.div
+    <m.div
       className={styles.grid}
       variants={container}
       initial="hidden"
       animate="show"
     >
       {projects.map((project) => (
-        <motion.div key={project.id} variants={item}>
+        <m.div key={project.id} variants={item}>
           <Link href={`/board/${project.id}`} className={styles.card}>
             <div className={styles.cardHeader}>
               <h2 className={styles.cardTitle}>{project.title}</h2>
@@ -53,8 +53,8 @@ export default function BoardGrid({ projects }: BoardGridProps) {
               )}
             </div>
           </Link>
-        </motion.div>
+        </m.div>
       ))}
-    </motion.div>
+    </m.div>
   );
 }

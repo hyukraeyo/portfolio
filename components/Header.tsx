@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion, useInView } from 'framer-motion';
+import { AnimatePresence, m, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
@@ -151,7 +151,7 @@ export default function Header({ variant = 'default' }: HeaderProps) {
     <>
       {/* 상단 헤더 - 숨겨져도 높이 유지 */}
       <div ref={headerRef} className={styles.headerWrapper}>
-        <motion.header
+        <m.header
           key={`header-${pathname}`}
           className={styles.header}
           initial={
@@ -176,13 +176,13 @@ export default function Header({ variant = 'default' }: HeaderProps) {
           }}
         >
           <Nav />
-        </motion.header>
+        </m.header>
       </div>
 
       {/* 하단 고정 헤더 */}
       <AnimatePresence>
         {isTopHidden && (
-          <motion.header
+          <m.header
             className={styles.stickyHeader}
             initial={{ opacity: 0, y: 80, scale: 0.5 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -190,7 +190,7 @@ export default function Header({ variant = 'default' }: HeaderProps) {
             transition={BOUNCY_SPRING_CONFIG}
           >
             <Nav isCompact />
-          </motion.header>
+          </m.header>
         )}
       </AnimatePresence>
     </>

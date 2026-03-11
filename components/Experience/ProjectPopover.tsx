@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { getStringHash, popoverVariants } from './utils';
 import styles from '../Experience.module.scss';
 
@@ -26,7 +26,7 @@ export default function ProjectPopover({
   onToggle,
 }: ProjectPopoverProps) {
   return (
-    <motion.div
+    <m.div
       className={styles.projectItem}
       layout
       style={{
@@ -35,7 +35,7 @@ export default function ProjectPopover({
       }}
     >
       <div className={styles.detailWrapper}>
-        <motion.button
+        <m.button
           className={`${styles.projectNameButton} ${
             isPopoverOpen ? styles.active : ''
           }`}
@@ -49,7 +49,7 @@ export default function ProjectPopover({
         >
           {project.name}
           {project.description && (
-            <motion.span
+            <m.span
               className={`${styles.hasDetailIndicator} ${
                 styles[
                   `indicatorColor${
@@ -60,10 +60,10 @@ export default function ProjectPopover({
               animate={{ scale: isPopoverOpen ? 1.4 : 1 }}
             />
           )}
-        </motion.button>
+        </m.button>
         <AnimatePresence mode="wait">
           {project.description && isPopoverOpen && (
-            <motion.div
+            <m.div
               className={styles.descriptionPopover}
               variants={popoverVariants}
               initial="hidden"
@@ -72,21 +72,21 @@ export default function ProjectPopover({
             >
               <ul className={styles.projectDescription}>
                 {project.description.map((desc, dIndex) => (
-                  <motion.li
+                  <m.li
                     key={dIndex}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: dIndex * 0.05 }}
                   >
                     {desc}
-                  </motion.li>
+                  </m.li>
                 ))}
               </ul>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>
       <span className={styles.projectPeriod}>{project.period}</span>
-    </motion.div>
+    </m.div>
   );
 }

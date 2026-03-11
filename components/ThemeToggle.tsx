@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/lib/context/ThemeContext';
 import styles from './ThemeToggle.module.scss';
@@ -23,7 +23,7 @@ export default function ThemeToggle() {
       aria-label={theme === 'light' ? '다크 모드로 전환' : '라이트 모드로 전환'}
     >
       <div className={styles.iconContainer}>
-        <motion.div
+        <m.div
           initial={false}
           animate={{
             rotate: theme === 'light' ? 0 : 180,
@@ -34,8 +34,8 @@ export default function ThemeToggle() {
           className={styles.icon}
         >
           <Sun size={20} />
-        </motion.div>
-        <motion.div
+        </m.div>
+        <m.div
           initial={false}
           animate={{
             rotate: theme === 'dark' ? 0 : -180,
@@ -46,7 +46,7 @@ export default function ThemeToggle() {
           className={`${styles.icon} ${styles.moon}`}
         >
           <Moon size={20} />
-        </motion.div>
+        </m.div>
       </div>
     </button>
   );

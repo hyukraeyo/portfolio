@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  motion,
-  useAnimate,
-  useMotionValue,
-  useTransform,
-  animate as fmAnimate,
-} from 'framer-motion';
+import { useAnimate, useMotionValue, useTransform, animate as fmAnimate, m } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
 // --- Constants ---
@@ -406,7 +400,7 @@ export default function LogoAnimation({
       }}
     >
       {/* ㅈ (Blue) */}
-      <motion.div
+      <m.div
         className="logo-item item-1"
         initial={{ opacity: 0, y: -120 }}
         style={{ position: 'absolute', zIndex: 3 }}
@@ -414,7 +408,7 @@ export default function LogoAnimation({
       >
         <svg width={BOX} height={BOX} viewBox={`0 0 ${VIEW} ${VIEW}`}>
           <title>ㅈ</title>
-          <motion.circle
+          <m.circle
             cx={jX}
             cy={jY}
             r={DOT_R}
@@ -422,8 +416,8 @@ export default function LogoAnimation({
             initial={{ opacity: 0 }}
             style={{ opacity: jDotOpacity }}
           />
-          <motion.g className="j-group" initial={{ opacity: 0 }}>
-            <motion.path
+          <m.g className="j-group" initial={{ opacity: 0 }}>
+            <m.path
               ref={jPathRef}
               d={J_PATH}
               transform={jMatrix}
@@ -435,12 +429,12 @@ export default function LogoAnimation({
               strokeDasharray={jLen || 0}
               style={{ strokeDashoffset: jDashOffset }}
             />
-          </motion.g>
+          </m.g>
         </svg>
-      </motion.div>
+      </m.div>
 
       {/* ㅎ (Green) */}
-      <motion.div
+      <m.div
         className="logo-item item-2"
         initial={{ opacity: 0, y: -120 }}
         style={{ position: 'absolute', zIndex: 2 }}
@@ -448,7 +442,7 @@ export default function LogoAnimation({
       >
         <svg width={BOX} height={BOX} viewBox={`0 0 ${VIEW} ${VIEW}`}>
           <title>ㅎ</title>
-          <motion.circle
+          <m.circle
             cx={hX}
             cy={hY}
             r={DOT_R}
@@ -456,8 +450,8 @@ export default function LogoAnimation({
             initial={{ opacity: 0 }}
             style={{ opacity: hDotOpacity }}
           />
-          <motion.g className="h-group" initial={{ opacity: 0 }}>
-            <motion.path
+          <m.g className="h-group" initial={{ opacity: 0 }}>
+            <m.path
               ref={hPathRef}
               d={H_PATH}
               transform={hMatrix}
@@ -469,12 +463,12 @@ export default function LogoAnimation({
               strokeDasharray={hLen || 0}
               style={{ strokeDashoffset: hDashOffset }}
             />
-          </motion.g>
+          </m.g>
         </svg>
-      </motion.div>
+      </m.div>
 
       {/* ㄹ (Yellow) */}
-      <motion.div
+      <m.div
         className="logo-item item-3"
         initial={{ opacity: 0, y: -120 }}
         style={{ position: 'absolute', zIndex: 1 }}
@@ -482,7 +476,7 @@ export default function LogoAnimation({
       >
         <svg width={BOX} height={BOX} viewBox={`0 0 ${VIEW} ${VIEW}`}>
           <title>ㄹ</title>
-          <motion.circle
+          <m.circle
             cx={rX}
             cy={rY}
             r={DOT_R}
@@ -490,8 +484,8 @@ export default function LogoAnimation({
             initial={{ opacity: 0 }}
             style={{ opacity: rDotOpacity }}
           />
-          <motion.g className="r-group" initial={{ opacity: 0 }}>
-            <motion.path
+          <m.g className="r-group" initial={{ opacity: 0 }}>
+            <m.path
               ref={rPathRef}
               d={R_PATH}
               transform={rMatrix}
@@ -503,9 +497,9 @@ export default function LogoAnimation({
               strokeDasharray={rLen || 0}
               style={{ strokeDashoffset: rDashOffset }}
             />
-          </motion.g>
+          </m.g>
         </svg>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

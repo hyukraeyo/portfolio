@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import LogoAnimation from './animations/LogoAnimation';
 import styles from './Hero.module.scss';
@@ -39,7 +39,7 @@ export default function Hero() {
   const usesSettledLayout = phase !== 'intro';
 
   return (
-    <motion.section
+    <m.section
       layout
       className={styles.hero}
       aria-labelledby="hero-title"
@@ -47,14 +47,14 @@ export default function Hero() {
         layout: { duration: LANDING_DURATION, ease: LANDING_EASE },
       }}
     >
-      <motion.div
+      <m.div
         layout
         className={`${styles.content} ${usesSettledLayout ? styles.contentSettled : styles.contentIntro}`}
         transition={{
           layout: { duration: LANDING_DURATION, ease: LANDING_EASE },
         }}
       >
-        <motion.div
+        <m.div
           layout
           className={styles.logoStage}
           animate={{ scale: usesSettledLayout ? 1 : 1.45 }}
@@ -63,9 +63,9 @@ export default function Hero() {
           <div className={styles.logoWrapper}>
             <LogoAnimation onComplete={handleLogoComplete} />
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className={styles.textSection}
           initial={false}
           animate={{
@@ -76,7 +76,7 @@ export default function Hero() {
             height: { duration: LANDING_DURATION, ease: LANDING_EASE },
           }}
         >
-          <motion.div
+          <m.div
             className={styles.textContent}
             initial={false}
             animate={{
@@ -99,9 +99,9 @@ export default function Hero() {
               <br />
               함께 서비스를 만들고 성장시킬 곳을 찾고 있습니다.
             </div>
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </motion.section>
+          </m.div>
+        </m.div>
+      </m.div>
+    </m.section>
   );
 }

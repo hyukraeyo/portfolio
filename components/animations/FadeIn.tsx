@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, UseInViewOptions } from 'framer-motion';
+import { UseInViewOptions, m } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface FadeInProps {
@@ -28,7 +28,7 @@ export default function FadeIn({
     };
 
     return (
-        <motion.div
+        <m.div
             initial={{
                 opacity: 0,
                 ...directions[direction],
@@ -48,6 +48,6 @@ export default function FadeIn({
             style={{ width: fullWidth ? '100%' : undefined }}
         >
             {children}
-        </motion.div>
+        </m.div>
     );
 }

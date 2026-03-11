@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useAnimationControls } from 'framer-motion';
+import { useAnimationControls, m } from 'framer-motion';
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import styles from './Marquee.module.scss';
 
@@ -80,7 +80,7 @@ export default function Marquee({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <motion.div
+      <m.div
         className={styles.marqueeTrack}
         animate={controls}
         initial={{ x: direction === 'left' ? '0%' : '-33.333%' }}
@@ -90,7 +90,7 @@ export default function Marquee({
             {child}
           </div>
         ))}
-      </motion.div>
+      </m.div>
     </div>
   );
 }

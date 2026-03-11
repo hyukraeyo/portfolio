@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { EXPERIENCE_DATA } from '@/lib/data/resume';
 import { calculateDuration } from '@/lib/utils/date';
 import ProjectPopover from './ProjectPopover';
@@ -62,7 +62,7 @@ export default function ExperienceItem({
           {/* 숨겨진 프로젝트 (내부 더보기) */}
           <AnimatePresence initial={false}>
             {isExpanded && hiddenProjects.length > 0 && (
-              <motion.div
+              <m.div
                 key="hidden-projects-container"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
@@ -83,7 +83,7 @@ export default function ExperienceItem({
                     />
                   );
                 })}
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>

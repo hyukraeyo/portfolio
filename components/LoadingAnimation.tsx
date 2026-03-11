@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import styles from '@/app/loading.module.scss'; // 스타일 재사용
 
 const bounceTransition = {
@@ -16,7 +16,7 @@ export default function LoadingAnimation() {
   return (
     <div className={styles.container}>
       {[0, 1, 2].map((index) => (
-        <motion.div
+        <m.div
           key={index}
           className={styles.circle}
           initial={{ y: 0 }}

@@ -1,7 +1,7 @@
 'use client';
 
 import { EXPERIENCE_DATA } from '@/lib/data/resume';
-import { LayoutGroup, motion } from 'framer-motion';
+import { LayoutGroup, m } from 'framer-motion';
 import { useCallback, useEffect, useState, useRef } from 'react';
 import FadeIn from './animations/FadeIn';
 import styles from './Experience.module.scss';
@@ -51,12 +51,18 @@ export default function Experience() {
       closePopover();
     };
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closePopover();
+    };
+
     document.addEventListener('click', handleClickOutside);
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.removeEventListener('click', handleClickOutside);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [activePopover, closePopover]);
 
@@ -80,7 +86,7 @@ export default function Experience() {
           >
             <div className={styles.experienceCard}>
               <LayoutGroup>
-                <motion.div
+                <m.div
                   className={`${styles.listContainer} ${
                     activePopover ? styles.hasActivePopover : ''
                   }`}
@@ -104,13 +110,13 @@ export default function Experience() {
                         activePopover && activePopover.startsWith(`${idx}-`);
 
                       return (
-                        <motion.div
+                        <m.div
                           key={idx}
                           className={`${styles.item} ${
                             hasActivePopoverInItem ? styles.activeItem : ''
                           }`}
                         >
-                          <motion.div
+                          <m.div
                             className={styles.marker}
                             style={{
                               color: [
@@ -127,7 +133,7 @@ export default function Experience() {
                             }}
                           >
                             ✦
-                          </motion.div>
+                          </m.div>
                           <ExperienceItem
                             item={item}
                             index={idx}
@@ -137,14 +143,14 @@ export default function Experience() {
                             onToggleExpand={toggleExpand}
                             onTogglePopover={toggleDescription}
                           />
-                        </motion.div>
+                        </m.div>
                       );
                     })}
                   </div>
-                </motion.div>
+                </m.div>
 
                 {/* 그라데이션 오버레이 및 더보기 버튼 */}
-                <motion.div
+                <m.div
                   className={styles.fadeOverlay}
                   initial={{ opacity: 1 }}
                   animate={{
@@ -178,7 +184,7 @@ export default function Experience() {
                       </span>
                     </div>
                   </button>
-                </motion.div>
+                </m.div>
 
                 {/* 접기 버튼 */}
                 {isExperienceExpanded && (
