@@ -273,42 +273,14 @@
   padding: 0;
 }
 
-.fullAreaButton {
+.expandButtonWrapper {
   width: 100%;
   height: 100%;
-  border: none;
-  background: transparent;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding-bottom: $spacing-6;
-  color: var(--color-text-primary);
-  transition: all $transition-base ease;
-}
-
-.buttonContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: $spacing-1;
-}
-
-.expandText {
-  font-size: $font-size-sm;
-  font-weight: $font-weight-bold;
-  color: $text-dark;
-  margin-bottom: $spacing-2;
-  opacity: 0.8;
-  transform: translateY(4px);
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.overlayIcon {
-  display: flex;
-  transition: transform 0.3s ease;
-  animation: bounce 2s infinite;
+  padding-bottom: $spacing-8;
 }
 
 .collapseButtonWrapper {

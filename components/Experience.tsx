@@ -215,31 +215,32 @@ export default function Experience() {
                   }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
-                  <button
-                    id="experience-expand-click-area"
-                    className={styles.fullAreaButton}
-                    style={{ position: 'relative', zIndex: 30 }}
-                    onClick={() => setIsExperienceExpanded(true)}
-                    aria-label="경력 전체 보기"
-                    tabIndex={isExperienceExpanded ? -1 : 0}
-                  >
-                    <div className={styles.buttonContent}>
-                      <span className={styles.overlayIcon}>
+                  <div className={styles.expandButtonWrapper}>
+                    <ExpandButton
+                      isExpanded={false}
+                      onClick={() => setIsExperienceExpanded(true)}
+                      collapsedLabel={
                         <svg
-                          width="24"
-                          height="24"
+                          width="16"
+                          height="16"
                           viewBox="0 0 24 24"
                           fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+                          <path
+                            d="M6 9L12 15L18 9"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
                         </svg>
-                      </span>
-                    </div>
-                  </button>
+                      }
+                      expandedLabel=""
+                      showIcon={false}
+                      className={styles.expandSectionButton}
+                    />
+                  </div>
                 </m.div>
 
                 {/* 접기 버튼 */}
